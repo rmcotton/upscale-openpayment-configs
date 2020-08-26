@@ -55,7 +55,7 @@
         },
         {
           "from": "/getHostedPaymentPageRequest/hostedPaymentSettings/setting[1]/settingValue",
-          "to": "{\"showReceipt\": true, \"url\": \"https://mysite.com/receipt\", \"urlText\": \"Continue\", \"cancelUrl\": \"https://mysite.com/cancel\", \"cancelUrlText\": \"Cancel\"}",
+          "to": "{\"showReceipt\": true, \"url\": \"${input.resultURL}\", \"urlText\": \"Continue\", \"cancelUrl\": \"${input.cancelURL}\", \"cancelUrlText\": \"Cancel\"}",
           "fixed": true
         },
         {
