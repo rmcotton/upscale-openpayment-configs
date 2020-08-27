@@ -1,0 +1,73 @@
+{
+  "pattern": "IFRAME",
+  "destination": {
+    "url": "https://api.demo.convergepay.com/hosted-payments/PayWithConverge.js",
+    "method": "GET",
+    "contentType": "application/x-www-form-urlencoded",
+    "body": "string",
+    "authenticationIds": [
+
+    ],
+    "form": [
+      {
+        "name": "ssl_txn_auth_token",
+        "value": "${my_ssl_txn_auth_token}"
+      }
+    ]
+  },
+  "remoteApiOutboundMapping": {
+    "url": "https://api.demo.convergepay.com/hosted-payments/transaction_token",
+    "authenticationIds": [
+
+    ],
+    "method": "POST",
+    "contentType": "application/x-www-form-urlencoded",
+    "requestExample": "ssl_pin=O74D6ICFJ4MSC8RPEAQQGVBBUCVWHNWBB52PLOFHXUV58NY5DKK3QHEIKZAN68RU&ssl_transaction_type=ccauthonly&ssl_amount=100",
+    "requestMappingFields": {
+      "mappings": [
+       {
+          "to": "ccauthonly",
+          "from": "ssl_transaction_type",
+          "fixed": true
+    },
+    {
+          "to": "${vars.ssl_pin}",
+          "from": "ssl_pin",
+          "fixed": false
+    },
+    {
+          "to": "${input.amount}",
+          "from": "ssl_amount",
+          "fixed": false
+    }
+      ]
+    },
+    "responseExample": "token",
+    "responseContentType" : "text/plain",
+    "responseMappingFields": {
+      "mappings": [
+        {
+          "from": "${input.responseBody}",
+          "to": "my_ssl_txn_auth_token",
+          "fixed": false,
+          "isCustom": true
+        }
+      ]
+    }
+  },
+  "verify": {
+    "verifyTemplate": {
+      "mappings": [
+        {
+          "from": "authResult",
+          "to": "result",
+          "map": {
+            "AUTHORIZED": "AUTHORIZED",
+            "CANCELLED": "CANCELLED"
+          }
+        }
+      ]
+    }
+  },
+  "$$ref": "#/components/examples/AccountGroupMappingConfigurationCreateRequestExample"
+}
