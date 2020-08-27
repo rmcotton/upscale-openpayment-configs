@@ -2,16 +2,15 @@
   "pattern": "IFRAME",
   "destination": {
     "url": "https://api.demo.convergepay.com/hosted-payments/PayWithConverge.js",
-    "method": "GET",
+    "method": "POST",
     "contentType": "application/x-www-form-urlencoded",
-    "body": "string",
     "authenticationIds": [
 
     ],
     "form": [
       {
         "name": "ssl_txn_auth_token",
-        "value": "${redirectUrl}"
+        "value": "${input.responseBody}"
       }
     ]
   },
@@ -46,12 +45,6 @@
     "responseContentType" : "text/plain",
     "responseMappingFields": {
       "mappings": [
-        {
-          "from": "${input.responseBody}",
-          "to": "${redirectUrl}",
-          "fixed": false,
-          "isCustom": false
-        }
       ]
     }
   },
