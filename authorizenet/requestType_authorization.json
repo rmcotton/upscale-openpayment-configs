@@ -21,7 +21,7 @@
     "method": "POST",
     "contentType": "application/xml",
     "requestExample": "<getHostedPaymentPageRequest xmlns=\"AnetApi/xml/v1/schema/AnetApiSchema.xsd\">\r\n  <merchantAuthentication>\r\n    <name>blah</name>\r\n    <transactionKey>blah</transactionKey>\r\n  </merchantAuthentication>\r\n  <transactionRequest>\r\n    <transactionType>authOnlyTransaction</transactionType>\r\n    <amount>20.00</amount>\r\n    <customer>\r\n      <email>ellen@mail.com</email>\r\n    </customer>\r\n  </transactionRequest>\r\n  <hostedPaymentSettings>\r\n    <setting>\r\n      <settingName>hostedPaymentReturnOptions</settingName>\r\n      <settingValue>{\"showReceipt\": true, \"url\": \"https://mysite.com/receipt\", \"urlText\": \"Continue\", \"cancelUrl\": \"https://mysite.com/cancel\", \"cancelUrlText\": \"Cancel\"}</settingValue>\r\n    </setting>\r\n    <setting>\r\n      <settingName>hostedPaymentButtonOptions</settingName>\r\n      <settingValue>{\"text\": \"Pay\"}</settingValue>\r\n    </setting>\r\n    <setting>\r\n      <settingName>hostedPaymentStyleOptions</settingName>\r\n      <settingValue>{\"bgColor\": \"blue\"}</settingValue>\r\n    </setting>\r\n    <setting>\r\n      <settingName>hostedPaymentPaymentOptions</settingName>\r\n      <settingValue>{\"cardCodeRequired\": false, \"showCreditCard\": true, \"showBankAccount\": true}</settingValue>\r\n    </setting>\r\n    <setting>\r\n      <settingName>hostedPaymentSecurityOptions</settingName>\r\n      <settingValue>{\"captcha\": false}</settingValue>\r\n    </setting>\r\n    <setting>\r\n      <settingName>hostedPaymentShippingAddressOptions</settingName>\r\n      <settingValue>{\"show\": false, \"required\": false}</settingValue>\r\n    </setting>\r\n    <setting>\r\n      <settingName>hostedPaymentBillingAddressOptions</settingName>\r\n      <settingValue>{\"show\": true, \"required\":false}</settingValue>\r\n    </setting>\r\n    <setting>\r\n      <settingName>hostedPaymentCustomerOptions</settingName>\r\n      <settingValue>{\"showEmail\": false, \"requiredEmail\": false, \"addPaymentProfile\": true}</settingValue>\r\n    </setting>\r\n    <setting>\r\n      <settingName>hostedPaymentOrderOptions</settingName>\r\n      <settingValue>{\"show\": true, \"merchantName\": \"G and S Questions Inc.\"}</settingValue>\r\n    </setting>\r\n    <setting>\r\n      <settingName>hostedPaymentIFrameCommunicatorUrl</settingName>\r\n      <settingValue>{\"url\": \"https://mysite.com/special\"}</settingValue>\r\n    </setting>\r\n  </hostedPaymentSettings>\r\n</getHostedPaymentPageRequest>",
-    "requestFieldMapping": {
+    "requestMappingFields": {
       "mappings": [
         {
           "from": "/getHostedPaymentPageRequest/merchantAuthentication/name",
@@ -150,11 +150,12 @@
         }
       ]
     },
+    "responseContentType" : "application/xml",
     "responseExample": "<getHostedPaymentPageResponse xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns=\"AnetApi/xml/v1/schema/AnetApiSchema.xsd\">\r\n\t<messages>\r\n\t\t<resultCode>Ok</resultCode>\r\n\t\t<message>\r\n\t\t\t<code>I00001</code>\r\n\t\t\t<text>Successful.</text>\r\n\t\t</message>\r\n\t</messages>\r\n\t<token>fpXAkWfQzJUD6zzuU+yz9olx2YkoHd2bPzjm6u/teYYsKi3KmR9xmszKsEvw8bafqxwpshKqAUuXUp0uPMvWjelVNZDv+TYDcsq2+X+B7kuoQpnQeBnhMZg</token>\r\n</getHostedPaymentPageResponse>",
-    "responseFieldMapping": {
+    "responseMappingFields": {
       "mappings": [
         {
-          "from": "/getHostedPaymentPageResponse/token",
+          "from": "getHostedPaymentPageResponse.token.#text",
           "to": "transaction_token",
           "fixed": false,
           "isCustom": true
