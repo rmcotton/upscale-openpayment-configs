@@ -11,7 +11,7 @@
     "form": [
       {
         "name": "ssl_txn_auth_token",
-        "value": "${my_ssl_txn_auth_token}"
+        "value": "${redirectUrl}"
       }
     ]
   },
@@ -48,9 +48,9 @@
       "mappings": [
         {
           "from": "${input.responseBody}",
-          "to": "my_ssl_txn_auth_token",
+          "to": "${redirectUrl}",
           "fixed": false,
-          "isCustom": true
+          "isCustom": false
         }
       ]
     }
