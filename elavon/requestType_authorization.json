@@ -22,7 +22,7 @@
     ],
     "method": "POST",
     "contentType": "application/x-www-form-urlencoded",
-    "requestExample": "ssl_pin=O74D6ICFJ4MSC8RPEAQQGVBBUCVWHNWBB52PLOFHXUV58NY5DKK3QHEIKZAN68RU&ssl_transaction_type=ccauthonly&ssl_amount=100",
+    "requestExample": "ssl_pin=ABIGPINSTRING&ssl_transaction_type=ccauthonly&ssl_amount=100",
     "requestMappingFields": {
       "mappings": [
        {
