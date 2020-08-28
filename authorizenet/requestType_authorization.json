@@ -9,7 +9,7 @@
     "form": [
       {
         "name": "token",
-        "value": "${input.transaction_token}"
+        "value": "${input.redirectUrl}"
       }
     ]
   },
@@ -156,9 +156,9 @@
       "mappings": [
         {
           "from": "getHostedPaymentPageResponse.token.#text",
-          "to": "transaction_token",
+          "to": "${redirectUrl}",
           "fixed": false,
-          "isCustom": true
+          "isCustom": false
         },
         {
          "from": "getHostedPaymentPageResponse.messages.resultCode.#text",
@@ -182,7 +182,7 @@
     }
   },
   "dynamicScript": {
-    "html": "<div id=\"iframe_holder\" class=\"center-block\" style=\"width:90%;max-width: 1000px\">\r\n\t<iframe id=\"add_payment\" class=\"embed-responsive-item panel\" name=\"add_payment\" width=\"100%\"    frameborder=\"0\" scrolling=\"no\" hidden=\"true\">\r\n\t</iframe>\r\n</div>\r\n<form id=\"send_token\" action=\"\" method=\"post\" target=\"add_payment\">\r\n\t<input type=\"hidden\" name=\"token\" value=\"${input.transaction_token}\" />\r\n</form>\r\n<script type=\"text/javascript\">\r\n\t(function () {\r\n\t\t\tif (!window.AuthorizeNetIFrame) window.AuthorizeNetIFrame = {};\r\n\t\t\t\tAuthorizeNetIFrame.onReceiveCommunication = function (querystr) {\r\n\t\t\t\t\tvar params = parseQueryString(querystr);\r\n\t\t\t\t\t\tswitch (params[\"action\"]) {\r\n\t\t\t\t\t\t\tcase \"successfulSave\":\r\n\t\t\t\t\t\t\t\tbreak;\r\n\t\t\t\t\t\t\tcase \"cancel\":\r\n\t\t\t\t\t\t\t\tbreak;\r\n\t\t\t\t\t\t\tcase \"resizeWindow\":\r\n\t\t\t\t\t\t\t\tvar w = parseInt(params[\"width\"]);\r\n\t\t\t\t\t\t\t\tvar h = parseInt(params[\"height\"]);\r\n\t\t\t\t\t\t\t\tvar ifrm = document.getElementById(\"add_payment\");\r\n\t\t\t\t\t\t\t\tifrm.style.width = w.toString() + \"px\";\r\n\t\t\t\t\t\t\t\tifrm.style.height = h.toString() + \"px\";\r\n\t\t\t\t\t\t\t\tbreak;\r\n\t\t\t\t\t\t\tcase \"transactResponse\":\r\n\t\t\t\t\t\t\t\tvar ifrm = document.getElementById(\"add_payment\");\r\n\t\t\t\t\t\t\t\tifrm.style.display = 'none';\r\n                                                               Upscale.payments.verify(querystr);\r\n\t\t\t\t\t\t\t}\r\n\t\t\t\t\t};\r\n\r\n\t\t\t\tfunction parseQueryString(str) {\r\n\t\t\t\t\tvar vars = [];\r\n\t\t\t\t\tvar arr = str.split('&');\r\n\t\t\t\t\tvar pair;\r\n\t\t\t\t\tfor (var i = 0; i < arr.length; i++) {\r\n\t\t\t\t\t\tpair = arr[i].split('=');\r\n\t\t\t\t\t\tvars.push(pair[0]);\r\n\t\t\t\t\t\tvars[pair[0]] = unescape(pair[1]);\r\n\t\t\t\t\t\t}\r\n\t\t\t\t\treturn vars;\r\n\t\t\t\t\t}\r\n\t\t}());\r\n</script>"
+    "html": "<div id=\"iframe_holder\" class=\"center-block\" style=\"width:90%;max-width: 1000px\">\r\n\t<iframe id=\"add_payment\" class=\"embed-responsive-item panel\" name=\"add_payment\" width=\"100%\"    frameborder=\"0\" scrolling=\"no\" hidden=\"true\">\r\n\t</iframe>\r\n</div>\r\n<form id=\"send_token\" action=\"\" method=\"post\" target=\"add_payment\">\r\n\t<input type=\"hidden\" name=\"token\" value=\"${input.redirectUrl}\" />\r\n</form>\r\n<script type=\"text/javascript\">\r\n\t(function () {\r\n\t\t\tif (!window.AuthorizeNetIFrame) window.AuthorizeNetIFrame = {};\r\n\t\t\t\tAuthorizeNetIFrame.onReceiveCommunication = function (querystr) {\r\n\t\t\t\t\tvar params = parseQueryString(querystr);\r\n\t\t\t\t\t\tswitch (params[\"action\"]) {\r\n\t\t\t\t\t\t\tcase \"successfulSave\":\r\n\t\t\t\t\t\t\t\tbreak;\r\n\t\t\t\t\t\t\tcase \"cancel\":\r\n\t\t\t\t\t\t\t\tbreak;\r\n\t\t\t\t\t\t\tcase \"resizeWindow\":\r\n\t\t\t\t\t\t\t\tvar w = parseInt(params[\"width\"]);\r\n\t\t\t\t\t\t\t\tvar h = parseInt(params[\"height\"]);\r\n\t\t\t\t\t\t\t\tvar ifrm = document.getElementById(\"add_payment\");\r\n\t\t\t\t\t\t\t\tifrm.style.width = w.toString() + \"px\";\r\n\t\t\t\t\t\t\t\tifrm.style.height = h.toString() + \"px\";\r\n\t\t\t\t\t\t\t\tbreak;\r\n\t\t\t\t\t\t\tcase \"transactResponse\":\r\n\t\t\t\t\t\t\t\tvar ifrm = document.getElementById(\"add_payment\");\r\n\t\t\t\t\t\t\t\tifrm.style.display = 'none';\r\n                                                               Upscale.payments.verify(querystr);\r\n\t\t\t\t\t\t\t}\r\n\t\t\t\t\t};\r\n\r\n\t\t\t\tfunction parseQueryString(str) {\r\n\t\t\t\t\tvar vars = [];\r\n\t\t\t\t\tvar arr = str.split('&');\r\n\t\t\t\t\tvar pair;\r\n\t\t\t\t\tfor (var i = 0; i < arr.length; i++) {\r\n\t\t\t\t\t\tpair = arr[i].split('=');\r\n\t\t\t\t\t\tvars.push(pair[0]);\r\n\t\t\t\t\t\tvars[pair[0]] = unescape(pair[1]);\r\n\t\t\t\t\t\t}\r\n\t\t\t\t\treturn vars;\r\n\t\t\t\t\t}\r\n\t\t}());\r\n</script>"
   },
   "verify": {
     "verifyTemplate": {
