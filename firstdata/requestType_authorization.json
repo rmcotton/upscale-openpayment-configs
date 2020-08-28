@@ -1,0 +1,49 @@
+{
+  "pattern": "IFRAME",
+  "destination": {
+    "url": "https://checkout.globalgatewaye4.firstdata.com/payment",
+    "method": "POST",
+    "contentType": "application/x-www-form-urlencoded",
+    "authenticationIds": [
+      131
+    ],
+    "form": [
+      {
+        "name": "x_fp_hash",
+        "value": "${auth.hmac}"
+      },
+      {
+        "name": "x_fp_sequence",
+        "value": "${input.referenceId}"
+      },
+      {
+        "name": "x_fp_timestamp",
+        "value": "${vars.x_fp_timestamp}"
+      },
+      {
+        "name": "x_fp_amount",
+        "value": "${input.amount}"
+      },
+      {
+        "name": "x_fp_currency",
+        "value": "${input.currency}"
+      }
+
+    ]
+  },
+  "verify": {
+    "verifyTemplate": {
+      "mappings": [
+        {
+          "from": "authResult",
+          "to": "result",
+          "map": {
+            "AUTHORIZED": "AUTHORIZED",
+            "CANCELLED": "CANCELLED"
+          }
+        }
+      ]
+    }
+  },
+  "$$ref": "#/components/examples/AccountGroupMappingConfigurationCreateRequestExample"
+}
