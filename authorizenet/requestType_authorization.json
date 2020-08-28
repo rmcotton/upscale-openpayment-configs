@@ -159,25 +159,7 @@
           "to": "${redirectUrl}",
           "fixed": false,
           "isCustom": false
-        },
-        {
-         "from": "getHostedPaymentPageResponse.messages.resultCode.#text",
-         "to" : "gateway_result_code",
-         "fixed": false,
-         "isCustom": false
-       },
-       {
-         "from": "getHostedPaymentPageResponse.messages.message.code.#text",
-         "to" : "gateway_result_message_code",
-         "fixed": false,
-         "isCustom": true
-       },
-       {
-         "from": "getHostedPaymentPageResponse.messages.message.text.#text",
-         "to" : "gateway_result_message_text",
-         "fixed": false,
-         "isCustom": true
-       }
+        }
       ]
     }
   },
