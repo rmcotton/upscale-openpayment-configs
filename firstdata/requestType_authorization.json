@@ -10,7 +10,7 @@
     "form": [
       {
         "name": "x_fp_hash",
-        "value": "${auth.hmac}"
+        "value": "${auth.hmac.signature}"
       },
       {
         "name": "x_fp_sequence",
@@ -18,7 +18,7 @@
       },
       {
         "name": "x_fp_timestamp",
-        "value": "${vars.x_fp_timestamp}"
+        "value": "${auth.hmac.hmacFields.x_fp_timestamp}"
       },
       {
         "name": "x_fp_amount",
