@@ -1,0 +1,13 @@
+{
+  "name": "First Data HMAC",
+  "method": "HMAC_OUTBOUND_SIGNATURE_CALCULATION",
+  "algorithm": "HmacSHA1",
+  "baseEncoding": "BASE16",
+  "secretBaseEncoding": "NONE",
+  "charset": "UTF-8",
+  "secret": "HCxX7srS5~lZFZeQWAC6",
+  "source": "${vars.x_login}^${input.referenceId}^${x_fp_timestamp}^${input.amount}^${input.currency}",
+  "hmacFields": {
+    "x_fp_timestamp": "${.now?long?c}"
+  }
+}
