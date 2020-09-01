@@ -1,52 +1,48 @@
 {
+  "id": 302,
   "pattern": "IFRAME",
+  "requestType": "AUTHORIZATION",
   "destination": {
     "url": "https://api.demo.convergepay.com/hosted-payments/PayWithConverge.js",
     "method": "POST",
     "contentType": "application/x-www-form-urlencoded",
-    "authenticationIds": [
-
-    ],
-    "form": [
-      {
-        "name": "ssl_txn_auth_token",
-        "value": "${input.responseBody}"
-      }
-    ]
+    "authenticationIds": [],
+    "form": [ {
+         "name" : "ssl_txn_auth_token",
+         "value" : "${input.responseBody}"
+}
+     ]
   },
   "remoteApiOutboundMapping": {
-    "url": "https://api.demo.convergepay.com/hosted-payments/transaction_token",
-    "authenticationIds": [
-
-    ],
+    "url": "https://6bcfdfc205f9e27ba20070259629d5b1.m.pipedream.net",
+    "authenticationIds": [],
     "method": "POST",
     "contentType": "application/x-www-form-urlencoded",
-    "requestExample": "ssl_pin=ABIGPINSTRING&ssl_transaction_type=ccauthonly&ssl_amount=100",
+    "requestExample": "ssl_pin=O74D6ICFJ4MSC8RPEAQQGVBBUCVWHNWBB52PLOFHXUV58NY5DKK3QHEIKZAN68RU&ssl_transaction_type=ccauthonly&ssl_amount=100",
+    "responseExample": "token",
     "requestMappingFields": {
       "mappings": [
-       {
-          "to": "ccauthonly",
+        {
           "from": "ssl_transaction_type",
+          "to": "ccauthonly",
           "fixed": true
-    },
-    {
-          "to": "${vars.ssl_pin}",
+        },
+        {
           "from": "ssl_pin",
+          "to": "${vars.ssl_pin}",
           "fixed": false
-    },
-    {
-          "to": "${input.amount}",
+        },
+        {
           "from": "ssl_amount",
+          "to": "${input.amount}",
           "fixed": false
-    }
+        }
       ]
     },
-    "responseExample": "token",
-    "responseContentType" : "text/plain",
     "responseMappingFields": {
-      "mappings": [
-      ]
-    }
+      "mappings": []
+    },
+    "responseContentType": "text/plain"
   },
   "verify": {
     "verifyTemplate": {
@@ -57,10 +53,11 @@
           "map": {
             "AUTHORIZED": "AUTHORIZED",
             "CANCELLED": "CANCELLED"
-          }
+          },
+          "fixed": false,
+          "isCustom": false
         }
       ]
     }
-  },
-  "$$ref": "#/components/examples/AccountGroupMappingConfigurationCreateRequestExample"
+  }
 }
