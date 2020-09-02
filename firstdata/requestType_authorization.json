@@ -3,13 +3,29 @@
   "pattern": "IFRAME",
   "requestType": "AUTHORIZATION",
   "destination": {
-    "url": "https://checkout.globalgatewaye4.firstdata.com/payment",
+    "url": "https://demo.globalgatewaye4.firstdata.com/payment",
     "method": "POST",
     "contentType": "application/x-www-form-urlencoded",
     "authenticationIds": [
-      140
+      167
     ],
     "form": [
+      {
+        "name": "x_amount",
+        "value": "${auth.hmac.hmacFields.x_amount}"
+      },
+      {
+        "name": "x_currency_code",
+        "value": "${auth.hmac.hmacFields.x_currency_code}"
+      },
+      {
+        "name": "x_show_form",
+        "value": "PAYMENT_FORM"
+      },
+      {
+        "name": "x_login",
+        "value": "${vars.x_login}"
+      },
       {
         "name": "x_fp_hash",
         "value": "${auth.hmac.signature?lower_case}"
@@ -21,14 +37,6 @@
       {
         "name": "x_fp_timestamp",
         "value": "${auth.hmac.hmacFields.x_fp_timestamp}"
-      },
-      {
-        "name": "x_amount",
-        "value": "${auth.hmac.hmacFields.x_amount}"
-      },
-      {
-        "name": "x_currency_code",
-        "value": "${auth.hmac.hmacFields.x_currency_code}"
       }
     ]
   },
