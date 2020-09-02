@@ -180,7 +180,7 @@
     "responseContentType": "application/xml"
   },
   "verify": {
-    "verifyTemplate": {
+    "localVerifyMapping": {
       "mappings": [
         {
           "from": "authResult",

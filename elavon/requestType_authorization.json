@@ -45,7 +45,7 @@
     "responseContentType": "text/plain"
   },
   "verify": {
-    "verifyTemplate": {
+    "localVerifyMapping": {
       "mappings": [
         {
           "from": "authResult",
