@@ -76,20 +76,8 @@
           "isCustom": true
         },
         {
-          "from" : "x_fp_sequence",
-          "to" : "x_fp_sequence",
-          "fixed": false,
-          "isCustom": true
-        },
-        {
-          "from" : "x_fp_timestamp",
-          "to" : "x_fp_timestamp",
-          "fixed": false,
-          "isCustom": true
-        },
-        {
-          "from" : "x_currency_code",
-          "to" : "x_currency_code",
+          "from" : "x_trans_id",
+          "to" : "x_trans_id",
           "fixed": false,
           "isCustom": true
         },
