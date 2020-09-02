@@ -1,38 +1,39 @@
 {
+  "id": 305,
   "pattern": "IFRAME",
+  "requestType": "AUTHORIZATION",
   "destination": {
     "url": "https://checkout.globalgatewaye4.firstdata.com/payment",
     "method": "POST",
     "contentType": "application/x-www-form-urlencoded",
     "authenticationIds": [
-      131
+      140
     ],
     "form": [
       {
         "name": "x_fp_hash",
-        "value": "${auth.hmac.signature}"
+        "value": "${auth.hmac.signature?lower_case}"
       },
       {
         "name": "x_fp_sequence",
-        "value": "${input.referenceId}"
+        "value": "${auth.hmac.hmacFields.x_fp_sequence}"
       },
       {
         "name": "x_fp_timestamp",
         "value": "${auth.hmac.hmacFields.x_fp_timestamp}"
       },
       {
-        "name": "x_fp_amount",
-        "value": "${input.amount}"
+        "name": "x_amount",
+        "value": "${auth.hmac.hmacFields.x_amount}"
       },
       {
-        "name": "x_fp_currency",
-        "value": "${input.currency}"
+        "name": "x_currency_code",
+        "value": "${auth.hmac.hmacFields.x_currency_code}"
       }
-
     ]
   },
   "verify": {
-    "verifyTemplate": {
+    "localVerifyMapping": {
       "mappings": [
         {
           "from": "authResult",
@@ -40,10 +41,11 @@
           "map": {
             "AUTHORIZED": "AUTHORIZED",
             "CANCELLED": "CANCELLED"
-          }
+          },
+          "fixed": false,
+          "isCustom": false
         }
       ]
     }
-  },
-  "$$ref": "#/components/examples/AccountGroupMappingConfigurationCreateRequestExample"
+  }
 }
