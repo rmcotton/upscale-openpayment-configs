@@ -7,7 +7,7 @@
     "method": "POST",
     "contentType": "application/x-www-form-urlencoded",
     "authenticationIds": [
-      167
+      168
     ],
     "form": [
       {
@@ -37,6 +37,22 @@
       {
         "name": "x_fp_timestamp",
         "value": "${auth.hmac.hmacFields.x_fp_timestamp}"
+      },
+      {
+        "name" : "x_type",
+        "value" : "AUTH_ONLY"
+      },
+      {
+        "name" : "x_receipt_link_method",
+        "value" : "AUTO-GET"
+      },
+      {
+        "name" : "x_receipt_link_text",
+        "value" : "Return to Upscale"
+      },
+      {
+        "name" : "x_receipt_link_url",
+        "value" : "https://www.example.com/"
       }
     ]
   },
@@ -44,14 +60,44 @@
     "localVerifyMapping": {
       "mappings": [
         {
-          "from": "authResult",
+          "from": "x_response_code",
           "to": "result",
           "map": {
-            "AUTHORIZED": "AUTHORIZED",
-            "CANCELLED": "CANCELLED"
+            "1": "AUTHORIZED",
+            "2": "UNAUTHORIZED"
           },
           "fixed": false,
           "isCustom": false
+        },
+        {
+          "from" : "x_SHA1_Hash",
+          "to" : "x_SHA1_Hash",
+          "fixed": false,
+          "isCustom": true
+        },
+        {
+          "from" : "x_fp_sequence",
+          "to" : "x_fp_sequence",
+          "fixed": false,
+          "isCustom": true
+        },
+        {
+          "from" : "x_fp_timestamp",
+          "to" : "x_fp_timestamp",
+          "fixed": false,
+          "isCustom": true
+        },
+        {
+          "from" : "x_currency_code",
+          "to" : "x_currency_code",
+          "fixed": false,
+          "isCustom": true
+        },
+        {
+          "from" : "x_amount",
+          "to" : "x_amount",
+          "fixed": false,
+          "isCustom": true
         }
       ]
     }
