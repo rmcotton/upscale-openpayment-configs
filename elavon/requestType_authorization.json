@@ -6,15 +6,18 @@
     "url": "https://api.demo.convergepay.com/hosted-payments/PayWithConverge.js",
     "method": "POST",
     "contentType": "application/x-www-form-urlencoded",
-    "authenticationIds": [],
-    "form": [ {
-         "name" : "ssl_txn_auth_token",
-         "value" : "${input.responseBody}"
-}
-     ]
+    "authenticationIds": [
+      117
+    ],
+    "form": [
+      {
+        "name": "ssl_txn_auth_token",
+        "value": "${input.responseBody}"
+      }
+    ]
   },
   "remoteApiOutboundMapping": {
-    "url": "https://6bcfdfc205f9e27ba20070259629d5b1.m.pipedream.net",
+    "url": "https://api.demo.convergepay.com/hosted-payments/transaction_token",
     "authenticationIds": [],
     "method": "POST",
     "contentType": "application/x-www-form-urlencoded",
@@ -36,6 +39,16 @@
           "from": "ssl_amount",
           "to": "${input.amount}",
           "fixed": false
+        },
+        {
+          "from": "ssl_merchant_id",
+          "to": "008548",
+          "fixed": true
+        },
+        {
+          "from": "ssl_user_id",
+          "to": "webpage",
+          "fixed": true
         }
       ]
     },
