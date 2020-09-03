@@ -1,5 +1,5 @@
 {
-  "name": "First Data HMAC (5)",
+  "name": "First Data HMAC (Hosted Page)",
   "method": "HMAC_OUTBOUND_SIGNATURE_CALCULATION",
   "algorithm": "HmacSHA1",
   "baseEncoding": "BASE16",

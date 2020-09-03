@@ -1,0 +1,71 @@
+{
+  "id": 332,
+  "pattern": "NOTIFICATION",
+  "requestType": "SETTLEMENT",
+  "outboundMapping": {
+    "url": "https://api.demo.globalgatewaye4.firstdata.com/transaction/v31",
+    "authenticationIds": [],
+    "method": "POST",
+    "contentType": "application/xml",
+    "requestExample": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<Transaction>\r\n  <ExactID>QE4076-19</ExactID>\r\n  <Password>1zl9Hm4N8Qo4DVREbVaoVUG0udV8LAh6</Password>\r\n  <Transaction_Type>32</Transaction_Type>\r\n  <Transaction_Tag>4573399298</Transaction_Tag>\r\n  <Authorization_Num>ET180324</Authorization_Num>\r\n  <DollarAmount>595.99</DollarAmount>\r\n</Transaction>",
+    "responseExample": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<TransactionResult>\r\n    <ExactID>QE4076-19</ExactID>\r\n    <Password/>\r\n    <Transaction_Type>32</Transaction_Type>\r\n    <DollarAmount>595.99</DollarAmount>\r\n    <SurchargeAmount/>\r\n    <Card_Number>############1111</Card_Number>\r\n    <Transaction_Tag>4573655896</Transaction_Tag>\r\n    <SplitTenderID/>\r\n    <Track1/>\r\n    <Track2/>\r\n    <PAN/>\r\n    <Authorization_Num>ET166984</Authorization_Num>\r\n    <Expiry_Date>1021</Expiry_Date>\r\n    <CardHoldersName>Richard Cotton</CardHoldersName>\r\n    <CVD_Presence_Ind>0</CVD_Presence_Ind>\r\n    <ZipCode/>\r\n    <Tax1Amount/>\r\n    <Tax1Number/>\r\n    <Tax2Amount/>\r\n    <Tax2Number/>\r\n    <Secure_AuthRequired/>\r\n    <Secure_AuthResult/>\r\n    <Ecommerce_Flag/>\r\n    <XID/>\r\n    <CAVV/>\r\n    <Reference_No/>\r\n    <Customer_Ref/>\r\n    <Reference_3/>\r\n    <Language/>\r\n    <Client_IP/>\r\n    <Client_Email/>\r\n    <User_Name/>\r\n    <Transaction_Error>false</Transaction_Error>\r\n    <Transaction_Approved>true</Transaction_Approved>\r\n    <EXact_Resp_Code>00</EXact_Resp_Code>\r\n    <EXact_Message>Transaction Normal</EXact_Message>\r\n    <Bank_Resp_Code>100</Bank_Resp_Code>\r\n    <Bank_Message>Approved</Bank_Message>\r\n    <Bank_Resp_Code_2/>\r\n    <SequenceNo>000003</SequenceNo>\r\n    <AVS/>\r\n    <CVV2/>\r\n    <Retrieval_Ref_No>200903</Retrieval_Ref_No>\r\n    <CAVV_Response/>\r\n    <Currency>USD</Currency>\r\n    <AmountRequested/>\r\n    <PartialRedemption>false</PartialRedemption>\r\n    <MerchantName>SAP DEMO0898</MerchantName>\r\n    <MerchantAddress>53 State Street – 16th Floor</MerchantAddress>\r\n    <MerchantCity>Boston</MerchantCity>\r\n    <MerchantProvince>Massachusetts</MerchantProvince>\r\n    <MerchantCountry>United States</MerchantCountry>\r\n    <MerchantPostal>02109</MerchantPostal>\r\n    <MerchantURL/>\r\n    <TransarmorToken/>\r\n    <CardType>Visa</CardType>\r\n    <CurrentBalance/>\r\n    <PreviousBalance/>\r\n    <EAN/>\r\n    <CardCost/>\r\n    <VirtualCard>false</VirtualCard>\r\n    <CTR>========== TRANSACTION RECORD ==========\r\nSAP DEMO0898\r\n53 State Street – 16th Floor\r\nBoston, MA 02109\r\nUnited States\r\n\r\n\r\nTYPE: Completion\r\n\r\nACCT: Visa                  $ 595.99 USD\r\n\r\nCARDHOLDER NAME : Richard Cotton\r\nCARD NUMBER     : ############1111\r\nDATE/TIME       : 03 Sep 20 07:58:25\r\nREFERENCE #     : 03 000003 M\r\nAUTHOR. #       : ET166984\r\nTRANS. REF.     : \r\n\r\n    Approved - Thank You 100\r\n\r\n\r\nPlease retain this copy for your records.\r\n\r\nCardholder will pay above amount to\r\ncard issuer pursuant to cardholder\r\nagreement.\r\n========================================</CTR>\r\n    <FraudSuspected/>\r\n    <CVDCode/>\r\n    <SplitShipmentNumber/>\r\n    <ThreeDSecureProgramProtocol/>\r\n    <ThreeDSecureDirectoryServerTransactionId/>\r\n</TransactionResult>",
+    "requestMappingFields": {
+      "mappings": [
+        {
+          "from": "/Transaction/ExactID",
+          "to": "${vars.gatewayID}",
+          "fixed": false
+        },
+        {
+          "from": "/Transaction/Password",
+          "to": "${vars.apiPassword}",
+          "fixed": false
+        },
+        {
+          "from": "/Transaction/Transaction_Type",
+          "to": "32",
+          "fixed": true
+        },
+        {
+          "from": "/Transaction/Transaction_Tag",
+          "to": "${input.pspReference}",
+          "fixed": false
+        },
+        {
+          "from": "/Transaction/Authorization_Num",
+          "to": "${input.referenceId}",
+          "fixed": false
+        },
+        {
+          "from": "/Transaction/DollarAmount",
+          "to": "${input.amount}",
+          "fixed": false
+        }
+      ]
+    },
+    "responseMappingFields": {
+      "mappings": [
+        {
+          "from": "TransactionResult.Transaction_Tag.#text",
+          "to" : "transactionStatus",
+          "fixed": false
+        },
+        {
+          "from": "TransactionResult.Transaction_Approved.#text",
+          "to" : "transactionStatus",
+          "map": {
+            "true": "SETTLED",
+            "false": "ERROR"
+          },
+          "fixed": false
+        },
+        {
+          "from": "TransactionResult.EXact_Resp_Code.#text",
+          "to" : "errorCode",
+          "fixed": false
+        }
+      ]
+    },
+    "responseContentType": "application/xml"
+  }
+}

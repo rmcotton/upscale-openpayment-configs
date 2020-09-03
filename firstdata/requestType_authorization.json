@@ -86,6 +86,12 @@
           "to" : "x_amount",
           "fixed": false,
           "isCustom": true
+        },
+        {
+          "from" : "x_trans_id",
+          "to" : "transaction_tag",
+          "fixed": false,
+          "isCustom": true
         }
       ]
     }
