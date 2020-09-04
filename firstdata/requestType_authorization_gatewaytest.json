@@ -37,20 +37,60 @@
         "value": "${auth.hmac.hmacFields.x_fp_timestamp}"
       },
       {
-        "name": "x_type",
-        "value": "AUTH_ONLY"
+        "name" : "x_type",
+        "value" : "AUTH_ONLY"
       },
       {
-        "name": "x_receipt_link_method",
-        "value": "AUTO-GET"
+        "name" : "x_receipt_link_method",
+        "value" : "AUTO-GET"
       },
       {
-        "name": "x_receipt_link_text",
-        "value": "Return to Upscale"
+        "name" : "Ecommerce_flag",
+        "value" : "5"
       },
       {
-        "name": "x_receipt_link_url",
-        "value": "http://localhost:4200/checkout/result"
+        "name" : "x_receipt_link_text",
+        "value" : "Return to Upscale"
+      },
+      {
+        "name" : "x_receipt_link_url",
+        "value" : "http://localhost:4200/checkout/result"
+      },
+      {
+        "name" : "x_po_num",
+        "value" : "${input.orderId}"
+      },
+      {
+        "name" : "x_reference_3",
+        "value" : "${input.referenceId}"
+      },
+      {
+        "name" : "x_first_name",
+        "value" : "${input.billingAddress.firstName}"
+      },
+      {
+        "name" : "x_last_name",
+        "value" : "${input.billingAddress.lastName}"
+      },
+      {
+        "name" : "x_address",
+        "value" : "${input.billingAddress.addressLine1}"
+      },
+      {
+        "name" : "x_city",
+        "value" : "${input.billingAddress.city}"
+      },
+      {
+        "name" : "x_state",
+        "value" : "${input.billingAddress.state}"
+      },
+      {
+        "name" : "x_zip",
+        "value" : "${input.billingAddress.postalCode}"
+      },
+      {
+        "name" : "x_email",
+        "value" : "${input.emailAddress}"
       }
     ]
   },
