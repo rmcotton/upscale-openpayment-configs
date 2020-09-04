@@ -52,7 +52,7 @@
       },
       {
         "name" : "x_receipt_link_url",
-        "value" : "https://www.example.com/"
+        "value" : "http://localhost:4200/checkout/result"
       }
     ]
   },
