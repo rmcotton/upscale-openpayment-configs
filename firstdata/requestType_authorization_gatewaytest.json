@@ -1,12 +1,14 @@
 {
-  "id": 333,
+  "id": 305,
   "pattern": "IFRAME",
   "requestType": "AUTHORIZATION",
   "destination": {
     "url": "https://demo.globalgatewaye4.firstdata.com/payment",
     "method": "POST",
     "contentType": "application/x-www-form-urlencoded",
-    "authenticationIds": [177],
+    "authenticationIds": [
+      177
+    ],
     "form": [
       {
         "name": "x_amount",
@@ -108,26 +110,26 @@
           "isCustom": false
         },
         {
-          "from": "x_SHA1_Hash",
-          "to": "x_SHA1_Hash",
+          "from" : "x_SHA1_Hash",
+          "to" : "x_SHA1_Hash",
           "fixed": false,
           "isCustom": true
         },
         {
-          "from": "x_trans_id",
-          "to": "x_trans_id",
+          "from" : "x_trans_id",
+          "to" : "x_trans_id",
           "fixed": false,
           "isCustom": true
         },
         {
-          "from": "x_amount",
-          "to": "x_amount",
+          "from" : "x_amount",
+          "to" : "x_amount",
           "fixed": false,
           "isCustom": true
         },
         {
-          "from": "x_trans_id",
-          "to": "transaction_tag",
+          "from" : "x_trans_id",
+          "to" : "transaction_tag",
           "fixed": false,
           "isCustom": true
         }
