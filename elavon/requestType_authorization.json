@@ -20,7 +20,7 @@
     "url": "https://api.demo.convergepay.com/hosted-payments/transaction_token",
     "authenticationIds": [],
     "method": "POST",
-    "contentType": "application/x-www-form-urlencoded",
+    "requestContentType": "application/x-www-form-urlencoded",
     "requestExample": "ssl_pin=O74D6ICFJ4MSC8RPEAQQGVBBUCVWHNWBB52PLOFHXUV58NY5DKK3QHEIKZAN68RU&ssl_transaction_type=ccauthonly&ssl_amount=100",
     "responseExample": "token",
     "requestMappingFields": {
