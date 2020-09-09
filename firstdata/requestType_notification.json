@@ -1,5 +1,4 @@
 {
-  "id": 334,
   "requestType": "NOTIFICATION",
   "inboundMapping": {
     "authenticationIds": [],
@@ -10,39 +9,36 @@
         "requestMappingFields": {
           "mappings": [
             {
-              "from" : "TransactionCardType",
-              "to" : "cardType",
-              "map": {
-                "VISA": "VISA"
-              },
-              "fixed" : true,
-              "isCustom" : false
-            },
-            {
-              "from" : "TransactionCardType",
-              "to" : "paymentMethod",
-              "map": {
-                "VISA": "VISA"
-              },
-              "fixed" : true,
-              "isCustom" : false
-            },
-            {
-              "from": "x_po_num",
-              "to" : "x_po_num",
+              "from": "Transaction_Type",
+              "to" : "requestType",
               "fixed": false,
-              "isCustom": true
+              "isCustom": false,
+              "map": {
+                "00": "AUTHORIZATION"
+              }
+            },
+            {
+              "from": "TransactionCardType",
+              "to": "cardType",
+              "map": {
+                "VISA": "VISA"
+              },
+              "fixed": true,
+              "isCustom": false
+            },
+            {
+              "from": "TransactionCardType",
+              "to": "paymentMethod",
+              "map": {
+                "VISA": "VISA"
+              },
+              "fixed": true,
+              "isCustom": false
             },
             {
               "from": "x_response_reason_text",
               "fixed": true,
               "isCustom": false
-            },
-            {
-              "from": "x_zip",
-              "to" : "x_zip",
-              "fixed": false,
-              "isCustom": true
             },
             {
               "from": "Card_Number",
@@ -51,28 +47,7 @@
               "isCustom": false
             },
             {
-              "from": "x_address",
-              "to" : "x_address",
-              "fixed": false,
-              "isCustom": true
-            },
-            {
               "from": "x_type",
-              "fixed": true,
-              "isCustom": false
-            },
-            {
-              "from": "x_ship_to_address",
-              "fixed": true,
-              "isCustom": false
-            },
-            {
-              "from": "x_receipt_link_text",
-              "fixed": true,
-              "isCustom": false
-            },
-            {
-              "from": "x_state",
               "fixed": true,
               "isCustom": false
             },
@@ -83,80 +58,36 @@
               "isCustom": false
             },
             {
-              "from": "x_cvv2_resp_code",
-              "fixed": true,
-              "isCustom": false
-            },
-            {
               "from": "x_auth_code",
-              "to" : "pspReference",
+              "to": "pspReference",
               "fixed": false,
               "isCustom": false
             },
             {
-              "from": "x_cust_id",
-              "fixed": true,
-              "isCustom": false
-            },
-            {
               "from": "x_fp_sequence",
-              "fixed": true,
-              "isCustom": false
-            },
-            {
-              "from": "x_tax",
-              "fixed": true,
-              "isCustom": false
-            },
-            {
-              "from": "exact_ctr",
-              "fixed": true,
-              "isCustom": false
-            },
-            {
-              "from": "alternate_tax",
-              "fixed": true,
-              "isCustom": false
-            },
-            {
-              "from": "enable_level3_processing",
-              "fixed": true,
-              "isCustom": false
-            },
-            {
-              "from": "x_ship_to_country",
+              "to" : "x_fp_sequence",
               "fixed": true,
               "isCustom": false
             },
             {
               "from": "x_response_code",
-              "to" : "transactionStatus",
-              "fixed": false,
+              "to": "transactionStatus",
               "map": {
                 "1": "ACCEPTED",
                 "2": "HARD_REJECTED"
-              }
-            },
-            {
-              "from": "x_cavv_response",
-              "to" : "x_cavv_response",
+              },
               "fixed": false,
-              "isCustom": true
-            },
-            {
-              "from": "x_description",
-              "fixed": true,
               "isCustom": false
             },
             {
               "from": "x_fp_timestamp",
-              "to" : "x_fp_timestamp",
+              "to": "x_fp_timestamp",
               "fixed": false,
               "isCustom": true
             },
             {
               "from": "x_response_reason_code",
-              "to" : "x_response_reason_code",
+              "to": "x_response_reason_code",
               "fixed": false,
               "isCustom": true
             },
@@ -173,52 +104,22 @@
             },
             {
               "from": "x_trans_id",
-              "to" : "transactionId",
+              "to": "transactionId",
               "fixed": false,
               "isCustom": false
             },
             {
-              "from": "x_email",
-              "to": "x_email",
-              "fixed": false,
-              "isCustom": true
-            },
-            {
-              "from": "x_SHA1_Hash",
-              "to" : "targetSignature",
-              "fixed": false,
-              "isCustom": true
-            },
-            {
               "from": "x_currency_code",
-              "to" : "x_currency_code",
+              "to": "x_currency_code",
               "fixed": false,
               "isCustom": true
             },
             {
-              "from": "x_response_subcode",
-              "to" : "x_response_subcode",
-              "fixed": false,
-              "isCustom": true
-            },
-            {
-              "from": "x_country",
-              "to" : "x_country",
-              "fixed": false,
-              "isCustom": true
-            },
-            {
-              "from": "x_city",
-              "to": "x_city",
-              "fixed": false,
-              "isCustom": true
-            },
-            {
-              "from": "x_avs_code",
-              "to": "x_avs_code",
-              "fixed": false,
-              "isCustom": true
+              "from": "MerchantName",
+              "fixed": true,
+              "isCustom": false
             }
+
           ]
         }
       },
