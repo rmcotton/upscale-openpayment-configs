@@ -5,17 +5,17 @@
     "contentType": "application/x-www-form-urlencoded",
     "requestMapping": {
       "authorization": {
-        "requestExample": "SequenceNo=435677&Language=1&Tax2Amount=&x_currency_code=CAD&x_ship_to_city=&x_method=CC&EXact_Resp_Code=00&CardHoldersName=Susan+Testname&x_email=test%40yahoo.com&Authorization_Num=ET141870&MerchantCountry=Canada&Reference_3=&x_description=&x_amount=564.30&exact_ctr=%3D%3D%3D%3D%3D%3D%3D%3D+TRANSACTION+RECORD+%3D%3D%3D%3D%3D%3D%3D%3D%0A%0AMerchant+Plug-in+Test+Store%0A44+King+Street+West%0AVancouver%2C+BC+V6B+4X2%0ACanada%0Awww.test.com%0ATYPE%3A+Purchase%0A%0AACCT%3A+Visa++%24564.30+CAD%0A%0ACARD+HOLDER+%3A+Susan+Testname%0ACARD+NUMBER+%3A+%2A%2A%2A%2A%2A%2A%2A%2A%2A%2A%2A%2A1111%0AEXPIRY+DATE+%3A+12%2F12%0ATRANS.+REF.+%3A+1234567%0ADATE%2FTIME+++%3A+13+Jan+09+16%3A01%3A41%0AREFERENCE+%23+%3A+435677+305+M%0AAUTHOR.%23++++%3A+ET141870%0A%0A++++Approved+-+Thank+You+000%0A%0A%0A%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%0A&x_card_num=&Ecommerce_Flag=0&x_po_num=&x_city=Vancouver&x_response_reason_text=Transaction+has+been+approved&MerchantName=Merchant+Plug-in+Test+Store&Bank_Resp_Code_2=&Tax1Number=&x_ship_to_address=&x_type=AUTH_CAPTURE&Transaction_Approved=YES&Card_Number=%2A%2A%2A%2A%2A%2A%2A%2A%2A%2A%2A%2A1111&x_duty=&x_fax=&x_relay_response=TRUE&exact_wsp_version=1.7&Customer_Ref=&x_invoice_num=1234567&x_relay_url=http%3A%2F%2Ftestmerchant.com%2Frelay_response&x_cavv_response=&CAVV_Response=0&x_address=555+A+Street&x_response_reason_code=1&x_show_form=PAYMENT_FORM&x_ship_to_country=&Bank_Message=Approved&Tax1Amount=&x_version=3.1&x_ship_to_company=&Transaction_Error=false&exact_issconf=TRUE&SurchargeAmount=0&x_tax_exempt=&x_phone=&x_merchant_email=&MerchantProvince=BC&Reference_No=1234567&ZipCode=&x_trans_id=2150&x_last_name=Testname&x_cvv2_resp_code=&Retrieval_Ref_No=5669951&x_zip=The+Zip&x_response_subcode=S&x_ship_to_zip=&Bank_Resp_Code=000&CVD_Presence_Ind=0&x_ship_to_last_name=&x_exp_date=&Client_Email=&exact_issname=&x_fp_sequence=123456&Transaction_Type=00&x_tax=127.26&x_company=&MerchantCity=Vancouver&CAVV_Algorithm=0&x_country=Canada&x_avs_code=&x_first_name=Susan&CVV2=&AVS=&Tax2Number=&x_ship_to_state=&x_response_code=1&DollarAmount=564.30&TransactionCardType=VISA&EXact_Message=Transaction+Normal&Expiry_Date=1212&x_login=WSP-RELAY-80&x_card_code=&Transaction_Tag=2150&x_ship_to_first_name=&MerchantPostal=V6B+2K4&Client_IP=&x_freight=15.0&x_cust_id=&commit=Checkout&MerchantAddress=44+King+Street+West&XID=&x_MD5_Hash=abfaf1d1df004e3c27d5d2e05929b529&x_state=BC&x_reference_3=&x_auth_code=ET141870&x_fp_timestamp=1231877695",
+        "requestExample": "x_response_code=1&x_response_subcode=S&x_response_reason_code=1&x_response_reason_text=Transaction+has+been+approved&x_auth_code=ET144935&x_avs_code=5&x_trans_id=4575665302&x_invoice_num=&x_description=&x_amount=1408&x_fee_amount=&x_method=&x_type=AUTH_ONLY&x_cust_id=&x_first_name=Richard&x_last_name=Cotton&x_company=&x_address=53+State+Street+%E2%80%93+16th+Floor&x_city=Boston&x_state=MA&x_zip=02109&x_country=&x_phone=&x_fax=&x_email=r.cotton%40sap.com&x_ship_to_first_name=&x_ship_to_last_name=&x_ship_to_company=&x_ship_to_address=&x_ship_to_city=&x_ship_to_state=&x_ship_to_zip=&x_ship_to_country=&x_tax=&x_duty=&x_freight=&x_tax_exempt=&x_po_num=9942913443&x_reference_3=9942913443_1599734008310&x_cvv2_resp_code=&x_cavv_response=&x_ecommerce_flag=&enable_level3_processing=&tax_rate=&discount_amount=&alternate_tax=&exact_ctr=%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D+TRANSACTION+RECORD+%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%0ASAP+DEMO0898%0A53+State+Street+%E2%80%93+16th+Floor%0ABoston%2C+MA+02109%0AUnited+States%0A%0A%0ATYPE%3A+Pre-Authorization%0A%0AACCT%3A+Visa++++++++++++++++%24+1%2C408.00+USD%0A%0ACARDHOLDER+NAME+%3A+Richard+Cotton%0ACARD+NUMBER+++++%3A+%23%23%23%23%23%23%23%23%23%23%23%231111%0ADATE%2FTIME+++++++%3A+10+Sep+20+06%3A39%3A49%0AREFERENCE+%23+++++%3A+03+000054+M%0AAUTHOR.+%23+++++++%3A+ET144935%0ATRANS.+REF.+++++%3A+%0A%0A++++Approved+-+Thank+You+100%0A%0A%0APlease+retain+this+copy+for+your+records.%0A%0ACardholder+will+pay+above+amount+to%0Acard+issuer+pursuant+to+cardholder%0Aagreement.%0A%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D&exact_wsp_version=1.7&x_SHA1_Hash=96d73ae09a36bb493c3a3057e871edec60f753a0&x_receipt_link_url=http%253A%252F%252Flocalhost%253A4200%252Fcheckout%252Fresult&x_currency_code=USD&x_show_form=PAYMENT_FORM&x_login=WSP-SAP-D-uXDsUwB%2540iQ&x_fp_sequence=1599734008&x_fp_timestamp=1599734008&x_receipt_link_method=AUTO-GET&Ecommerce_flag=5&x_receipt_link_text=Return%2Bto%2BUpscale&Transaction_Type=01&DollarAmount=1408.0&SurchargeAmount=0&Card_Number=%23%23%23%23%23%23%23%23%23%23%23%231111&Transaction_Tag=4575665302&Authorization_Num=ET144935&Expiry_Date=1022&CardHoldersName=Richard+Cotton&CVD_Presence_Ind=0&ZipCode=&Tax1Amount=&Tax1Number=&Tax2Amount=&Tax2Number=&Secure_AuthRequired=0&Secure_AuthResult=0&Ecommerce_Flag=&XID=&CAVV_Algorithm=0&Reference_No=&Customer_Ref=9942913443&Reference_3=9942913443_1599734008310&Language=0&Client_IP=193.16.224.9&Client_Email=r.cotton%40sap.com&Transaction_Error=false&Transaction_Approved=YES&EXact_Resp_Code=00&EXact_Message=Transaction+Normal&Bank_Resp_Code=100&Bank_Message=Approved&Bank_Resp_Code_2=&SequenceNo=000054&AVS=5&CVV2=&Retrieval_Ref_No=200910&CAVV_Response=&TransactionCardType=VISA&MerchantName=SAP+DEMO0898&MerchantAddress=53+State+Street+%E2%80%93+16th+Floor&MerchantCity=Boston&MerchantProvince=Massachusetts&MerchantCountry=United+States&MerchantPostal=02109",
         "requestMappingFields": {
           "mappings": [
             {
               "from": "Transaction_Type",
-              "to" : "requestType",
-              "fixed": false,
-              "isCustom": false,
+              "to": "requestType",
               "map": {
-                "00": "AUTHORIZATION"
-              }
+                "01": "AUTHORIZATION"
+              },
+              "fixed": false,
+              "isCustom": false
             },
             {
               "from": "TransactionCardType",
@@ -23,16 +23,16 @@
               "map": {
                 "VISA": "VISA"
               },
-              "fixed": true,
+              "fixed": false,
               "isCustom": false
             },
             {
               "from": "TransactionCardType",
               "to": "paymentMethod",
               "map": {
-                "VISA": "VISA"
+                "VISA": "CREDIT_CARD"
               },
-              "fixed": true,
+              "fixed": false,
               "isCustom": false
             },
             {
@@ -54,7 +54,7 @@
             {
               "from": "x_reference_3",
               "to": "referenceId",
-              "fixed": true,
+              "fixed": false,
               "isCustom": false
             },
             {
@@ -65,7 +65,7 @@
             },
             {
               "from": "x_fp_sequence",
-              "to" : "x_fp_sequence",
+              "to": "x_fp_sequence",
               "fixed": true,
               "isCustom": false
             },
@@ -74,7 +74,7 @@
               "to": "transactionStatus",
               "map": {
                 "1": "ACCEPTED",
-                "2": "HARD_REJECTED"
+                "2": "REJECTED"
               },
               "fixed": false,
               "isCustom": false
@@ -118,8 +118,437 @@
               "from": "MerchantName",
               "fixed": true,
               "isCustom": false
+            },
+            {
+              "from": "x_ship_to_city",
+              "fixed": true,
+              "isCustom": false
+            },
+            {
+              "from": "x_ecommerce_flag",
+              "fixed": true,
+              "isCustom": false
+            },
+            {
+              "from": "CVD_Presence_Ind",
+              "fixed": true,
+              "isCustom": false
+            },
+            {
+              "from": "Bank_Resp_Code_2",
+              "fixed": true,
+              "isCustom": false
+            },
+            {
+              "from": "SurchargeAmount",
+              "fixed": true,
+              "isCustom": false
+            },
+            {
+              "from": "x_ship_to_first_name",
+              "fixed": true,
+              "isCustom": false
+            },
+            {
+              "from": "Client_IP",
+              "fixed": true,
+              "isCustom": false
+            },
+            {
+              "from": "x_fax",
+              "fixed": true,
+              "isCustom": false
+            },
+            {
+              "from": "x_zip",
+              "fixed": true,
+              "isCustom": false
+            },
+            {
+              "from": "x_duty",
+              "fixed": true,
+              "isCustom": false
+            },
+            {
+              "from": "x_address",
+              "fixed": true,
+              "isCustom": false
+            },
+            {
+              "from": "x_receipt_link_text",
+              "fixed": true,
+              "isCustom": false
+            },
+            {
+              "from": "Ecommerce_flag",
+              "fixed": true,
+              "isCustom": false
+            },
+            {
+              "from": "CAVV_Algorithm",
+              "fixed": true,
+              "isCustom": false
+            },
+            {
+              "from": "x_cust_id",
+              "fixed": true,
+              "isCustom": false
+            },
+            {
+              "from": "CardHoldersName",
+              "fixed": true,
+              "isCustom": false
+            },
+            {
+              "from": "alternate_tax",
+              "fixed": true,
+              "isCustom": false
+            },
+            {
+              "from": "enable_level3_processing",
+              "fixed": true,
+              "isCustom": false
+            },
+            {
+              "from": "Secure_AuthRequired",
+              "fixed": true,
+              "isCustom": false
+            },
+            {
+              "from": "exact_wsp_version",
+              "fixed": true,
+              "isCustom": false
+            },
+            {
+              "from": "x_description",
+              "fixed": true,
+              "isCustom": false
+            },
+            {
+              "from": "Tax1Amount",
+              "fixed": true,
+              "isCustom": false
+            },
+            {
+              "from": "CAVV_Response",
+              "fixed": true,
+              "isCustom": false
+            },
+            {
+              "from": "x_fee_amount",
+              "fixed": true,
+              "isCustom": false
+            },
+            {
+              "from": "x_ship_to_company",
+              "fixed": true,
+              "isCustom": false
+            },
+            {
+              "from": "x_show_form",
+              "fixed": true,
+              "isCustom": false
+            },
+            {
+              "from": "CVV2",
+              "fixed": true,
+              "isCustom": false
+            },
+            {
+              "from": "x_ship_to_zip",
+              "fixed": true,
+              "isCustom": false
+            },
+            {
+              "from": "Bank_Message",
+              "fixed": true,
+              "isCustom": false
+            },
+            {
+              "from": "x_tax_exempt",
+              "fixed": true,
+              "isCustom": false
+            },
+            {
+              "from": "Client_Email",
+              "fixed": true,
+              "isCustom": false
+            },
+            {
+              "from": "MerchantAddress",
+              "fixed": true,
+              "isCustom": false
+            },
+            {
+              "from": "Ecommerce_Flag",
+              "fixed": true,
+              "isCustom": false
+            },
+            {
+              "from": "x_SHA1_Hash",
+              "fixed": true,
+              "isCustom": false
+            },
+            {
+              "from": "x_first_name",
+              "fixed": true,
+              "isCustom": false
+            },
+            {
+              "from": "Reference_3",
+              "fixed": true,
+              "isCustom": false
+            },
+            {
+              "from": "Bank_Resp_Code",
+              "fixed": true,
+              "isCustom": false
+            },
+            {
+              "from": "MerchantPostal",
+              "fixed": true,
+              "isCustom": false
+            },
+            {
+              "from": "XID",
+              "fixed": true,
+              "isCustom": false
+            },
+            {
+              "from": "x_response_subcode",
+              "fixed": true,
+              "isCustom": false
+            },
+            {
+              "from": "x_country",
+              "fixed": true,
+              "isCustom": false
+            },
+            {
+              "from": "Tax2Number",
+              "fixed": true,
+              "isCustom": false
+            },
+            {
+              "from": "MerchantProvince",
+              "fixed": true,
+              "isCustom": false
+            },
+            {
+              "from": "x_avs_code",
+              "fixed": true,
+              "isCustom": false
+            },
+            {
+              "from": "DollarAmount",
+              "fixed": true,
+              "isCustom": false
+            },
+            {
+              "from": "SequenceNo",
+              "fixed": true,
+              "isCustom": false
+            },
+            {
+              "from": "EXact_Message",
+              "fixed": true,
+              "isCustom": false
+            },
+            {
+              "from": "Expiry_Date",
+              "fixed": true,
+              "isCustom": false
+            },
+            {
+              "from": "x_phone",
+              "fixed": true,
+              "isCustom": false
+            },
+            {
+              "from": "discount_amount",
+              "fixed": true,
+              "isCustom": false
+            },
+            {
+              "from": "x_po_num",
+              "fixed": true,
+              "isCustom": false
+            },
+            {
+              "from": "MerchantCountry",
+              "fixed": true,
+              "isCustom": false
+            },
+            {
+              "from": "x_receipt_link_url",
+              "fixed": true,
+              "isCustom": false
+            },
+            {
+              "from": "Tax1Number",
+              "fixed": true,
+              "isCustom": false
+            },
+            {
+              "from": "tax_rate",
+              "fixed": true,
+              "isCustom": false
+            },
+            {
+              "from": "Authorization_Num",
+              "fixed": true,
+              "isCustom": false
+            },
+            {
+              "from": "Tax2Amount",
+              "fixed": true,
+              "isCustom": false
+            },
+            {
+              "from": "x_ship_to_address",
+              "fixed": true,
+              "isCustom": false
+            },
+            {
+              "from": "x_state",
+              "fixed": true,
+              "isCustom": false
+            },
+            {
+              "from": "x_cvv2_resp_code",
+              "fixed": true,
+              "isCustom": false
+            },
+            {
+              "from": "Reference_No",
+              "fixed": true,
+              "isCustom": false
+            },
+            {
+              "from": "x_tax",
+              "fixed": true,
+              "isCustom": false
+            },
+            {
+              "from": "Retrieval_Ref_No",
+              "fixed": true,
+              "isCustom": false
+            },
+            {
+              "from": "Transaction_Tag",
+              "fixed": true,
+              "isCustom": false
+            },
+            {
+              "from": "exact_ctr",
+              "fixed": true,
+              "isCustom": false
+            },
+            {
+              "from": "MerchantCity",
+              "fixed": true,
+              "isCustom": false
+            },
+            {
+              "from": "x_ship_to_country",
+              "fixed": true,
+              "isCustom": false
+            },
+            {
+              "from": "x_cavv_response",
+              "fixed": true,
+              "isCustom": false
+            },
+            {
+              "from": "Transaction_Approved",
+              "fixed": true,
+              "isCustom": false
+            },
+            {
+              "from": "AVS",
+              "fixed": true,
+              "isCustom": false
+            },
+            {
+              "from": "Customer_Ref",
+              "fixed": true,
+              "isCustom": false
+            },
+            {
+              "from": "x_login",
+              "fixed": true,
+              "isCustom": false
+            },
+            {
+              "from": "x_freight",
+              "fixed": true,
+              "isCustom": false
+            },
+            {
+              "from": "Language",
+              "fixed": true,
+              "isCustom": false
+            },
+            {
+              "from": "x_invoice_num",
+              "fixed": true,
+              "isCustom": false
+            },
+            {
+              "from": "x_email",
+              "fixed": true,
+              "isCustom": false
+            },
+            {
+              "from": "Transaction_Error",
+              "fixed": true,
+              "isCustom": false
+            },
+            {
+              "from": "ZipCode",
+              "fixed": true,
+              "isCustom": false
+            },
+            {
+              "from": "x_ship_to_state",
+              "fixed": true,
+              "isCustom": false
+            },
+            {
+              "from": "x_receipt_link_method",
+              "fixed": true,
+              "isCustom": false
+            },
+            {
+              "from": "x_ship_to_last_name",
+              "fixed": true,
+              "isCustom": false
+            },
+            {
+              "from": "x_company",
+              "fixed": true,
+              "isCustom": false
+            },
+            {
+              "from": "x_city",
+              "fixed": true,
+              "isCustom": false
+            },
+            {
+              "from": "Secure_AuthResult",
+              "fixed": true,
+              "isCustom": false
+            },
+            {
+              "from": "x_last_name",
+              "fixed": true,
+              "isCustom": false
+            },
+            {
+              "from": "EXact_Resp_Code",
+              "fixed": true,
+              "isCustom": false
             }
-
           ]
         }
       },
