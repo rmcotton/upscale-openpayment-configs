@@ -1,0 +1,74 @@
+{
+  "pattern": "IFRAME",
+  "requestType": "AUTHORIZATION",
+  "destination": {
+    "url": "${input.redirectUrl}",
+    "method": "GET",
+    "contentType": "application/x-www-form-urlencoded",
+    "authenticationIds": [],
+    "form": [
+    ]
+  },
+  "remoteApiOutboundMapping": {
+    "url": "https://sandbox.juspay.in/orders",
+    "authenticationIds": [
+
+    ],
+    "method": "POST",
+    "requestContentType": "application/x-www-form-urlencoded",
+    "responseContentType": "application/json",
+    "requestExample": "order_id=1418394476&amount=100.00&currency=INR&return_url=http://shop.merchant.com/payments/handleResponse",
+    "requestMappingFields": {
+      "mappings": [
+        {
+          "to": "${input.amount}",
+          "from": "amount",
+          "fixed": false
+        },
+        {
+          "to": "${input.currency}",
+          "from": "currency",
+          "fixed": false
+        },
+        {
+          "to": "${input.referenceId}",
+          "from": "order_id",
+          "fixed": false
+        },
+        {
+          "to": "${input.resultURL}",
+          "from" : "return_url",
+          "fixed": false
+        }
+      ]
+    },
+    "responseExample": "{\r\n    \"udf9\": \"\",\r\n    \"udf8\": \"\",\r\n    \"udf7\": \"\",\r\n    \"udf6\": \"\",\r\n    \"udf5\": \"\",\r\n    \"udf4\": \"\",\r\n    \"udf3\": \"\",\r\n    \"udf2\": \"\",\r\n    \"udf10\": \"\",\r\n    \"udf1\": \"\",\r\n    \"status_id\": 10,\r\n    \"status\": \"NEW\",\r\n    \"return_url\": \"http://shop.merchant.com/payments/handleResponse\",\r\n    \"refunded\": false,\r\n    \"product_id\": \"prod-141833\",\r\n    \"payment_links\": {\r\n        \"web\": \"https://sandbox.juspay.in/merchant/pay/ordeu_c1436e0d0d2348e69880dc2b7f5d9d89\",\r\n        \"mobile\": \"https://sandbox.juspay.in/merchant/pay/ordeu_c1436e0d0d2348e69880dc2b7f5d9d89?mobile=true\",\r\n        \"iframe\": \"https://sandbox.juspay.in/merchant/ipay/ordeu_c1436e0d0d2348e69880dc2b7f5d9d89\"\r\n    },\r\n    \"order_id\": \"1418394476\",\r\n    \"merchant_id\": \"SAPUpscale\",\r\n    \"id\": \"ordeu_c1436e0d0d2348e69880dc2b7f5d9d89\",\r\n    \"date_created\": \"2020-09-11T10:51:41Z\",\r\n    \"customer_phone\": \"9988665522\",\r\n    \"customer_id\": \"guest_user_101\",\r\n    \"customer_email\": \"customer@gmail.com\",\r\n    \"currency\": \"INR\",\r\n    \"amount_refunded\": 0,\r\n    \"amount\": 100\r\n}",
+    "responseMappingFields": {
+      "mappings": [
+        {
+          "from": "payment_links.iframe",
+          "to": "redirectUrl",
+          "fixed": false,
+          "isCustom": false
+        }
+      ]
+    },
+    "headers": {
+      "Authorization": "Basic ${vars.authbase64}"
+    }
+  },
+  "verify": {
+    "localVerifyMapping": {
+      "mappings": [
+        {
+          "from": "authResult",
+          "to": "result",
+          "map": {
+            "AUTHORIZED": "AUTHORIZED",
+            "CANCELLED": "CANCELLED"
+          }
+        }
+      ]
+    }
+  }
+}
