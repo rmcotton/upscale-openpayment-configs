@@ -1,58 +1,187 @@
 {
   "pattern": "IFRAME",
   "requestType": "AUTHORIZATION",
-  "destination": {
-    "url": "${input.redirectUrl}",
-    "method": "GET",
-    "contentType": "application/x-www-form-urlencoded",
-    "authenticationIds": [],
-    "form": [
-    ]
+  "dynamicScript": {
+    "jsUrl": "https://domain.com",
+    "html": "<iframe src=\"${input.redirectUrl}\"\nwidth=\"630\" height=\"600\"\nstyle=\"border: 1px solid #CCC;padding: 20px;height: auto;min-height: 300px;\">\n</iframe>"
   },
   "remoteApiOutboundMapping": {
     "url": "https://sandbox.juspay.in/orders",
-    "authenticationIds": [
-
-    ],
+    "authenticationIds": [],
     "method": "POST",
     "requestContentType": "application/x-www-form-urlencoded",
-    "responseContentType": "application/json",
     "requestExample": "order_id=1418394476&amount=100.00&currency=INR&return_url=http://shop.merchant.com/payments/handleResponse",
+    "responseExample": "{\r\n    \"udf9\": \"\",\r\n    \"udf8\": \"\",\r\n    \"udf7\": \"\",\r\n    \"udf6\": \"\",\r\n    \"udf5\": \"\",\r\n    \"udf4\": \"\",\r\n    \"udf3\": \"\",\r\n    \"udf2\": \"\",\r\n    \"udf10\": \"\",\r\n    \"udf1\": \"\",\r\n    \"status_id\": 10,\r\n    \"status\": \"NEW\",\r\n    \"return_url\": \"http://shop.merchant.com/payments/handleResponse\",\r\n    \"refunded\": false,\r\n    \"product_id\": \"prod-141833\",\r\n    \"payment_links\": {\r\n        \"web\": \"https://sandbox.juspay.in/merchant/pay/ordeu_c1436e0d0d2348e69880dc2b7f5d9d89\",\r\n        \"mobile\": \"https://sandbox.juspay.in/merchant/pay/ordeu_c1436e0d0d2348e69880dc2b7f5d9d89?mobile=true\",\r\n        \"iframe\": \"https://sandbox.juspay.in/merchant/ipay/ordeu_c1436e0d0d2348e69880dc2b7f5d9d89\"\r\n    },\r\n    \"order_id\": \"1418394476\",\r\n    \"merchant_id\": \"SAPUpscale\",\r\n    \"id\": \"ordeu_c1436e0d0d2348e69880dc2b7f5d9d89\",\r\n    \"date_created\": \"2020-09-11T10:51:41Z\",\r\n    \"customer_phone\": \"9988665522\",\r\n    \"customer_id\": \"guest_user_101\",\r\n    \"customer_email\": \"customer@gmail.com\",\r\n    \"currency\": \"INR\",\r\n    \"amount_refunded\": 0,\r\n    \"amount\": 100\r\n}",
     "requestMappingFields": {
       "mappings": [
         {
-          "to": "${input.amount}",
           "from": "amount",
+          "to": "${input.amount}",
           "fixed": false
         },
         {
-          "to": "${input.currency}",
           "from": "currency",
+          "to": "${input.currency}",
           "fixed": false
         },
         {
-          "to": "${input.referenceId}",
           "from": "order_id",
+          "to": "${input.referenceId}",
           "fixed": false
         },
         {
+          "from": "return_url",
           "to": "${input.resultURL}",
-          "from" : "return_url",
           "fixed": false
         }
       ]
     },
-    "responseExample": "{\r\n    \"udf9\": \"\",\r\n    \"udf8\": \"\",\r\n    \"udf7\": \"\",\r\n    \"udf6\": \"\",\r\n    \"udf5\": \"\",\r\n    \"udf4\": \"\",\r\n    \"udf3\": \"\",\r\n    \"udf2\": \"\",\r\n    \"udf10\": \"\",\r\n    \"udf1\": \"\",\r\n    \"status_id\": 10,\r\n    \"status\": \"NEW\",\r\n    \"return_url\": \"http://shop.merchant.com/payments/handleResponse\",\r\n    \"refunded\": false,\r\n    \"product_id\": \"prod-141833\",\r\n    \"payment_links\": {\r\n        \"web\": \"https://sandbox.juspay.in/merchant/pay/ordeu_c1436e0d0d2348e69880dc2b7f5d9d89\",\r\n        \"mobile\": \"https://sandbox.juspay.in/merchant/pay/ordeu_c1436e0d0d2348e69880dc2b7f5d9d89?mobile=true\",\r\n        \"iframe\": \"https://sandbox.juspay.in/merchant/ipay/ordeu_c1436e0d0d2348e69880dc2b7f5d9d89\"\r\n    },\r\n    \"order_id\": \"1418394476\",\r\n    \"merchant_id\": \"SAPUpscale\",\r\n    \"id\": \"ordeu_c1436e0d0d2348e69880dc2b7f5d9d89\",\r\n    \"date_created\": \"2020-09-11T10:51:41Z\",\r\n    \"customer_phone\": \"9988665522\",\r\n    \"customer_id\": \"guest_user_101\",\r\n    \"customer_email\": \"customer@gmail.com\",\r\n    \"currency\": \"INR\",\r\n    \"amount_refunded\": 0,\r\n    \"amount\": 100\r\n}",
     "responseMappingFields": {
       "mappings": [
+        {
+          "from": "customer_email",
+          "fixed": true,
+          "isCustom": false
+        },
+        {
+          "from": "customer_id",
+          "fixed": true,
+          "isCustom": false
+        },
+        {
+          "from": "order_id",
+          "fixed": true,
+          "isCustom": false
+        },
+        {
+          "from": "status",
+          "fixed": true,
+          "isCustom": false
+        },
         {
           "from": "payment_links.iframe",
           "to": "redirectUrl",
           "fixed": false,
           "isCustom": false
+        },
+        {
+          "from": "udf10",
+          "fixed": true,
+          "isCustom": false
+        },
+        {
+          "from": "merchant_id",
+          "fixed": true,
+          "isCustom": false
+        },
+        {
+          "from": "amount_refunded",
+          "fixed": true,
+          "isCustom": false
+        },
+        {
+          "from": "status_id",
+          "fixed": true,
+          "isCustom": false
+        },
+        {
+          "from": "payment_links.web",
+          "fixed": true,
+          "isCustom": false
+        },
+        {
+          "from": "payment_links.mobile",
+          "fixed": true,
+          "isCustom": false
+        },
+        {
+          "from": "udf9",
+          "fixed": true,
+          "isCustom": false
+        },
+        {
+          "from": "udf7",
+          "fixed": true,
+          "isCustom": false
+        },
+        {
+          "from": "udf8",
+          "fixed": true,
+          "isCustom": false
+        },
+        {
+          "from": "product_id",
+          "fixed": true,
+          "isCustom": false
+        },
+        {
+          "from": "return_url",
+          "fixed": true,
+          "isCustom": false
+        },
+        {
+          "from": "refunded",
+          "fixed": true,
+          "isCustom": false
+        },
+        {
+          "from": "currency",
+          "fixed": true,
+          "isCustom": false
+        },
+        {
+          "from": "id",
+          "fixed": true,
+          "isCustom": false
+        },
+        {
+          "from": "amount",
+          "fixed": true,
+          "isCustom": false
+        },
+        {
+          "from": "date_created",
+          "fixed": true,
+          "isCustom": false
+        },
+        {
+          "from": "udf5",
+          "fixed": true,
+          "isCustom": false
+        },
+        {
+          "from": "customer_phone",
+          "fixed": true,
+          "isCustom": false
+        },
+        {
+          "from": "udf6",
+          "fixed": true,
+          "isCustom": false
+        },
+        {
+          "from": "udf3",
+          "fixed": true,
+          "isCustom": false
+        },
+        {
+          "from": "udf4",
+          "fixed": true,
+          "isCustom": false
+        },
+        {
+          "from": "udf1",
+          "fixed": true,
+          "isCustom": false
+        },
+        {
+          "from": "udf2",
+          "fixed": true,
+          "isCustom": false
         }
       ]
     },
+    "responseContentType": "application/json",
     "headers": {
       "Authorization": "Basic ${vars.authbase64}"
     }
@@ -61,12 +190,17 @@
     "localVerifyMapping": {
       "mappings": [
         {
-          "from": "authResult",
+          "from": "status",
           "to": "result",
           "map": {
-            "AUTHORIZED": "AUTHORIZED",
+            "CHARGED": "AUTHORIZED",
+            "AUTHORIZING" : "AUTHORIZED",
+            "JUSPAY_DECLINED": "UNAUTHORIZED",
+            "AUTHORIZATION_FAILED": "UNAUTHORIZED",
             "CANCELLED": "CANCELLED"
-          }
+          },
+          "fixed": false,
+          "isCustom": false
         }
       ]
     }
