@@ -19,6 +19,12 @@
               "isCustom": false
             },
             {
+              "from": "id",
+              "to": "pspReference",
+              "fixed": false,
+              "isCustom": false
+            },
+            {
               "from": "content.order.card.card_brand",
               "to": "cardType",
               "map": {
@@ -28,7 +34,7 @@
               "isCustom": false
             },
             {
-              "from": "content.order.id",
+              "from": "content.order.order_id",
               "to": "referenceId",
               "fixed": false,
               "isCustom": false
@@ -78,12 +84,6 @@
               "map": {
                 "CHARGED": "ACCEPTED"
               },
-              "fixed": false,
-              "isCustom": false
-            },
-            {
-              "from": "id",
-              "to": "pspReference",
               "fixed": false,
               "isCustom": false
             },
@@ -179,6 +179,11 @@
             },
             {
               "from": "content.order.refunded",
+              "fixed": true,
+              "isCustom": false
+            },
+            {
+              "from": "content.order.id",
               "fixed": true,
               "isCustom": false
             },
@@ -284,11 +289,6 @@
             },
             {
               "from": "content.order.customer_id",
-              "fixed": true,
-              "isCustom": false
-            },
-            {
-              "from": "content.order.order_id",
               "fixed": true,
               "isCustom": false
             },
