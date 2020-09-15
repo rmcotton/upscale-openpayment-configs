@@ -1,4 +1,5 @@
 {
+  "id": 367,
   "requestType": "NOTIFICATION",
   "inboundMapping": {
     "authenticationIds": [],
@@ -36,8 +37,7 @@
               "from": "event_name",
               "to": "requestType",
               "map": {
-                "THREE_DS": "AUTHORIZATION",
-                "AUTHORIZATION": "AUTHORIZATION"
+                "ORDER_SUCCEEDED": "AUTHORIZATION"
               },
               "fixed": false,
               "isCustom": false
@@ -325,6 +325,9 @@
           ]
         }
       }
+    },
+    "responseMapping": {
+      "content": "OK"
     }
   }
 }
