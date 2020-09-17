@@ -1,6 +1,4 @@
 {
-  "id": 332,
-  "pattern": "NOTIFICATION",
   "requestType": "SETTLEMENT",
   "outboundMapping": {
     "url": "https://api.demo.globalgatewaye4.firstdata.com/transaction/v31",
