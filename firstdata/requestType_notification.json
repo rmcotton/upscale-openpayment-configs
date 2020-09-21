@@ -1,4 +1,5 @@
 {
+  "id": 339,
   "requestType": "NOTIFICATION",
   "inboundMapping": {
     "authenticationIds": [],
@@ -9,22 +10,88 @@
         "requestMappingFields": {
           "mappings": [
             {
-              "from": "Transaction_Type",
-              "to": "requestType",
-              "map": {
-                "01": "AUTHORIZATION"
-              },
-              "fixed": false,
-              "isCustom": false
+              "from": "x_cvv2_resp_code",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
             },
             {
-              "from": "TransactionCardType",
-              "to": "cardType",
-              "map": {
-                "VISA": "VISA"
-              },
-              "fixed": false,
-              "isCustom": false
+              "from": "Reference_No",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "x_tax",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "Retrieval_Ref_No",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "exact_ctr",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "MerchantCity",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "x_ship_to_country",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "x_cavv_response",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "Transaction_Approved",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "AVS",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "Customer_Ref",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "x_login",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "x_trans_id",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "x_freight",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
             },
             {
               "from": "TransactionCardType",
@@ -33,41 +100,49 @@
                 "VISA": "CREDIT_CARD"
               },
               "fixed": false,
-              "isCustom": false
+              "isCustom": false,
+              "persistCustomField": false
             },
             {
-              "from": "x_response_reason_text",
-              "fixed": true,
-              "isCustom": false
-            },
-            {
-              "from": "Card_Number",
-              "to": "cardLast4",
+              "from": "TransactionCardType",
+              "to": "cardType",
+              "map": {
+                "VISA": "VISA"
+              },
               "fixed": false,
-              "isCustom": false
-            },
-            {
-              "from": "x_type",
-              "fixed": true,
-              "isCustom": false
+              "isCustom": false,
+              "persistCustomField": false
             },
             {
               "from": "x_reference_3",
               "to": "referenceId",
               "fixed": false,
-              "isCustom": false
+              "isCustom": false,
+              "persistCustomField": false
             },
             {
-              "from": "x_auth_code",
-              "to": "pspReference",
+              "from": "Transaction_Type",
+              "to": "requestType",
+              "map": {
+                "01": "AUTHORIZATION"
+              },
               "fixed": false,
-              "isCustom": false
+              "isCustom": false,
+              "persistCustomField": false
             },
             {
-              "from": "x_fp_sequence",
-              "to": "x_fp_sequence",
-              "fixed": true,
-              "isCustom": false
+              "from": "Transaction_Tag",
+              "to": "transactionId",
+              "fixed": false,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "Card_Number",
+              "to": "cardLast4",
+              "fixed": false,
+              "isCustom": false,
+              "persistCustomField": false
             },
             {
               "from": "x_response_code",
@@ -77,483 +152,515 @@
                 "2": "REJECTED"
               },
               "fixed": false,
-              "isCustom": false
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "x_auth_code",
+              "to": "pspReference",
+              "fixed": false,
+              "isCustom": false,
+              "persistCustomField": false
             },
             {
               "from": "x_fp_timestamp",
               "to": "x_fp_timestamp",
               "fixed": false,
-              "isCustom": true
+              "isCustom": true,
+              "persistCustomField": false
             },
             {
               "from": "x_response_reason_code",
               "to": "x_response_reason_code",
               "fixed": false,
-              "isCustom": true
+              "isCustom": true,
+              "persistCustomField": false
             },
             {
               "from": "x_amount",
               "to": "x_amount",
               "fixed": false,
-              "isCustom": true
-            },
-            {
-              "from": "x_method",
-              "fixed": true,
-              "isCustom": false
-            },
-            {
-              "from": "x_trans_id",
-              "to": "transactionId",
-              "fixed": false,
-              "isCustom": false
+              "isCustom": true,
+              "persistCustomField": false
             },
             {
               "from": "x_currency_code",
               "to": "x_currency_code",
               "fixed": false,
-              "isCustom": true
+              "isCustom": true,
+              "persistCustomField": false
             },
             {
-              "from": "MerchantName",
-              "fixed": true,
-              "isCustom": false
+              "from": "Transaction_Tag",
+              "to": "Transaction_Tag",
+              "fixed": false,
+              "isCustom": true,
+              "persistCustomField": true
             },
             {
               "from": "x_ship_to_city",
               "fixed": true,
-              "isCustom": false
+              "isCustom": false,
+              "persistCustomField": false
             },
             {
               "from": "x_ecommerce_flag",
               "fixed": true,
-              "isCustom": false
+              "isCustom": false,
+              "persistCustomField": false
             },
             {
               "from": "CVD_Presence_Ind",
               "fixed": true,
-              "isCustom": false
+              "isCustom": false,
+              "persistCustomField": false
             },
             {
               "from": "Bank_Resp_Code_2",
               "fixed": true,
-              "isCustom": false
+              "isCustom": false,
+              "persistCustomField": false
             },
             {
               "from": "SurchargeAmount",
               "fixed": true,
-              "isCustom": false
+              "isCustom": false,
+              "persistCustomField": false
             },
             {
               "from": "x_ship_to_first_name",
               "fixed": true,
-              "isCustom": false
+              "isCustom": false,
+              "persistCustomField": false
             },
             {
               "from": "Client_IP",
               "fixed": true,
-              "isCustom": false
+              "isCustom": false,
+              "persistCustomField": false
             },
             {
               "from": "x_fax",
               "fixed": true,
-              "isCustom": false
+              "isCustom": false,
+              "persistCustomField": false
             },
             {
               "from": "x_zip",
               "fixed": true,
-              "isCustom": false
+              "isCustom": false,
+              "persistCustomField": false
             },
             {
               "from": "x_duty",
               "fixed": true,
-              "isCustom": false
+              "isCustom": false,
+              "persistCustomField": false
             },
             {
               "from": "x_address",
               "fixed": true,
-              "isCustom": false
+              "isCustom": false,
+              "persistCustomField": false
             },
             {
               "from": "x_receipt_link_text",
               "fixed": true,
-              "isCustom": false
+              "isCustom": false,
+              "persistCustomField": false
             },
             {
               "from": "Ecommerce_flag",
               "fixed": true,
-              "isCustom": false
+              "isCustom": false,
+              "persistCustomField": false
             },
             {
               "from": "CAVV_Algorithm",
               "fixed": true,
-              "isCustom": false
+              "isCustom": false,
+              "persistCustomField": false
             },
             {
               "from": "x_cust_id",
               "fixed": true,
-              "isCustom": false
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "x_fp_sequence",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
             },
             {
               "from": "CardHoldersName",
               "fixed": true,
-              "isCustom": false
+              "isCustom": false,
+              "persistCustomField": false
             },
             {
               "from": "alternate_tax",
               "fixed": true,
-              "isCustom": false
+              "isCustom": false,
+              "persistCustomField": false
             },
             {
               "from": "enable_level3_processing",
               "fixed": true,
-              "isCustom": false
+              "isCustom": false,
+              "persistCustomField": false
             },
             {
               "from": "Secure_AuthRequired",
               "fixed": true,
-              "isCustom": false
+              "isCustom": false,
+              "persistCustomField": false
             },
             {
               "from": "exact_wsp_version",
               "fixed": true,
-              "isCustom": false
+              "isCustom": false,
+              "persistCustomField": false
             },
             {
               "from": "x_description",
               "fixed": true,
-              "isCustom": false
+              "isCustom": false,
+              "persistCustomField": false
             },
             {
               "from": "Tax1Amount",
               "fixed": true,
-              "isCustom": false
+              "isCustom": false,
+              "persistCustomField": false
             },
             {
               "from": "CAVV_Response",
               "fixed": true,
-              "isCustom": false
+              "isCustom": false,
+              "persistCustomField": false
             },
             {
               "from": "x_fee_amount",
               "fixed": true,
-              "isCustom": false
+              "isCustom": false,
+              "persistCustomField": false
             },
             {
               "from": "x_ship_to_company",
               "fixed": true,
-              "isCustom": false
+              "isCustom": false,
+              "persistCustomField": false
             },
             {
               "from": "x_show_form",
               "fixed": true,
-              "isCustom": false
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "x_method",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
             },
             {
               "from": "CVV2",
               "fixed": true,
-              "isCustom": false
+              "isCustom": false,
+              "persistCustomField": false
             },
             {
               "from": "x_ship_to_zip",
               "fixed": true,
-              "isCustom": false
+              "isCustom": false,
+              "persistCustomField": false
             },
             {
               "from": "Bank_Message",
               "fixed": true,
-              "isCustom": false
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "MerchantName",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
             },
             {
               "from": "x_tax_exempt",
               "fixed": true,
-              "isCustom": false
+              "isCustom": false,
+              "persistCustomField": false
             },
             {
               "from": "Client_Email",
               "fixed": true,
-              "isCustom": false
+              "isCustom": false,
+              "persistCustomField": false
             },
             {
               "from": "MerchantAddress",
               "fixed": true,
-              "isCustom": false
+              "isCustom": false,
+              "persistCustomField": false
             },
             {
               "from": "Ecommerce_Flag",
               "fixed": true,
-              "isCustom": false
+              "isCustom": false,
+              "persistCustomField": false
             },
             {
               "from": "x_SHA1_Hash",
               "fixed": true,
-              "isCustom": false
+              "isCustom": false,
+              "persistCustomField": false
             },
             {
               "from": "x_first_name",
               "fixed": true,
-              "isCustom": false
+              "isCustom": false,
+              "persistCustomField": false
             },
             {
               "from": "Reference_3",
               "fixed": true,
-              "isCustom": false
+              "isCustom": false,
+              "persistCustomField": false
             },
             {
               "from": "Bank_Resp_Code",
               "fixed": true,
-              "isCustom": false
+              "isCustom": false,
+              "persistCustomField": false
             },
             {
               "from": "MerchantPostal",
               "fixed": true,
-              "isCustom": false
+              "isCustom": false,
+              "persistCustomField": false
             },
             {
               "from": "XID",
               "fixed": true,
-              "isCustom": false
+              "isCustom": false,
+              "persistCustomField": false
             },
             {
               "from": "x_response_subcode",
               "fixed": true,
-              "isCustom": false
+              "isCustom": false,
+              "persistCustomField": false
             },
             {
               "from": "x_country",
               "fixed": true,
-              "isCustom": false
+              "isCustom": false,
+              "persistCustomField": false
             },
             {
               "from": "Tax2Number",
               "fixed": true,
-              "isCustom": false
+              "isCustom": false,
+              "persistCustomField": false
             },
             {
               "from": "MerchantProvince",
               "fixed": true,
-              "isCustom": false
+              "isCustom": false,
+              "persistCustomField": false
             },
             {
               "from": "x_avs_code",
               "fixed": true,
-              "isCustom": false
+              "isCustom": false,
+              "persistCustomField": false
             },
             {
               "from": "DollarAmount",
               "fixed": true,
-              "isCustom": false
+              "isCustom": false,
+              "persistCustomField": false
             },
             {
               "from": "SequenceNo",
               "fixed": true,
-              "isCustom": false
+              "isCustom": false,
+              "persistCustomField": false
             },
             {
               "from": "EXact_Message",
               "fixed": true,
-              "isCustom": false
+              "isCustom": false,
+              "persistCustomField": false
             },
             {
               "from": "Expiry_Date",
               "fixed": true,
-              "isCustom": false
+              "isCustom": false,
+              "persistCustomField": false
             },
             {
               "from": "x_phone",
               "fixed": true,
-              "isCustom": false
+              "isCustom": false,
+              "persistCustomField": false
             },
             {
               "from": "discount_amount",
               "fixed": true,
-              "isCustom": false
+              "isCustom": false,
+              "persistCustomField": false
             },
             {
               "from": "x_po_num",
               "fixed": true,
-              "isCustom": false
+              "isCustom": false,
+              "persistCustomField": false
             },
             {
               "from": "MerchantCountry",
               "fixed": true,
-              "isCustom": false
+              "isCustom": false,
+              "persistCustomField": false
             },
             {
               "from": "x_receipt_link_url",
               "fixed": true,
-              "isCustom": false
+              "isCustom": false,
+              "persistCustomField": false
             },
             {
               "from": "Tax1Number",
               "fixed": true,
-              "isCustom": false
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "x_response_reason_text",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
             },
             {
               "from": "tax_rate",
               "fixed": true,
-              "isCustom": false
+              "isCustom": false,
+              "persistCustomField": false
             },
             {
               "from": "Authorization_Num",
               "fixed": true,
-              "isCustom": false
+              "isCustom": false,
+              "persistCustomField": false
             },
             {
               "from": "Tax2Amount",
               "fixed": true,
-              "isCustom": false
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "x_type",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
             },
             {
               "from": "x_ship_to_address",
               "fixed": true,
-              "isCustom": false
+              "isCustom": false,
+              "persistCustomField": false
             },
             {
               "from": "x_state",
               "fixed": true,
-              "isCustom": false
-            },
-            {
-              "from": "x_cvv2_resp_code",
-              "fixed": true,
-              "isCustom": false
-            },
-            {
-              "from": "Reference_No",
-              "fixed": true,
-              "isCustom": false
-            },
-            {
-              "from": "x_tax",
-              "fixed": true,
-              "isCustom": false
-            },
-            {
-              "from": "Retrieval_Ref_No",
-              "fixed": true,
-              "isCustom": false
-            },
-            {
-              "from": "Transaction_Tag",
-              "fixed": true,
-              "isCustom": false
-            },
-            {
-              "from": "exact_ctr",
-              "fixed": true,
-              "isCustom": false
-            },
-            {
-              "from": "MerchantCity",
-              "fixed": true,
-              "isCustom": false
-            },
-            {
-              "from": "x_ship_to_country",
-              "fixed": true,
-              "isCustom": false
-            },
-            {
-              "from": "x_cavv_response",
-              "fixed": true,
-              "isCustom": false
-            },
-            {
-              "from": "Transaction_Approved",
-              "fixed": true,
-              "isCustom": false
-            },
-            {
-              "from": "AVS",
-              "fixed": true,
-              "isCustom": false
-            },
-            {
-              "from": "Customer_Ref",
-              "fixed": true,
-              "isCustom": false
-            },
-            {
-              "from": "x_login",
-              "fixed": true,
-              "isCustom": false
-            },
-            {
-              "from": "x_freight",
-              "fixed": true,
-              "isCustom": false
+              "isCustom": false,
+              "persistCustomField": false
             },
             {
               "from": "Language",
               "fixed": true,
-              "isCustom": false
+              "isCustom": false,
+              "persistCustomField": false
             },
             {
               "from": "x_invoice_num",
               "fixed": true,
-              "isCustom": false
+              "isCustom": false,
+              "persistCustomField": false
             },
             {
               "from": "x_email",
               "fixed": true,
-              "isCustom": false
+              "isCustom": false,
+              "persistCustomField": false
             },
             {
               "from": "Transaction_Error",
               "fixed": true,
-              "isCustom": false
+              "isCustom": false,
+              "persistCustomField": false
             },
             {
               "from": "ZipCode",
               "fixed": true,
-              "isCustom": false
+              "isCustom": false,
+              "persistCustomField": false
             },
             {
               "from": "x_ship_to_state",
               "fixed": true,
-              "isCustom": false
+              "isCustom": false,
+              "persistCustomField": false
             },
             {
               "from": "x_receipt_link_method",
               "fixed": true,
-              "isCustom": false
+              "isCustom": false,
+              "persistCustomField": false
             },
             {
               "from": "x_ship_to_last_name",
               "fixed": true,
-              "isCustom": false
+              "isCustom": false,
+              "persistCustomField": false
             },
             {
               "from": "x_company",
               "fixed": true,
-              "isCustom": false
+              "isCustom": false,
+              "persistCustomField": false
             },
             {
               "from": "x_city",
               "fixed": true,
-              "isCustom": false
+              "isCustom": false,
+              "persistCustomField": false
             },
             {
               "from": "Secure_AuthResult",
               "fixed": true,
-              "isCustom": false
+              "isCustom": false,
+              "persistCustomField": false
             },
             {
               "from": "x_last_name",
               "fixed": true,
-              "isCustom": false
+              "isCustom": false,
+              "persistCustomField": false
             },
             {
               "from": "EXact_Resp_Code",
               "fixed": true,
-              "isCustom": false
+              "isCustom": false,
+              "persistCustomField": false
             }
           ]
         }
-      },
-      "settlement": {
-        "requestExample": ""
       }
     },
     "responseMapping": {
