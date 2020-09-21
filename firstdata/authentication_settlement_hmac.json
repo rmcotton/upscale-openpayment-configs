@@ -1,0 +1,19 @@
+{
+  "name": "First Data API HMAC",
+  "algorithm": "HmacSHA1",
+  "baseEncoding": "BASE64",
+  "secretBaseEncoding": "NONE",
+  "charset": "UTF-8",
+  "source": "POST\napplication/xml\n${auth.hmac.digest}\n${auth.hmac.hmacFields.XGGE4Date}\n/transaction/v31",
+  "digestFields": {
+    "algorithm": "SHA1",
+    "baseEncoding": "BASE16",
+    "charset": "UTF-8",
+    "source": "${input.requestBody}"
+  },
+  "hmacFields": {
+    "XGGE4Date": "<#setting time_zone=\"UCT\">${.now?iso_utc}"
+  },
+  "id": 221,
+  "method": "HMAC_OUTBOUND_SIGNATURE_CALCULATION"
+}
