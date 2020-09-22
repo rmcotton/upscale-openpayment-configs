@@ -1,9 +1,13 @@
 {
+  "id": 360,
   "pattern": "IFRAME",
   "requestType": "AUTHORIZATION",
-  "dynamicScript": {
-    "jsUrl": "https://domain.com",
-    "html": "<iframe src=\"${input.redirectUrl}\"\nwidth=\"630\" height=\"600\"\nstyle=\"border: 1px solid #CCC;padding: 20px;height: auto;min-height: 300px;\">\n</iframe>"
+  "destination": {
+    "url": "${input.redirectUrl}",
+    "method": "GET",
+    "contentType": "application/x-www-form-urlencoded",
+    "authenticationIds": [],
+    "form": []
   },
   "remoteApiOutboundMapping": {
     "url": "https://sandbox.juspay.in/orders",
@@ -39,145 +43,173 @@
     "responseMappingFields": {
       "mappings": [
         {
+          "from": "udf7",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "udf8",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "product_id",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
           "from": "customer_email",
           "fixed": true,
-          "isCustom": false
+          "isCustom": false,
+          "persistCustomField": false
         },
         {
           "from": "customer_id",
           "fixed": true,
-          "isCustom": false
+          "isCustom": false,
+          "persistCustomField": false
         },
         {
           "from": "order_id",
           "fixed": true,
-          "isCustom": false
+          "isCustom": false,
+          "persistCustomField": false
         },
         {
           "from": "status",
           "fixed": true,
-          "isCustom": false
+          "isCustom": false,
+          "persistCustomField": false
         },
         {
           "from": "payment_links.iframe",
           "to": "redirectUrl",
           "fixed": false,
-          "isCustom": false
+          "isCustom": false,
+          "persistCustomField": false
         },
         {
           "from": "udf10",
           "fixed": true,
-          "isCustom": false
+          "isCustom": false,
+          "persistCustomField": false
         },
         {
           "from": "merchant_id",
           "fixed": true,
-          "isCustom": false
+          "isCustom": false,
+          "persistCustomField": false
         },
         {
           "from": "amount_refunded",
           "fixed": true,
-          "isCustom": false
+          "isCustom": false,
+          "persistCustomField": false
         },
         {
           "from": "status_id",
           "fixed": true,
-          "isCustom": false
+          "isCustom": false,
+          "persistCustomField": false
         },
         {
           "from": "payment_links.web",
           "fixed": true,
-          "isCustom": false
+          "isCustom": false,
+          "persistCustomField": false
         },
         {
           "from": "payment_links.mobile",
           "fixed": true,
-          "isCustom": false
+          "isCustom": false,
+          "persistCustomField": false
         },
         {
           "from": "udf9",
           "fixed": true,
-          "isCustom": false
-        },
-        {
-          "from": "udf7",
-          "fixed": true,
-          "isCustom": false
-        },
-        {
-          "from": "udf8",
-          "fixed": true,
-          "isCustom": false
-        },
-        {
-          "from": "product_id",
-          "fixed": true,
-          "isCustom": false
+          "isCustom": false,
+          "persistCustomField": false
         },
         {
           "from": "return_url",
           "fixed": true,
-          "isCustom": false
+          "isCustom": false,
+          "persistCustomField": false
         },
         {
           "from": "refunded",
           "fixed": true,
-          "isCustom": false
+          "isCustom": false,
+          "persistCustomField": false
         },
         {
           "from": "currency",
           "fixed": true,
-          "isCustom": false
+          "isCustom": false,
+          "persistCustomField": false
         },
         {
           "from": "id",
           "fixed": true,
-          "isCustom": false
+          "isCustom": false,
+          "persistCustomField": false
         },
         {
           "from": "amount",
           "fixed": true,
-          "isCustom": false
+          "isCustom": false,
+          "persistCustomField": false
         },
         {
           "from": "date_created",
           "fixed": true,
-          "isCustom": false
+          "isCustom": false,
+          "persistCustomField": false
         },
         {
           "from": "udf5",
           "fixed": true,
-          "isCustom": false
+          "isCustom": false,
+          "persistCustomField": false
         },
         {
           "from": "customer_phone",
           "fixed": true,
-          "isCustom": false
+          "isCustom": false,
+          "persistCustomField": false
         },
         {
           "from": "udf6",
           "fixed": true,
-          "isCustom": false
+          "isCustom": false,
+          "persistCustomField": false
         },
         {
           "from": "udf3",
           "fixed": true,
-          "isCustom": false
+          "isCustom": false,
+          "persistCustomField": false
         },
         {
           "from": "udf4",
           "fixed": true,
-          "isCustom": false
+          "isCustom": false,
+          "persistCustomField": false
         },
         {
           "from": "udf1",
           "fixed": true,
-          "isCustom": false
+          "isCustom": false,
+          "persistCustomField": false
         },
         {
           "from": "udf2",
           "fixed": true,
-          "isCustom": false
+          "isCustom": false,
+          "persistCustomField": false
         }
       ]
     },
@@ -194,13 +226,14 @@
           "to": "result",
           "map": {
             "CHARGED": "AUTHORIZED",
-            "AUTHORIZING" : "AUTHORIZED",
             "JUSPAY_DECLINED": "UNAUTHORIZED",
-            "AUTHORIZATION_FAILED": "UNAUTHORIZED",
-            "CANCELLED": "CANCELLED"
+            "CANCELLED": "CANCELLED",
+            "AUTHORIZING": "AUTHORIZED",
+            "AUTHORIZATION_FAILED": "UNAUTHORIZED"
           },
-          "fixed": false,
-          "isCustom": false
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
         }
       ]
     }
