@@ -1,0 +1,270 @@
+{
+  "id": 397,
+  "requestType": "NOTIFICATION",
+  "inboundMapping": {
+    "authenticationIds": [
+      224
+    ],
+    "contentType": "application/x-www-form-urlencoded",
+    "requestMapping": {
+      "authorization": {
+        "requestExample": "ssl_merchant_initiated_unscheduled=N&~ssl_partner_app_id=01&~ssl_phone=05555555555&~ssl_card_number=41**********1111&~ssl_oar_data=010010434109221107560000047554200000000000368320026611104341&~ssl_result=0&~ssl_txn_id=220920ED3-697C96A9-E784-4E9A-AAC7-7061AB7174A3&~ssl_avs_response=N&~ssl_approval_code=368320&~ssl_email=a@b.com&~ssl_amount=1398.00&~ssl_avs_zip=06901&~ssl_txn_time=09/22/2020 07:07:56 AM&~ssl_exp_date=1020&~ssl_card_short_description=VISA&~ssl_get_token=N&~ssl_card_type=CREDITCARD&~ssl_merchant_id=008548&~ssl_transaction_type=AUTHONLY&~ssl_bin_no=411111&~ssl_avs_address=2211 North Street&~ssl_account_balance=0.00&~ssl_ps2000_data=A000000000000000 A&~ssl_ship_to_zip=06901&~ssl_city=San Jose&~ssl_result_message=APPROVAL&~ssl_ship_to_phone=05555555555&~ssl_ship_to_city=San Jose&~ssl_ship_to_address1=2211 North Street&~ssl_cvv2_response=P&~ssl_user_id=008548",
+        "requestMappingFields": {
+          "mappings": [
+            {
+              "from": "~ssl_exp_date",
+              "to": "cardExpiryDate",
+              "fixed": false,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "",
+              "to": "cardExpMonth",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "",
+              "to": "cardExpYear",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "~ssl_card_number",
+              "to": "cardLast4",
+              "fixed": false,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "~ssl_card_short_description",
+              "to": "cardType",
+              "map": {
+                "VISA": "VISA"
+              },
+              "fixed": false,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "~ssl_merchant_id",
+              "to": "merchantId",
+              "fixed": false,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "~ssl_card_type",
+              "to": "paymentMethod",
+              "map": {
+                "CREDITCARD": "CREDIT_CARD"
+              },
+              "fixed": false,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "",
+              "to": "pspReference",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "",
+              "to": "referenceId",
+              "fixed": false,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "~ssl_transaction_type",
+              "to": "requestType",
+              "map": {
+                "AUTHONLY": "AUTHORIZATION"
+              },
+              "fixed": false,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "",
+              "to": "targetSignature",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "~ssl_get_token",
+              "to": "token",
+              "fixed": false,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "",
+              "to": "transactionId",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "~ssl_result_message",
+              "to": "transactionStatus",
+              "map": {
+                "APPROVAL": "ACCEPTED"
+              },
+              "fixed": false,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "ssl_merchant_initiated_unscheduled",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "~ssl_oar_data",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "~ssl_city",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "~ssl_ship_to_zip",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "~ssl_user_id",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "~ssl_cvv2_response",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "~ssl_txn_time",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "~ssl_account_balance",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "~ssl_txn_id",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "~ssl_partner_app_id",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "~ssl_amount",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "~ssl_phone",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "~ssl_email",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "~ssl_ship_to_city",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "~ssl_avs_response",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "~ssl_result",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "~ssl_ps2000_data",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "~ssl_ship_to_phone",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "~ssl_approval_code",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "~ssl_avs_address",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "~ssl_bin_no",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "~ssl_ship_to_address1",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "~ssl_avs_zip",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            }
+          ]
+        }
+      }
+    },
+    "responseMapping": {
+      "content": "OK"
+    }
+  }
+}
