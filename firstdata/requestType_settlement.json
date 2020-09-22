@@ -54,6 +54,13 @@
           "persistCustomField": false
         },
         {
+          "from": "",
+          "to": "pspReference",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
           "from": "TransactionResult.Transaction_Approved.#text",
           "to": "transactionStatus",
           "map": {
@@ -61,13 +68,6 @@
             "false": "HARD_REJECTED"
           },
           "fixed": false,
-          "isCustom": false,
-          "persistCustomField": false
-        },
-        {
-          "from": "",
-          "to": "pspReference",
-          "fixed": true,
           "isCustom": false,
           "persistCustomField": false
         },
@@ -238,7 +238,7 @@
     "responseContentType": "application/xml",
     "headers": {
       "X-GGE4-Date": "${auth.hmac.hmacFields.XGGE4Date}",
-      "X-GGE4-CONTENT-SHA1": "${auth.hmac.digest}",
+      "X-GGE4-CONTENT-SHA1": "${auth.hmac.digest?lower_case}",
       "Authorization": "GGE4_API 711068:${auth.hmac.signature}"
     }
   }

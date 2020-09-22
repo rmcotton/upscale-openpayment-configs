@@ -4,7 +4,7 @@
   "baseEncoding": "BASE64",
   "secretBaseEncoding": "NONE",
   "charset": "UTF-8",
-  "source": "POST\napplication/xml\n${auth.hmac.digest}\n${auth.hmac.hmacFields.XGGE4Date}\n/transaction/v31",
+  "source": "POST\napplication/xml\n${auth.hmac.digest?lower_case}\n${auth.hmac.hmacFields.XGGE4Date}\n/transaction/v31",
   "digestFields": {
     "algorithm": "SHA1",
     "baseEncoding": "BASE16",
