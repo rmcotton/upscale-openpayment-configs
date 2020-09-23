@@ -1,6 +1,6 @@
 {
-  "id": 379,
-  "requestType": "SETTLEMENT",
+  "id": 411,
+  "requestType": "REFUND",
   "outboundMapping": {
     "url": "https://api.demo.globalgatewaye4.firstdata.com/transaction/v31",
     "authenticationIds": [
@@ -8,7 +8,7 @@
     ],
     "method": "POST",
     "requestContentType": "application/xml",
-    "requestExample": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<Transaction>\n  <ExactID>QE4076-19</ExactID>\n  <Password>1zl9Hm4N8Qo4DVREbVaoVUG0udV8LAh6</Password>\n  <Transaction_Type>32</Transaction_Type>\n  <Transaction_Tag>4573399298</Transaction_Tag>\n  <Authorization_Num>ET180324</Authorization_Num>\n  <DollarAmount>595.99</DollarAmount>\n</Transaction>",
+    "requestExample": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<Transaction>\n  <ExactID>QE4076-19</ExactID>\n  <Password>1zl9Hm4N8Qo4DVREbVaoVUG0udV8LAh6</Password>\n  <Transaction_Type>34</Transaction_Type>\n  <Transaction_Tag>4573399298</Transaction_Tag>\n  <Authorization_Num>ET180324</Authorization_Num>\n  <DollarAmount>595.99</DollarAmount>\n</Transaction>",
     "responseExample": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<TransactionResult>\n    <ExactID>QE4076-19</ExactID>\n    <Password/>\n    <Transaction_Type>32</Transaction_Type>\n    <DollarAmount>595.99</DollarAmount>\n    <SurchargeAmount/>\n    <Card_Number>############1111</Card_Number>\n    <Transaction_Tag>4573655896</Transaction_Tag>\n    <SplitTenderID/>\n    <Track1/>\n    <Track2/>\n    <PAN/>\n    <Authorization_Num>ET166984</Authorization_Num>\n    <Expiry_Date>1021</Expiry_Date>\n    <CardHoldersName>Richard Cotton</CardHoldersName>\n    <CVD_Presence_Ind>0</CVD_Presence_Ind>\n    <ZipCode/>\n    <Tax1Amount/>\n    <Tax1Number/>\n    <Tax2Amount/>\n    <Tax2Number/>\n    <Secure_AuthRequired/>\n    <Secure_AuthResult/>\n    <Ecommerce_Flag/>\n    <XID/>\n    <CAVV/>\n    <Reference_No/>\n    <Customer_Ref/>\n    <Reference_3/>\n    <Language/>\n    <Client_IP/>\n    <Client_Email/>\n    <User_Name/>\n    <Transaction_Error>false</Transaction_Error>\n    <Transaction_Approved>true</Transaction_Approved>\n    <EXact_Resp_Code>00</EXact_Resp_Code>\n    <EXact_Message>Transaction Normal</EXact_Message>\n    <Bank_Resp_Code>100</Bank_Resp_Code>\n    <Bank_Message>Approved</Bank_Message>\n    <Bank_Resp_Code_2/>\n    <SequenceNo>000003</SequenceNo>\n    <AVS/>\n    <CVV2/>\n    <Retrieval_Ref_No>200903</Retrieval_Ref_No>\n    <CAVV_Response/>\n    <Currency>USD</Currency>\n    <AmountRequested/>\n    <PartialRedemption>false</PartialRedemption>\n    <MerchantName>SAP DEMO0898</MerchantName>\n    <MerchantAddress>53 State Street – 16th Floor</MerchantAddress>\n    <MerchantCity>Boston</MerchantCity>\n    <MerchantProvince>Massachusetts</MerchantProvince>\n    <MerchantCountry>United States</MerchantCountry>\n    <MerchantPostal>02109</MerchantPostal>\n    <MerchantURL/>\n    <TransarmorToken/>\n    <CardType>Visa</CardType>\n    <CurrentBalance/>\n    <PreviousBalance/>\n    <EAN/>\n    <CardCost/>\n    <VirtualCard>false</VirtualCard>\n    <CTR>========== TRANSACTION RECORD ==========\nSAP DEMO0898\n53 State Street – 16th Floor\nBoston, MA 02109\nUnited States\n\n\nTYPE: Completion\n\nACCT: Visa                  $ 595.99 USD\n\nCARDHOLDER NAME : Richard Cotton\nCARD NUMBER     : ############1111\nDATE/TIME       : 03 Sep 20 07:58:25\nREFERENCE #     : 03 000003 M\nAUTHOR. #       : ET166984\nTRANS. REF.     : \n\n    Approved - Thank You 100\n\n\nPlease retain this copy for your records.\n\nCardholder will pay above amount to\ncard issuer pursuant to cardholder\nagreement.\n========================================</CTR>\n    <FraudSuspected/>\n    <CVDCode/>\n    <SplitShipmentNumber/>\n    <ThreeDSecureProgramProtocol/>\n    <ThreeDSecureDirectoryServerTransactionId/>\n</TransactionResult>",
     "requestMappingFields": {
       "mappings": [
@@ -24,7 +24,7 @@
         },
         {
           "from": "/Transaction/Transaction_Type",
-          "to": "32",
+          "to": "34",
           "fixed": true
         },
         {
@@ -34,7 +34,7 @@
         },
         {
           "from": "/Transaction/Authorization_Num",
-          "to": "${input.pspReference}",
+          "to": "${input.authPspReference}",
           "fixed": false
         },
         {
@@ -64,8 +64,8 @@
           "from": "TransactionResult.Transaction_Approved.#text",
           "to": "transactionStatus",
           "map": {
-            "true": "ACCEPTED",
-            "false": "HARD_REJECTED"
+            "false": "HARD_REJECTED",
+            "true": "ACCEPTED"
           },
           "fixed": false,
           "isCustom": false,
