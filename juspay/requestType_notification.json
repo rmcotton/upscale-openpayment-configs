@@ -2,81 +2,116 @@
   "id": 367,
   "requestType": "NOTIFICATION",
   "inboundMapping": {
-    "authenticationIds": [],
+    "authenticationIds": [
+      228
+    ],
     "contentType": "application/json",
     "requestMapping": {
       "authorization": {
-        "requestExample": "{\n  \"id\": \"evt_5zluomr6z1mdbi2n\",\n  \"date_created\": \"2020-09-15T10:53:52Z\",\n  \"event_name\": \"ORDER_SUCCEEDED\",\n  \"content\": {\n    \"order\": {\n      \"gateway_id\": 100,\n      \"product_id\": \"\",\n      \"auth_type\": \"THREE_DS\",\n      \"customer_phone\": null,\n      \"bank_error_message\": \"Payment Successful\",\n      \"date_created\": \"2020-09-15T10:53:07Z\",\n      \"order_id\": \"2828850011_1600167186036\",\n      \"currency\": \"INR\",\n      \"amount\": 1398,\n      \"id\": \"ordeh_b90e37a7fce34ffe953490236612a5d5\",\n      \"udf2\": \"\",\n      \"udf1\": \"\",\n      \"refunded\": false,\n      \"udf6\": \"\",\n      \"udf5\": \"\",\n      \"amount_refunded\": 0,\n      \"udf4\": \"\",\n      \"txn_id\": \"SAPUpscale-2828850011_1600167186036-1\",\n      \"udf3\": \"\",\n      \"card\": {\n        \"saved_to_locker\": false,\n        \"card_issuer\": \"\",\n        \"card_brand\": \"VISA\",\n        \"card_reference\": \"\",\n        \"card_type\": \"CREDIT\",\n        \"card_fingerprint\": \"78g5l1fp62obpivbqsved6dsgb\",\n        \"expiry_year\": \"2020\",\n        \"using_saved_card\": false,\n        \"card_isin\": \"424242\",\n        \"name_on_card\": \"richard cotton\",\n        \"last_four_digits\": \"4242\",\n        \"expiry_month\": \"10\"\n      },\n      \"merchant_id\": \"SAPUpscale\",\n      \"payment_method_type\": \"CARD\",\n      \"payment_links\": {\n        \"iframe\": \"https://sandbox.juspay.in/merchant/ipay/ordeh_b90e37a7fce34ffe953490236612a5d5\",\n        \"web\": \"https://sandbox.juspay.in/merchant/pay/ordeh_b90e37a7fce34ffe953490236612a5d5\",\n        \"mobile\": \"https://sandbox.juspay.in/merchant/pay/ordeh_b90e37a7fce34ffe953490236612a5d5?mobile=true\"\n      },\n      \"status\": \"CHARGED\",\n      \"txn_uuid\": \"euloWQB5h1G6pqdifF3\",\n      \"status_id\": 21,\n      \"customer_email\": null,\n      \"udf7\": \"\",\n      \"udf8\": \"\",\n      \"udf9\": \"\",\n      \"bank_error_code\": \"0\",\n      \"return_url\": \"https://gatewaytest-approuter-caas2-sap-test.cfapps.us10.hana.ondemand.com/consumer/payment-service/gateway/relay-redirect/2828850011_1600167186036\",\n      \"payment_gateway_response\": {\n        \"rrn\": \"881857\",\n        \"created\": \"2020-09-15T10:53:52Z\",\n        \"resp_code\": \"0\",\n        \"txn_id\": \"SAPUpscale-2828850011_1600167186036-1\",\n        \"epg_txn_id\": \"1600167232677\",\n        \"resp_message\": \"Payment Successful\",\n        \"auth_id_code\": \"972151\"\n      },\n      \"payment_method\": \"VISA\",\n      \"customer_id\": null,\n      \"udf10\": \"\"\n    }\n  }\n}",
+        "requestExample": "{\n  \"id\": \"evt_bkpmclnop01cmdve\",\n  \"date_created\": \"2020-09-15T10:47:00Z\",\n  \"event_name\": \"ORDER_SUCCEEDED\",\n  \"content\": {\n    \"order\": {\n      \"gateway_id\": 100,\n      \"product_id\": \"\",\n      \"auth_type\": \"THREE_DS\",\n      \"customer_phone\": null,\n      \"bank_error_message\": \"Payment Successful\",\n      \"date_created\": \"2020-09-15T10:46:30Z\",\n      \"order_id\": \"1105094359_1600166789020\",\n      \"currency\": \"INR\",\n      \"amount\": 1398,\n      \"id\": \"ordeh_37ab4f91ffcf42c0aa96b2c6431c72bb\",\n      \"udf2\": \"\",\n      \"udf1\": \"\",\n      \"refunded\": false,\n      \"udf6\": \"\",\n      \"udf5\": \"\",\n      \"amount_refunded\": 0,\n      \"udf4\": \"\",\n      \"txn_id\": \"SAPUpscale-1105094359_1600166789020-1\",\n      \"udf3\": \"\",\n      \"card\": {\n        \"saved_to_locker\": false,\n        \"card_issuer\": \"\",\n        \"card_brand\": \"VISA\",\n        \"card_reference\": \"\",\n        \"card_type\": \"CREDIT\",\n        \"card_fingerprint\": \"78g5l1fp62obpivbqsved6dsgb\",\n        \"expiry_year\": \"2020\",\n        \"using_saved_card\": false,\n        \"card_isin\": \"424242\",\n        \"name_on_card\": \"richard cotton\",\n        \"last_four_digits\": \"4242\",\n        \"expiry_month\": \"10\"\n      },\n      \"merchant_id\": \"SAPUpscale\",\n      \"payment_method_type\": \"CARD\",\n      \"payment_links\": {\n        \"iframe\": \"https://sandbox.juspay.in/merchant/ipay/ordeh_37ab4f91ffcf42c0aa96b2c6431c72bb\",\n        \"web\": \"https://sandbox.juspay.in/merchant/pay/ordeh_37ab4f91ffcf42c0aa96b2c6431c72bb\",\n        \"mobile\": \"https://sandbox.juspay.in/merchant/pay/ordeh_37ab4f91ffcf42c0aa96b2c6431c72bb?mobile=true\"\n      },\n      \"status\": \"CHARGED\",\n      \"txn_uuid\": \"eul9hpoufoQRGzjDXDF\",\n      \"status_id\": 21,\n      \"customer_email\": null,\n      \"udf7\": \"\",\n      \"udf8\": \"\",\n      \"udf9\": \"\",\n      \"bank_error_code\": \"0\",\n      \"return_url\": \"https://gatewaytest-approuter-caas2-sap-test.cfapps.us10.hana.ondemand.com/consumer/payment-service/gateway/relay-redirect/1105094359_1600166789020\",\n      \"payment_gateway_response\": {\n        \"rrn\": \"250592\",\n        \"created\": \"2020-09-15T10:47:00Z\",\n        \"resp_code\": \"0\",\n        \"txn_id\": \"SAPUpscale-1105094359_1600166789020-1\",\n        \"epg_txn_id\": \"1600166820370\",\n        \"resp_message\": \"Payment Successful\",\n        \"auth_id_code\": \"456676\"\n      },\n      \"payment_method\": \"VISA\",\n      \"customer_id\": null,\n      \"udf10\": \"\"\n    }\n  }\n}",
         "requestMappingFields": {
           "mappings": [
             {
-              "from": "content.order.card.card_type",
-              "to": "paymentMethod",
-              "map": {
-                "CREDIT": "CREDIT_CARD"
-              },
-              "fixed": false,
-              "isCustom": false
-            },
-            {
-              "from": "id",
-              "to": "pspReference",
-              "fixed": false,
-              "isCustom": false
-            },
-            {
-              "from": "content.order.card.card_brand",
-              "to": "cardType",
-              "map": {
-                "VISA": "VISA"
-              },
-              "fixed": false,
-              "isCustom": false
-            },
-            {
-              "from": "content.order.order_id",
-              "to": "referenceId",
-              "fixed": false,
-              "isCustom": false
-            },
-            {
-              "from": "event_name",
-              "to": "requestType",
-              "map": {
-                "ORDER_SUCCEEDED": "AUTHORIZATION"
-              },
-              "fixed": false,
-              "isCustom": false
-            },
-            {
-              "from": "content.order.card.card_reference",
-              "to": "token",
-              "fixed": false,
-              "isCustom": false
-            },
-            {
-              "from": "content.order.txn_id",
-              "to": "transactionId",
-              "fixed": false,
-              "isCustom": false
-            },
-            {
-              "from": "content.order.card.last_four_digits",
-              "to": "cardLast4",
-              "fixed": false,
-              "isCustom": false
+              "from": "",
+              "to": "cardExpiryDate",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
             },
             {
               "from": "content.order.card.expiry_month",
               "to": "cardExpMonth",
               "fixed": false,
-              "isCustom": false
+              "isCustom": false,
+              "persistCustomField": false
             },
             {
               "from": "content.order.card.expiry_year",
               "to": "cardExpYear",
               "fixed": false,
-              "isCustom": false
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "content.order.card.last_four_digits",
+              "to": "cardLast4",
+              "fixed": false,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "content.order.card.card_brand",
+              "to": "cardType",
+              "map": {
+                "VISA": "VISA",
+                "MASTERCARD": "MASTERCARD"
+              },
+              "fixed": false,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "content.order.merchant_id",
+              "to": "merchantId",
+              "fixed": false,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "content.order.payment_method_type",
+              "to": "paymentMethod",
+              "map": {
+                "CARD": "CREDIT_CARD"
+              },
+              "fixed": false,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "content.order.id",
+              "to": "pspReference",
+              "fixed": false,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "content.order.order_id",
+              "to": "referenceId",
+              "fixed": false,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "event_name",
+              "to": "requestType",
+              "map": {
+                "ORDER_SUCCEEDED": "AUTHORIZATION",
+                "ORDER_REFUNDED": "REFUND"
+              },
+              "fixed": false,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "",
+              "to": "targetSignature",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "content.order.card.card_reference",
+              "to": "token",
+              "fixed": false,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "content.order.txn_id",
+              "to": "transactionId",
+              "fixed": false,
+              "isCustom": false,
+              "persistCustomField": false
             },
             {
               "from": "content.order.status",
@@ -85,242 +120,733 @@
                 "CHARGED": "ACCEPTED"
               },
               "fixed": false,
-              "isCustom": false
+              "isCustom": false,
+              "persistCustomField": false
             },
             {
               "from": "date_created",
               "fixed": true,
-              "isCustom": false
+              "isCustom": false,
+              "persistCustomField": false
             },
             {
-              "from": "content.order.payment_method_type",
+              "from": "id",
               "fixed": true,
-              "isCustom": false
+              "isCustom": false,
+              "persistCustomField": false
             },
             {
               "from": "content.order.udf10",
               "fixed": true,
-              "isCustom": false
-            },
-            {
-              "from": "content.order.merchant_id",
-              "fixed": true,
-              "isCustom": false
+              "isCustom": false,
+              "persistCustomField": false
             },
             {
               "from": "content.order.gateway_id",
               "fixed": true,
-              "isCustom": false
+              "isCustom": false,
+              "persistCustomField": false
             },
             {
               "from": "content.order.amount_refunded",
               "fixed": true,
-              "isCustom": false
+              "isCustom": false,
+              "persistCustomField": false
             },
             {
               "from": "content.order.payment_links.web",
               "fixed": true,
-              "isCustom": false
+              "isCustom": false,
+              "persistCustomField": false
             },
             {
               "from": "content.order.payment_links.mobile",
               "fixed": true,
-              "isCustom": false
+              "isCustom": false,
+              "persistCustomField": false
             },
             {
               "from": "content.order.payment_links.iframe",
               "fixed": true,
-              "isCustom": false
+              "isCustom": false,
+              "persistCustomField": false
             },
             {
               "from": "content.order.status_id",
               "fixed": true,
-              "isCustom": false
+              "isCustom": false,
+              "persistCustomField": false
             },
             {
               "from": "content.order.udf9",
               "fixed": true,
-              "isCustom": false
+              "isCustom": false,
+              "persistCustomField": false
             },
             {
               "from": "content.order.udf7",
               "fixed": true,
-              "isCustom": false
+              "isCustom": false,
+              "persistCustomField": false
             },
             {
               "from": "content.order.bank_error_code",
               "fixed": true,
-              "isCustom": false
+              "isCustom": false,
+              "persistCustomField": false
             },
             {
               "from": "content.order.product_id",
               "fixed": true,
-              "isCustom": false
+              "isCustom": false,
+              "persistCustomField": false
             },
             {
               "from": "content.order.udf8",
               "fixed": true,
-              "isCustom": false
+              "isCustom": false,
+              "persistCustomField": false
             },
             {
               "from": "content.order.return_url",
               "fixed": true,
-              "isCustom": false
+              "isCustom": false,
+              "persistCustomField": false
             },
             {
               "from": "content.order.bank_error_message",
               "fixed": true,
-              "isCustom": false
+              "isCustom": false,
+              "persistCustomField": false
             },
             {
               "from": "content.order.currency",
               "fixed": true,
-              "isCustom": false
+              "isCustom": false,
+              "persistCustomField": false
             },
             {
               "from": "content.order.refunded",
               "fixed": true,
-              "isCustom": false
-            },
-            {
-              "from": "content.order.id",
-              "fixed": true,
-              "isCustom": false
+              "isCustom": false,
+              "persistCustomField": false
             },
             {
               "from": "content.order.payment_method",
               "fixed": true,
-              "isCustom": false
+              "isCustom": false,
+              "persistCustomField": false
             },
             {
               "from": "content.order.payment_gateway_response.txn_id",
               "fixed": true,
-              "isCustom": false
+              "isCustom": false,
+              "persistCustomField": false
             },
             {
               "from": "content.order.payment_gateway_response.epg_txn_id",
               "fixed": true,
-              "isCustom": false
+              "isCustom": false,
+              "persistCustomField": false
             },
             {
               "from": "content.order.payment_gateway_response.created",
               "fixed": true,
-              "isCustom": false
+              "isCustom": false,
+              "persistCustomField": false
             },
             {
               "from": "content.order.payment_gateway_response.resp_message",
               "fixed": true,
-              "isCustom": false
+              "isCustom": false,
+              "persistCustomField": false
             },
             {
               "from": "content.order.payment_gateway_response.resp_code",
               "fixed": true,
-              "isCustom": false
+              "isCustom": false,
+              "persistCustomField": false
             },
             {
               "from": "content.order.payment_gateway_response.rrn",
               "fixed": true,
-              "isCustom": false
+              "isCustom": false,
+              "persistCustomField": false
             },
             {
               "from": "content.order.payment_gateway_response.auth_id_code",
               "fixed": true,
-              "isCustom": false
+              "isCustom": false,
+              "persistCustomField": false
             },
             {
               "from": "content.order.auth_type",
               "fixed": true,
-              "isCustom": false
+              "isCustom": false,
+              "persistCustomField": false
             },
             {
               "from": "content.order.amount",
               "fixed": true,
-              "isCustom": false
+              "isCustom": false,
+              "persistCustomField": false
             },
             {
               "from": "content.order.date_created",
               "fixed": true,
-              "isCustom": false
+              "isCustom": false,
+              "persistCustomField": false
             },
             {
               "from": "content.order.customer_phone",
               "fixed": true,
-              "isCustom": false
+              "isCustom": false,
+              "persistCustomField": false
             },
             {
               "from": "content.order.udf5",
               "fixed": true,
-              "isCustom": false
+              "isCustom": false,
+              "persistCustomField": false
             },
             {
               "from": "content.order.udf6",
               "fixed": true,
-              "isCustom": false
+              "isCustom": false,
+              "persistCustomField": false
             },
             {
               "from": "content.order.udf3",
               "fixed": true,
-              "isCustom": false
+              "isCustom": false,
+              "persistCustomField": false
             },
             {
               "from": "content.order.txn_uuid",
               "fixed": true,
-              "isCustom": false
+              "isCustom": false,
+              "persistCustomField": false
             },
             {
               "from": "content.order.udf4",
               "fixed": true,
-              "isCustom": false
+              "isCustom": false,
+              "persistCustomField": false
             },
             {
               "from": "content.order.udf1",
               "fixed": true,
-              "isCustom": false
+              "isCustom": false,
+              "persistCustomField": false
             },
             {
               "from": "content.order.udf2",
               "fixed": true,
-              "isCustom": false
+              "isCustom": false,
+              "persistCustomField": false
             },
             {
               "from": "content.order.customer_email",
               "fixed": true,
-              "isCustom": false
+              "isCustom": false,
+              "persistCustomField": false
             },
             {
               "from": "content.order.customer_id",
               "fixed": true,
-              "isCustom": false
+              "isCustom": false,
+              "persistCustomField": false
             },
             {
               "from": "content.order.card.card_fingerprint",
               "fixed": true,
-              "isCustom": false
+              "isCustom": false,
+              "persistCustomField": false
             },
             {
               "from": "content.order.card.using_saved_card",
               "fixed": true,
-              "isCustom": false
+              "isCustom": false,
+              "persistCustomField": false
             },
             {
               "from": "content.order.card.saved_to_locker",
               "fixed": true,
-              "isCustom": false
+              "isCustom": false,
+              "persistCustomField": false
             },
             {
               "from": "content.order.card.card_issuer",
               "fixed": true,
-              "isCustom": false
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "content.order.card.card_type",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
             },
             {
               "from": "content.order.card.card_isin",
               "fixed": true,
-              "isCustom": false
+              "isCustom": false,
+              "persistCustomField": false
             },
             {
               "from": "content.order.card.name_on_card",
               "fixed": true,
-              "isCustom": false
+              "isCustom": false,
+              "persistCustomField": false
+            }
+          ]
+        }
+      },
+      "refund": {
+        "requestExample": "{\n  \"id\": \"evt_wfgr6sdusobkpr64\",\n  \"date_created\": \"2020-09-24T16:25:30Z\",\n  \"event_name\": \"ORDER_REFUNDED\",\n  \"content\": {\n    \"order\": {\n      \"gateway_id\": 100,\n      \"product_id\": \"\",\n      \"auth_type\": \"THREE_DS\",\n      \"customer_phone\": null,\n      \"bank_error_message\": \"Payment Successful\",\n      \"date_created\": \"2020-09-24T16:17:37Z\",\n      \"order_id\": \"7103427383_1600964255945\",\n      \"currency\": \"INR\",\n      \"amount\": 1398,\n      \"id\": \"ordeh_e0c80b21a0a640ef92f983a73c6031c3\",\n      \"udf2\": \"\",\n      \"udf1\": \"\",\n      \"refunded\": true,\n      \"udf6\": \"\",\n      \"udf5\": \"\",\n      \"amount_refunded\": 1398,\n      \"udf4\": \"\",\n      \"txn_id\": \"SAPUpscale-7103427383_1600964255945-1\",\n      \"udf3\": \"\",\n      \"card\": {\n        \"saved_to_locker\": false,\n        \"card_issuer\": \"\",\n        \"card_brand\": \"VISA\",\n        \"card_reference\": \"\",\n        \"card_type\": \"CREDIT\",\n        \"card_fingerprint\": \"78g5l1fp62obpivbqsved6dsgb\",\n        \"expiry_year\": \"2020\",\n        \"using_saved_card\": false,\n        \"card_isin\": \"424242\",\n        \"name_on_card\": \"richard cotton\",\n        \"last_four_digits\": \"4242\",\n        \"expiry_month\": \"10\"\n      },\n      \"merchant_id\": \"SAPUpscale\",\n      \"payment_method_type\": \"CARD\",\n      \"payment_links\": {\n        \"iframe\": \"https://sandbox.juspay.in/merchant/ipay/ordeh_e0c80b21a0a640ef92f983a73c6031c3\",\n        \"web\": \"https://sandbox.juspay.in/merchant/pay/ordeh_e0c80b21a0a640ef92f983a73c6031c3\",\n        \"mobile\": \"https://sandbox.juspay.in/merchant/pay/ordeh_e0c80b21a0a640ef92f983a73c6031c3?mobile=true\"\n      },\n      \"status\": \"CHARGED\",\n      \"txn_uuid\": \"eulw7xVv6eLimEgP5oa\",\n      \"status_id\": 21,\n      \"customer_email\": null,\n      \"udf7\": \"\",\n      \"udf8\": \"\",\n      \"udf9\": \"\",\n      \"bank_error_code\": \"0\",\n      \"return_url\": \"https://gatewaytest-approuter-caas2-sap-test.cfapps.us10.hana.ondemand.com/consumer/payment-service/gateway/relay-redirect/7103427383_1600964255945\",\n      \"refunds\": \n      [\n        {\n          \"unique_request_id\": \"87253\",\n          \"amount\": 1398,\n          \"id\": \"87253\",\n          \"ref\": \"1600964730399\",\n          \"status\": \"SUCCESS\",\n          \"created\": \"2020-09-24T16:24:48Z\",\n          \"error_message\": \"\",\n          \"sent_to_gateway\": true\n        }\n      ],\n      \"payment_gateway_response\": {\n        \"rrn\": \"881184\",\n        \"created\": \"2020-09-24T16:18:51Z\",\n        \"resp_code\": \"0\",\n        \"txn_id\": \"SAPUpscale-7103427383_1600964255945-1\",\n        \"epg_txn_id\": \"1600964330626\",\n        \"resp_message\": \"Payment Successful\",\n        \"auth_id_code\": \"79963\"\n      },\n      \"payment_method\": \"VISA\",\n      \"customer_id\": null,\n      \"udf10\": \"\"\n    }\n  }\n}",
+        "requestMappingFields": {
+          "mappings": [
+            {
+              "from": "",
+              "to": "cardExpiryDate",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "content.order.card.expiry_month",
+              "to": "cardExpMonth",
+              "fixed": false,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "content.order.card.expiry_year",
+              "to": "cardExpYear",
+              "fixed": false,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "content.order.card.last_four_digits",
+              "to": "cardLast4",
+              "fixed": false,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "content.order.card.card_brand",
+              "to": "cardType",
+              "map": {
+                "VISA": "VISA",
+                "MASTERCARD": "MASTERCARD"
+              },
+              "fixed": false,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "content.order.merchant_id",
+              "to": "merchantId",
+              "fixed": false,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "content.order.payment_method",
+              "to": "paymentMethod",
+              "map": {
+                "CARD": "CREDIT_CARD"
+              },
+              "fixed": false,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "content.order.txn_uuid",
+              "to": "pspReference",
+              "fixed": false,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "content.order.order_id",
+              "to": "referenceId",
+              "fixed": false,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "event_name",
+              "to": "requestType",
+              "map": {
+                "ORDER_SUCCEEDED": "AUTHORIZATION",
+                "ORDER_REFUNDED": "REFUND"
+              },
+              "fixed": false,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "",
+              "to": "targetSignature",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "",
+              "to": "token",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "content.order.txn_id",
+              "to": "transactionId",
+              "fixed": false,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "content.order.refunded",
+              "to": "transactionStatus",
+              "map": {
+                "true": "ACCEPTED"
+              },
+              "fixed": false,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "date_created",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "id",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "content.order.payment_method_type",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "content.order.udf10",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "content.order.gateway_id",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "content.order.amount_refunded",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "content.order.refunds[*].error_message",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "content.order.refunds[*].amount",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "content.order.refunds[*].ref",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "content.order.refunds[*].created",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "content.order.refunds[*].unique_request_id",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "content.order.refunds[*].id",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "content.order.refunds[*].status",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "content.order.refunds[*].sent_to_gateway",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "content.order.payment_links.web",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "content.order.payment_links.mobile",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "content.order.payment_links.iframe",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "content.order.status_id",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "content.order.udf9",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "content.order.udf7",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "content.order.bank_error_code",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "content.order.product_id",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "content.order.udf8",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "content.order.return_url",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "content.order.bank_error_message",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "content.order.currency",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "content.order.id",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "content.order.payment_gateway_response.txn_id",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "content.order.payment_gateway_response.epg_txn_id",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "content.order.payment_gateway_response.created",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "content.order.payment_gateway_response.resp_message",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "content.order.payment_gateway_response.resp_code",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "content.order.payment_gateway_response.rrn",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "content.order.payment_gateway_response.auth_id_code",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "content.order.auth_type",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "content.order.amount",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "content.order.date_created",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "content.order.customer_phone",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "content.order.udf5",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "content.order.udf6",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "content.order.udf3",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "content.order.udf4",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "content.order.udf1",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "content.order.udf2",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "content.order.customer_email",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "content.order.customer_id",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "content.order.card.card_fingerprint",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "content.order.card.using_saved_card",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "content.order.card.saved_to_locker",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "content.order.card.card_issuer",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "content.order.card.card_reference",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "content.order.card.card_type",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "content.order.card.card_isin",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "content.order.card.name_on_card",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "content.order.status",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
             }
           ]
         }

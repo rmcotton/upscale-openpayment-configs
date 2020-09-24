@@ -1,6 +1,6 @@
 {
   "id": 360,
-  "pattern": "IFRAME",
+  "pattern": "FULL_PAGE",
   "requestType": "AUTHORIZATION",
   "destination": {
     "url": "${input.redirectUrl}",
@@ -43,49 +43,21 @@
     "responseMappingFields": {
       "mappings": [
         {
-          "from": "udf7",
+          "from": "",
+          "to": "errorCode",
           "fixed": true,
           "isCustom": false,
           "persistCustomField": false
         },
         {
-          "from": "udf8",
+          "from": "",
+          "to": "errorMessage",
           "fixed": true,
           "isCustom": false,
           "persistCustomField": false
         },
         {
-          "from": "product_id",
-          "fixed": true,
-          "isCustom": false,
-          "persistCustomField": false
-        },
-        {
-          "from": "customer_email",
-          "fixed": true,
-          "isCustom": false,
-          "persistCustomField": false
-        },
-        {
-          "from": "customer_id",
-          "fixed": true,
-          "isCustom": false,
-          "persistCustomField": false
-        },
-        {
-          "from": "order_id",
-          "fixed": true,
-          "isCustom": false,
-          "persistCustomField": false
-        },
-        {
-          "from": "status",
-          "fixed": true,
-          "isCustom": false,
-          "persistCustomField": false
-        },
-        {
-          "from": "payment_links.iframe",
+          "from": "payment_links.web",
           "to": "redirectUrl",
           "fixed": false,
           "isCustom": false,
@@ -116,19 +88,37 @@
           "persistCustomField": false
         },
         {
-          "from": "payment_links.web",
-          "fixed": true,
-          "isCustom": false,
-          "persistCustomField": false
-        },
-        {
           "from": "payment_links.mobile",
           "fixed": true,
           "isCustom": false,
           "persistCustomField": false
         },
         {
+          "from": "payment_links.iframe",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
           "from": "udf9",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "udf7",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "udf8",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "product_id",
           "fixed": true,
           "isCustom": false,
           "persistCustomField": false
@@ -207,6 +197,30 @@
         },
         {
           "from": "udf2",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "customer_email",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "customer_id",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "order_id",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "status",
           "fixed": true,
           "isCustom": false,
           "persistCustomField": false

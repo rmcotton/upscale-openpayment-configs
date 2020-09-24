@@ -1,0 +1,208 @@
+{
+  "id": 418,
+  "requestType": "REFUND",
+  "outboundMapping": {
+    "url": "https://sandbox.juspay.in/orders/${input.referenceId}/refunds",
+    "authenticationIds": [],
+    "method": "POST",
+    "requestContentType": "application/x-www-form-urlencoded",
+    "requestExample": "unique_request_id=1&amount=100.00",
+    "responseExample": "{\n  \"merchant_id\": \"test\",\n  \"customer_id\": \"193526\",\n  \"order_id\": \"17027265\",\n  \"status\": \"CHARGED\",\n  \"status_id\": 21,\n  \"amount\": 2400,\n  \"txn_id\": \"test-17027265-001\",\n  \"gateway_id\": 1,\n  \"bank_error_code\": \"\",\n  \"bank_error_message\": \"\",\n  \"card\": {\n    \"last_four_digits\": \"\",\n    \"expiry_month\": \"07\",\n    \"expiry_year\": \"2013\",\n    \"name_on_card\": \"\"\n  },\n  \"payment_gateway_response\": {\n    \"rrn\": \"306721283931\",\n    \"epg_txn_id\": \"1900005\",\n    \"auth_id_code\": \"T15672\",\n    \"txn_id\": \"test-17027265-001\",\n    \"resp_code\": \"0\",\n    \"resp_message\": \"Approved\"\n  },\n  \"refunded\": false,\n  \"amount_refunded\": 100,\n  \"refunds\" :\n  [\n    {\n        \"id\": \"refund_id\",\n        \"ref\": \"bank_reference_no\",\n        \"amount\": 100,\n        \"created\" : \"2013-02-07 23:11:11\",\n        \"status\" : \"SUCCESS\"\n    }\n  ]\n}",
+    "requestMappingFields": {
+      "mappings": [
+        {
+          "from": "amount",
+          "to": "${input.amount}",
+          "fixed": false
+        },
+        {
+          "from": "unique_request_id",
+          "to": "${input.id}",
+          "fixed": false
+        }
+      ]
+    },
+    "responseMappingFields": {
+      "mappings": [
+        {
+          "from": "payment_gateway_response.resp_code",
+          "to": "errorCode",
+          "fixed": false,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "txn_id",
+          "to": "pspReference",
+          "fixed": false,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "payment_gateway_response.resp_code",
+          "to": "transactionStatus",
+          "map": {
+            "0": "ACCEPTED"
+          },
+          "fixed": false,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "payment_gateway_response.epg_txn_id",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "payment_gateway_response.txn_id",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "payment_gateway_response.resp_message",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "payment_gateway_response.rrn",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "payment_gateway_response.auth_id_code",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "amount",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "merchant_id",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "gateway_id",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "amount_refunded",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "refunds[*].ref",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "refunds[*].amount",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "refunds[*].created",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "refunds[*].id",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "refunds[*].status",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "status_id",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "bank_error_code",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "bank_error_message",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "refunded",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "customer_id",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "order_id",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "card.expiry_month",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "card.last_four_digits",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "card.expiry_year",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "card.name_on_card",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "status",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        }
+      ]
+    },
+    "responseContentType": "application/json",
+    "headers": {
+      "Authorization": "Basic ${vars.authbase64}"
+    }
+  }
+}
