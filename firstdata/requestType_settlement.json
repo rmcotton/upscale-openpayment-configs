@@ -54,9 +54,9 @@
           "persistCustomField": false
         },
         {
-          "from": "",
+          "from": "TransactionResult.Authorization_Num.#text",
           "to": "pspReference",
-          "fixed": true,
+          "fixed": false,
           "isCustom": false,
           "persistCustomField": false
         },
@@ -70,6 +70,13 @@
           "fixed": false,
           "isCustom": false,
           "persistCustomField": false
+        },
+        {
+          "from": "TransactionResult.Transaction_Tag.#text",
+          "to": "capture_Transaction_Tag",
+          "fixed": false,
+          "isCustom": true,
+          "persistCustomField": true
         },
         {
           "from": "TransactionResult.CTR.#text",
@@ -114,12 +121,6 @@
           "persistCustomField": false
         },
         {
-          "from": "TransactionResult.Authorization_Num.#text",
-          "fixed": true,
-          "isCustom": false,
-          "persistCustomField": false
-        },
-        {
           "from": "TransactionResult.Currency.#text",
           "fixed": true,
           "isCustom": false,
@@ -133,12 +134,6 @@
         },
         {
           "from": "TransactionResult.PartialRedemption.#text",
-          "fixed": true,
-          "isCustom": false,
-          "persistCustomField": false
-        },
-        {
-          "from": "TransactionResult.Transaction_Tag.#text",
           "fixed": true,
           "isCustom": false,
           "persistCustomField": false
