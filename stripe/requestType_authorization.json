@@ -285,31 +285,16 @@
       "authenticationIds": [],
       "method": "GET",
       "requestContentType": "application/x-www-form-urlencoded",
-      "requestExample": "a=b",
       "responseExample": "{\n  \"id\": \"cs_test_3v8Q07KIDp9AwIOqHLFqNCeKtYX6YI437VVY5IYQoyusr65cj4ghDBdl\",\n  \"object\": \"checkout.session\",\n  \"allow_promotion_codes\": null,\n  \"amount_subtotal\": null,\n  \"amount_total\": null,\n  \"billing_address_collection\": null,\n  \"cancel_url\": \"https://example.com/cancel\",\n  \"client_reference_id\": null,\n  \"currency\": null,\n  \"customer\": null,\n  \"customer_email\": null,\n  \"livemode\": false,\n  \"locale\": null,\n  \"metadata\": {},\n  \"mode\": \"payment\",\n  \"payment_intent\": \"pi_1HWf6LJKSpaWlCpLo3urk2YN\",\n  \"payment_method_types\": [\n    \"card\"\n  ],\n  \"payment_status\": \"unpaid\",\n  \"setup_intent\": null,\n  \"shipping\": null,\n  \"shipping_address_collection\": null,\n  \"submit_type\": null,\n  \"subscription\": null,\n  \"success_url\": \"https://example.com/success\",\n  \"total_details\": null\n}",
       "requestMappingFields": {
         "mappings": [
           {
-            "from": "a",
-            "to": "b",
-            "fixed": true
+            "fixed": false
           }
         ]
       },
       "responseMappingFields": {
         "mappings": [
-          {
-            "from": "locale",
-            "fixed": true,
-            "isCustom": false,
-            "persistCustomField": false
-          },
-          {
-            "from": "customer",
-            "fixed": true,
-            "isCustom": false,
-            "persistCustomField": false
-          },
           {
             "from": "",
             "to": "errorCode",
@@ -333,6 +318,18 @@
           },
           {
             "from": "livemode",
+            "fixed": true,
+            "isCustom": false,
+            "persistCustomField": false
+          },
+          {
+            "from": "subscription",
+            "fixed": true,
+            "isCustom": false,
+            "persistCustomField": false
+          },
+          {
+            "from": "locale",
             "fixed": true,
             "isCustom": false,
             "persistCustomField": false
@@ -416,12 +413,6 @@
             "persistCustomField": false
           },
           {
-            "from": "subscription",
-            "fixed": true,
-            "isCustom": false,
-            "persistCustomField": false
-          },
-          {
             "from": "submit_type",
             "fixed": true,
             "isCustom": false,
@@ -453,6 +444,12 @@
           },
           {
             "from": "object",
+            "fixed": true,
+            "isCustom": false,
+            "persistCustomField": false
+          },
+          {
+            "from": "customer",
             "fixed": true,
             "isCustom": false,
             "persistCustomField": false
