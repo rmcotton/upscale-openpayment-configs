@@ -3,7 +3,7 @@
   "requestType": "AUTHORIZATION",
   "dynamicScript": {
     "jsUrl": "https://js.stripe.com/v3/",
-    "html": "<button id=\"checkout-button\">Checkout</button>\n\n<script type=\"text/javascript\">\n    // Create an instance of the Stripe object with your publishable API key\n    var stripe = Stripe(\"${vars.publickey}\");\n    var checkoutButton = document.getElementById(\"checkout-button\");\n    checkoutButton.addEventListener(\"click\", function () {\n      stripe.redirectToCheckout( { sessionId: '${input.redirectUrl}' } ).then(function(result) {\n        alert(result);\n    // If `redirectToCheckout` fails due to a browser or network\n    // error, display the localized error message to your customer\n    // using `result.error.message`.\n  });\n    });\n</script>"
+    "html": "<button id=\"checkout-button\">Checkout</button>\n\n<script type=\"text/javascript\">\n    // Create an instance of the Stripe object with your publishable API key\n    var stripe = Stripe(\"${vars.publickey}\");\n    var checkoutButton = document.getElementById(\"checkout-button\");\n    checkoutButton.addEventListener(\"click\", function () {\n      stripe.redirectToCheckout( { sessionId: '${input.customFields.checkoutID}' } ).then(function(result) {\n        alert(result);\n    // If `redirectToCheckout` fails due to a browser or network\n    // error, display the localized error message to your customer\n    // using `result.error.message`.\n  });\n    });\n</script>"
   },
   "remoteApiOutboundMapping": {
     "url": "https://api.stripe.com/v1/checkout/sessions",
@@ -36,7 +36,7 @@
         },
         {
           "from": "line_items[0][amount]",
-          "to": "${input.amount}",
+          "to": "${input.amountInExponent}",
           "fixed": false
         },
         {
@@ -73,11 +73,18 @@
           "persistCustomField": false
         },
         {
-          "from": "id",
+          "from": "",
           "to": "redirectUrl",
-          "fixed": false,
+          "fixed": true,
           "isCustom": false,
           "persistCustomField": false
+        },
+        {
+          "from": "id",
+          "to": "checkoutID",
+          "fixed": false,
+          "isCustom": true,
+          "persistCustomField": true
         },
         {
           "from": "livemode",
@@ -292,12 +299,6 @@
       "responseMappingFields": {
         "mappings": [
           {
-            "from": "subscription",
-            "fixed": true,
-            "isCustom": false,
-            "persistCustomField": false
-          },
-          {
             "from": "locale",
             "fixed": true,
             "isCustom": false,
@@ -410,6 +411,12 @@
           },
           {
             "from": "payment_status",
+            "fixed": true,
+            "isCustom": false,
+            "persistCustomField": false
+          },
+          {
+            "from": "subscription",
             "fixed": true,
             "isCustom": false,
             "persistCustomField": false
