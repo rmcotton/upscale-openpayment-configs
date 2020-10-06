@@ -1,0 +1,131 @@
+{
+  "pattern": "FULL_PAGE",
+  "requestType": "AUTHORIZATION",
+  "destination": {
+    "url": "https://api.demo.convergepay.com/hosted-payments/",
+    "method": "POST",
+    "contentType": "application/x-www-form-urlencoded",
+    "authenticationIds": [],
+    "form": [
+      {
+        "name": "ssl_txn_auth_token",
+        "value": "${input.responseBody}"
+      }
+    ]
+  },
+  "remoteApiOutboundMapping": {
+    "url": "https://api.demo.convergepay.com/hosted-payments/transaction_token",
+    "authenticationIds": [],
+    "method": "POST",
+    "requestContentType": "application/x-www-form-urlencoded",
+    "requestExample": "ssl_pin=O74D6ICFJ4MSC8RPEAQQGVBBUCVWHNWBB52PLOFHXUV58NY5DKK3QHEIKZAN68RU&ssl_transaction_type=ccauthonly&ssl_amount=100&ssl_merchant_id=123&ssl_user_id=webpage&ssl_avs_address=address line 1&ssl_avs_zip=06901&ssl_add_token\n=Y&ssl_country=US&ssl_description\n=DESCRIPTION&ssl_txn_currency_code=USD&ssl_transaction_currency=USD",
+    "responseExample": "token",
+    "requestMappingFields": {
+      "mappings": [
+        {
+          "from": "ssl_merchant_id",
+          "to": "008548",
+          "fixed": true
+        },
+        {
+          "from": "ssl_add_token\n",
+          "to": "Y",
+          "fixed": true
+        },
+        {
+          "from": "ssl_transaction_currency",
+          "to": "${input.currency}",
+          "fixed": false
+        },
+        {
+          "from": "ssl_txn_currency_code",
+          "to": "${input.currency}",
+          "fixed": false
+        },
+        {
+          "from": "ssl_description\n",
+          "to": "Upscale",
+          "fixed": true
+        },
+        {
+          "from": "ssl_transaction_type",
+          "to": "ccauthonly",
+          "fixed": true
+        },
+        {
+          "from": "ssl_pin",
+          "to": "${vars.ssl_pin}",
+          "fixed": false
+        },
+        {
+          "from": "ssl_avs_address",
+          "to": "${input.billingAddress.addressLine1}",
+          "fixed": false
+        },
+        {
+          "from": "ssl_country",
+          "to": "${input.billingAddress.country}",
+          "fixed": false
+        },
+        {
+          "from": "ssl_amount",
+          "to": "${input.amount}",
+          "fixed": false
+        },
+        {
+          "from": "ssl_user_id",
+          "to": "webpage",
+          "fixed": true
+        },
+        {
+          "from": "ssl_avs_zip",
+          "to": "${input.billingAddress.postalCode}",
+          "fixed": false
+        }
+      ]
+    },
+    "responseMappingFields": {
+      "mappings": [
+        {
+          "from": "",
+          "to": "errorCode",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "",
+          "to": "errorMessage",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "",
+          "to": "redirectUrl",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        }
+      ]
+    },
+    "responseContentType": "text/plain"
+  },
+  "verify": {
+    "localVerifyMapping": {
+      "mappings": [
+        {
+          "from": "authResult",
+          "to": "result",
+          "map": {
+            "AUTHORIZED": "AUTHORIZED",
+            "CANCELLED": "CANCELLED"
+          },
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        }
+      ]
+    }
+  }
+}
