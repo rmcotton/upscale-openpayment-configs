@@ -1,0 +1,165 @@
+{
+  "requestType": "NOTIFICATION",
+  "inboundMapping": {
+    "authenticationIds": [],
+    "contentType": "application/json",
+    "requestMapping": {
+      "authorization": {
+        "requestExample": "{\"notificationId\":\"c18db4dc-4d24-4b06-abbf-c666b0d2f5de\",\"eventType\":\"net.authorize.payment.authorization.created\",\"eventDate\":\"2020-10-05T18:20:24.6989538Z\",\"webhookId\":\"4ffd11dd-8324-4472-ae32-36aea217b6ce\",\"payload\":{\"responseCode\":1,\"authCode\":\"S6JX9S\",\"avsResponse\":\"Y\",\"authAmount\":1398.00,\"merchantReferenceId\":\"5110100944\",\"entityName\":\"transaction\",\"id\":\"60152665544\"}}",
+        "requestMappingFields": {
+          "mappings": [
+            {
+              "from": "",
+              "to": "cardExpiryDate",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "",
+              "to": "cardExpMonth",
+              "fixed": false,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "",
+              "to": "cardExpYear",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "",
+              "to": "cardLast4",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "",
+              "to": "cardType",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "",
+              "to": "merchantId",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "",
+              "to": "paymentMethod",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "payload.id",
+              "to": "pspReference",
+              "fixed": false,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "payload.merchantReferenceId",
+              "to": "referenceId",
+              "fixed": false,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "eventType",
+              "to": "requestType",
+              "map": {
+                "net.authorize.payment.authorization.created": "AUTHORIZATION"
+              },
+              "fixed": false,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "",
+              "to": "targetSignature",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "",
+              "to": "token",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "payload.id",
+              "to": "transactionId",
+              "fixed": false,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "payload.responseCode",
+              "to": "transactionStatus",
+              "map": {
+                "1": "ACCEPTED"
+              },
+              "fixed": false,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "webhookId",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "payload.authCode",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "payload.entityName",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "payload.authAmount",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "payload.avsResponse",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "notificationId",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "eventDate",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            }
+          ]
+        }
+      }
+    },
+    "responseMapping": {
+      "content": "OK"
+    }
+  }
+}
