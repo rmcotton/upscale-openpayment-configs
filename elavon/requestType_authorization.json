@@ -1,17 +1,16 @@
 {
-  "id": 359,
   "pattern": "IFRAME",
   "requestType": "AUTHORIZATION",
   "dynamicScript": {
     "jsUrl": "https://demo.convergepay.com/hosted-payments/PayWithConverge.js",
-    "html": "<script>\n  \n    \tfunction openLightbox () {\n\t\t\tvar paymentFields = {\n\t\t\t\t\tssl_txn_auth_token: \"${input.responseBody}\"\n\t\t\t};\n\t\t\tvar callback = {\n\t\t\t\tonError: function (error) {\n\t\t\t\t},\n\t\t\t\tonCancelled: function () {\n\t\t\t\t},\n\t\t\t\tonDeclined: function (response) {\n\t\t\t\t   Upscale.payments.verify(response);\n\n\t\t\t\t},\n\t\t\t\tonApproval: function (response) {\n\t\t\t\t\tUpscale.payments.verify(response);\n                }\n\t\t\t};\n\t\t\tPayWithConverge.open(paymentFields, callback);\n\t\t\treturn false;\n    \t}\n\n    </script>\n\n<button onclick=\"return openLightbox();\">Proceed to Payment</button>"
+    "html": "<script>\n  \n    \tfunction openLightbox () {\n\t\t\tvar paymentFields = {\n\t\t\t\t\tssl_txn_auth_token: \"${input.responseBody}\"\n\t\t\t};\n\t\t\tvar callback = {\n\t\t\t\tonError: function (error) {\n                  alert(\"onerror\" + error);\n\t\t\t\t},\n\t\t\t\tonCancelled: function () {\n\t\t\t\t},\n\t\t\t\tonDeclined: function (response) {\n                   alert(\"ondeclined\" +  response);\n\t\t\t\t   Upscale.payments.verify(response);\n\n\t\t\t\t},\n\t\t\t\tonApproval: function (response) {\n                    alert(response);\n\t\t\t\t\tUpscale.payments.verify(response);\n                }\n\t\t\t};\n\t\t\tPayWithConverge.open(paymentFields, callback);\n\t\t\treturn false;\n    \t}\n\n    </script>\n\n<button onclick=\"return openLightbox();\">Proceed to Payment</button>"
   },
   "remoteApiOutboundMapping": {
     "url": "https://api.demo.convergepay.com/hosted-payments/transaction_token",
     "authenticationIds": [],
     "method": "POST",
     "requestContentType": "application/x-www-form-urlencoded",
-    "requestExample": "ssl_pin=O74D6ICFJ4MSC8RPEAQQGVBBUCVWHNWBB52PLOFHXUV58NY5DKK3QHEIKZAN68RU&ssl_transaction_type=ccauthonly&ssl_amount=100&ssl_merchant_id=123&ssl_user_id=webpage&ssl_avs_address=address line 1&ssl_avs_zip=06901&ssl_add_token\n=Y&ssl_country=US&ssl_description\n=DESCRIPTION",
+    "requestExample": "ssl_pin=O74D6ICFJ4MSC8RPEAQQGVBBUCVWHNWBB52PLOFHXUV58NY5DKK3QHEIKZAN68RU&ssl_transaction_type=ccauthonly&ssl_amount=100&ssl_merchant_id=123&ssl_user_id=webpage&ssl_avs_address=address line 1&ssl_avs_zip=06901&ssl_add_token\n=Y&ssl_country=US&ssl_description\n=DESCRIPTION&ssl_txn_currency_code=USD&ssl_transaction_currency=USD",
     "responseExample": "token",
     "requestMappingFields": {
       "mappings": [
@@ -24,6 +23,16 @@
           "from": "ssl_add_token\n",
           "to": "Y",
           "fixed": true
+        },
+        {
+          "from": "ssl_transaction_currency",
+          "to": "${input.currency}",
+          "fixed": false
+        },
+        {
+          "from": "ssl_txn_currency_code",
+          "to": "${input.currency}",
+          "fixed": false
         },
         {
           "from": "ssl_description\n",
