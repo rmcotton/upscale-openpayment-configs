@@ -1,0 +1,12 @@
+{
+  "name": "Ingenico API Signature (Hosted Checkout Call)",
+  "algorithm": "HmacSHA256",
+  "baseEncoding": "BASE64",
+  "secretBaseEncoding": "NONE",
+  "charset": "UTF-8",
+  "source": "POST\napplication/json\n${auth.hmac.hmacFields.date}\n/v1/1115/hostedcheckouts\n",
+  "hmacFields": {
+    "date": "${.now?string[\"EEE, dd MMM yyyy hh:mm:ss zzz\"]}"
+  },
+  "method": "HMAC_OUTBOUND_SIGNATURE_CALCULATION"
+}

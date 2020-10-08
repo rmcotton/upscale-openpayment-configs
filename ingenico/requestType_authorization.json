@@ -1,0 +1,122 @@
+{
+  "id": 425,
+  "pattern": "FULL_PAGE",
+  "requestType": "AUTHORIZATION",
+  "destination": {
+    "url": "https://payment.${input.redirectUrl}",
+    "method": "POST",
+    "contentType": "application/x-www-form-urlencoded",
+    "authenticationIds": [],
+    "form": []
+  },
+  "remoteApiOutboundMapping": {
+    "url": "https://eu.sandbox.api-ingenico.com/v1/${input.merchantId}/hostedcheckouts",
+    "authenticationIds": [
+      229
+    ],
+    "method": "POST",
+    "requestContentType": "application/json",
+    "requestExample": "{\n              \"order\": {\n                \"amountOfMoney\": {\n                  \"currencyCode\": \"USD\",\n                  \"amount\": 2345\n                },\n                \"customer\": {\n                  \"merchantCustomerId\" : \"cust-id\",\n                  \"billingAddress\": {\n                    \"countryCode\": \"US\"\n                  }\n                }\n              },\n              \"hostedCheckoutSpecificInput\": {\n                \"variant\": \"100\",\n                \"locale\": \"en_GB\",\n                \"returnUrl\": \"http://www.google.co.in\"\n    } \n    \n}",
+    "responseExample": "{\n    \"RETURNMAC\" : \"fecab85c-9b0e-42ee-a9d9-ebb69b0c2eb0\",\n    \"hostedCheckoutId\" : \"15c09dac-bf44-486a-af6b-edfd8680a166\",\n    \"partialRedirectUrl\" : \"pay1.secured-by-ingenico.com/checkout/1701-8cc800ebc3b84667a0b0c9b7981d5b6a:15c09dac-bf44-486a-af6b-edfd8680a166:af6276be66bc4743abfbaa48524c59aa?requestToken=89836363-f87c-4d17-8b11-270d7d9cda9a\",\n  \"errorId\" : \"15eabcd5-30b3-479b-ae03-67bb351c07e6-00000092\",\n    \"errors\" : [\n        {\n            \"code\" : \"20000000\",\n            \"propertyName\" : \"bankAccountBban.accountNumber\",\n            \"message\" : \"PARAMETER_NOT_FOUND_IN_REQUEST\"\n        }\n    ]\n}",
+    "requestMappingFields": {
+      "mappings": [
+        {
+          "from": "$.order.amountOfMoney.amount",
+          "to": "${input.amountInExponent}",
+          "fixed": false
+        },
+        {
+          "from": "$.order.amountOfMoney.currencyCode",
+          "to": "${input.currency}",
+          "fixed": false
+        },
+        {
+          "from": "$.order.customer.merchantCustomerId",
+          "to": "${input.consumerId}",
+          "fixed": false
+        },
+        {
+          "from": "$.order.customer.billingAddress.countryCode",
+          "to": "${input.billingAddress.country}",
+          "fixed": false
+        },
+        {
+          "from": "$.hostedCheckoutSpecificInput.variant",
+          "to": "100",
+          "fixed": true
+        },
+        {
+          "from": "$.hostedCheckoutSpecificInput.locale",
+          "to": "en_US",
+          "fixed": true
+        },
+        {
+          "from": "$.hostedCheckoutSpecificInput.returnUrl",
+          "to": "${input.resultURL}",
+          "fixed": false
+        }
+      ]
+    },
+    "responseMappingFields": {
+      "mappings": [
+        {
+          "from": "errors[*].code",
+          "to": "errorCode",
+          "fixed": false,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "errors[*].message",
+          "to": "errorMessage",
+          "fixed": false,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "partialRedirectUrl",
+          "to": "redirectUrl",
+          "fixed": false,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "RETURNMAC",
+          "to": "RETURNMAC",
+          "fixed": false,
+          "isCustom": true,
+          "persistCustomField": true
+        },
+        {
+          "from": "hostedCheckoutId",
+          "to": "hostedCheckoutId",
+          "fixed": false,
+          "isCustom": true,
+          "persistCustomField": true
+        },
+        {
+          "from": "errorId",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "errors[*].propertyName",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        }
+      ]
+    },
+    "responseContentType": "application/json",
+    "headers": {
+      "Authorization": "GCS v1HMAC:${vars.api_key_id}:${auth.hmac.signature}",
+      "Date": "${auth.hmac.hmacFields.date}"
+    }
+  },
+  "verify": {
+    "localVerifyMapping": {
+      "mappings": []
+    }
+  }
+}
