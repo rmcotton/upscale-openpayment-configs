@@ -1,0 +1,18 @@
+{
+  "name": "re-auth-authentication",
+  "algorithm": "HmacSHA256",
+  "baseEncoding": "BASE64",
+  "secretBaseEncoding": "BASE64",
+  "charset": "UTF-8",
+  "source": "host: apitest.cybersource.com\ndate: ${auth.hmac.hmacFields.date}\n(request-target): post /pts/v2/payments\ndigest: SHA-256=${auth.hmac.digest}\nv-c-merchant-id: ${vars.merchantId}",
+  "digestFields": {
+    "algorithm": "SHA-256",
+    "baseEncoding": "BASE64",
+    "charset": "UTF-8",
+    "source": "${input.requestBody}"
+  },
+  "hmacFields": {
+    "date": "<#assign date = .now?string[\"EEE, dd MMM yyyy hh:mm:ss 'GMT'\"]>${date}"
+  },
+  "method": "HMAC_OUTBOUND_SIGNATURE_CALCULATION"
+}

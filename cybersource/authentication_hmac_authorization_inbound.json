@@ -1,0 +1,11 @@
+{
+  "name": "cyber_local_verify_authentication",
+  "algorithm": "HmacSHA256",
+  "baseEncoding": "BASE64",
+  "secretBaseEncoding": "NONE",
+  "charset": "UTF-8",
+  "source": "transaction_id=${input.transaction_id},decision=${input.decision},req_access_key=${input.req_access_key},req_profile_id=${input.req_profile_id},req_transaction_uuid=${input.req_transaction_uuid},req_transaction_type=${input.req_transaction_type},req_reference_number=${input.req_reference_number},req_amount=${input.req_amount},req_currency=${input.req_currency},req_locale=${input.req_locale},req_payment_method=${input.req_payment_method},req_override_custom_receipt_page=${input.req_override_custom_receipt_page},req_bill_to_forename=${input.req_bill_to_forename},req_bill_to_surname=${input.req_bill_to_surname},req_bill_to_email=${input.req_bill_to_email},req_bill_to_address_line1=${input.req_bill_to_address_line1},req_bill_to_address_city=${input.req_bill_to_address_city},req_bill_to_address_state=${input.req_bill_to_address_state},req_bill_to_address_country=${input.req_bill_to_address_country},req_bill_to_address_postal_code=${input.req_bill_to_address_postal_code},req_card_number=${input.req_card_number},req_card_type=${input.req_card_type},req_card_type_selection_indicator=${input.req_card_type_selection_indicator},req_card_expiry_date=${input.req_card_expiry_date},card_type_name=${input.card_type_name},message=${input.message},reason_code=${input.reason_code},auth_avs_code=${input.auth_avs_code},auth_avs_code_raw=${input.auth_avs_code_raw},auth_response=${input.auth_response},auth_amount=${input.auth_amount},auth_code=${input.auth_code},auth_trans_ref_no=${input.auth_trans_ref_no},auth_time=${input.auth_time},request_token=${input.request_token},payment_token_instrument_identifier_id=${input.payment_token_instrument_identifier_id},payment_token_instrument_identifier_new=${input.payment_token_instrument_identifier_new},payment_token_instrument_identifier_status=${input.payment_token_instrument_identifier_status},payment_token=${input.payment_token},signed_field_names=${input.signed_field_names},signed_date_time=${input.signed_date_time}",
+  "target": "${input.signature}",
+  "method": "HMAC_SIGNATURE_CALCULATION",
+  "hmacSignatureFlag": true
+}

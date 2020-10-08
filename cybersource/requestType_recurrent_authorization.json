@@ -1,0 +1,206 @@
+{
+  "requestType": "RECURRENT_AUTHORIZATION",
+  "outboundMapping": {
+    "url": "https://apitest.cybersource.com/pts/v2/payments",
+    "authenticationIds": [
+      114
+    ],
+    "method": "POST",
+    "requestContentType": "application/json",
+    "requestExample": "{\r\n  \"clientReferenceInformation\": {\r\n    \"code\": \"TC50171_3\"\r\n  },\r\n  \"paymentInformation\": {\r\n    \"legacyToken\": {\r\n      \"id\": \"7500BB199B4270EFE05340588D0AFCAD\"\r\n    }\r\n  },\r\n  \"orderInformation\": {\r\n    \"amountDetails\": {\r\n      \"totalAmount\": \"22\",\r\n      \"currency\": \"USD\"\r\n    }\r\n  }\r\n}",
+    "responseExample": "{\r\n    \"_links\": {\r\n        \"authReversal\": {\r\n            \"method\": \"POST\",\r\n            \"href\": \"/pts/v2/payments/5982487264506032603002/reversals\"\r\n        },\r\n        \"self\": {\r\n            \"method\": \"GET\",\r\n            \"href\": \"/pts/v2/payments/5982487264506032603002\"\r\n        },\r\n        \"capture\": {\r\n            \"method\": \"POST\",\r\n            \"href\": \"/pts/v2/payments/5982487264506032603002/captures\"\r\n        }\r\n    },\r\n    \"clientReferenceInformation\": {\r\n        \"code\": \"TC50171_3\"\r\n    },\r\n    \"id\": \"5982487264506032603002\",\r\n    \"orderInformation\": {\r\n        \"amountDetails\": {\r\n            \"authorizedAmount\": \"22.00\",\r\n            \"currency\": \"USD\"\r\n        }\r\n    },\r\n    \"paymentAccountInformation\": {\r\n        \"card\": {\r\n            \"type\": \"001\"\r\n        }\r\n    },\r\n    \"paymentInformation\": {\r\n        \"tokenizedCard\": {\r\n            \"type\": \"001\"\r\n        }\r\n    },\r\n    \"pointOfSaleInformation\": {\r\n        \"terminalId\": \"111111\"\r\n    },\r\n    \"processorInformation\": {\r\n        \"approvalCode\": \"888888\",\r\n        \"networkTransactionId\": \"123456789619999\",\r\n        \"transactionId\": \"123456789619999\",\r\n        \"responseCode\": \"100\",\r\n        \"avs\": {\r\n            \"code\": \"X\",\r\n            \"codeRaw\": \"I1\"\r\n        }\r\n    },\r\n    \"reconciliationId\": \"732813487E430ZFW\",\r\n    \"status\": \"AUTHORIZED\",\r\n    \"submitTimeUtc\": \"2020-08-24T05:58:46Z\",\r\n    \"reason\": \"INVALID_DATA\",\r\n    \"message\": \"Declined - One or more fields in the request contains invalid data\"\r\n}",
+    "requestMappingFields": {
+      "mappings": [
+        {
+          "from": "$.clientReferenceInformation.code",
+          "to": "${input.referenceId}",
+          "fixed": false
+        },
+        {
+          "from": "$.orderInformation.amountDetails.totalAmount",
+          "to": "${input.amount}",
+          "fixed": false
+        },
+        {
+          "from": "$.orderInformation.amountDetails.currency",
+          "to": "${input.currency}",
+          "fixed": false
+        },
+        {
+          "from": "$.paymentInformation.legacyToken.id",
+          "to": "${input.token}",
+          "fixed": false
+        }
+      ]
+    },
+    "responseMappingFields": {
+      "mappings": [
+        {
+          "from": "orderInformation.amountDetails.currency",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "submitTimeUtc",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "reason",
+          "to": "errorCode",
+          "fixed": false,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "clientReferenceInformation.code",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "_links.authReversal.method",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "_links.authReversal.href",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "_links.self.method",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "_links.self.href",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "_links.capture.method",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "_links.capture.href",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "paymentAccountInformation.card.type",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "pointOfSaleInformation.terminalId",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "message",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "processorInformation.approvalCode",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "processorInformation.networkTransactionId",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "processorInformation.transactionId",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "processorInformation.responseCode",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "processorInformation.avs.code",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "processorInformation.avs.codeRaw",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "orderInformation.amountDetails.authorizedAmount",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "reconciliationId",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "id",
+          "to": "pspReference",
+          "fixed": false,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "paymentInformation.tokenizedCard.type",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "status",
+          "to": "transactionStatus",
+          "map": {
+            "AUTHORIZED": "ACCEPTED",
+            "PARTIAL_AUTHORIZED": "ACCEPTED",
+            "AUTHORIZED_PENDING_REVIEW": "REQUESTED",
+            "AUTHORIZED_RISK_DECLINED": "REJECTED",
+            "PENDING_AUTHENTICATION": "REQUESTED",
+            "PENDING_REVIEW": "REQUESTED",
+            "DECLINED": "REJECTED",
+            "INVALID_REQUEST": "REJECTED"
+          },
+          "fixed": false,
+          "isCustom": false,
+          "persistCustomField": false
+        }
+      ]
+    },
+    "responseContentType": "application/json",
+    "headers": {
+      "v-c-merchant-id": "${vars.merchantId}",
+      "Date": "${auth.hmac.hmacFields.date}",
+      "Host": "apitest.cybersource.com",
+      "Digest": "SHA-256=${auth.hmac.digest}",
+      "Signature": "keyid=\"${vars.apiKeyId}\",algorithm=\"HmacSHA256\",headers=\"host date (request-target) digest v-c-merchant-id\",signature=\"${auth.hmac.signature}\""
+    }
+  }
+}

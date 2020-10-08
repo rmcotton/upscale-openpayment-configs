@@ -1,0 +1,123 @@
+{
+  "pattern": "IFRAME",
+  "requestType": "AUTHORIZATION",
+  "destination": {
+    "url": "https://testsecureacceptance.cybersource.com/embedded/pay",
+    "method": "POST",
+    "contentType": "application/x-www-form-urlencoded",
+    "body": "",
+    "authenticationIds": [
+      117
+    ],
+    "form": [
+      {
+        "name": "amount",
+        "value": "${input.amount}"
+      },
+      {
+        "name": "reference_number",
+        "value": "${input.referenceId}"
+      },
+      {
+        "name": "transaction_type",
+        "value": "authorization,create_payment_token"
+      },
+      {
+        "name": "currency",
+        "value": "${input.currency}"
+      },
+      {
+        "name": "bill_to_forename",
+        "value": "${input.billingAddress.firstName}"
+      },
+      {
+        "name": "override_custom_receipt_page",
+        "value": "${input.resultURL}"
+      },
+      {
+        "name": "bill_to_surname",
+        "value": "${input.billingAddress.lastName}"
+      },
+      {
+        "name": "bill_to_email",
+        "value": "${input.emailAddress}"
+      },
+      {
+        "name": "transaction_uuid",
+        "value": "${input.referenceId}"
+      },
+      {
+        "name": "bill_to_address_line1",
+        "value": "${input.billingAddress.addressLine1}"
+      },
+      {
+        "name": "bill_to_address_city",
+        "value": "${input.billingAddress.city}"
+      },
+      {
+        "name": "bill_to_address_state",
+        "value": "${input.billingAddress.state}"
+      },
+      {
+        "name": "bill_to_address_country",
+        "value": "${input.billingAddress.country}"
+      },
+      {
+        "name": "bill_to_address_postal_code",
+        "value": "${input.billingAddress.postalCode}"
+      },
+      {
+        "name": "recurringSubscriptionInfo_frequency",
+        "value": "on-demand"
+      },
+      {
+        "name": "signature",
+        "value": "${auth.hmac.signature}"
+      },
+      {
+        "name": "access_key",
+        "value": "${vars.accessKey}"
+      },
+      {
+        "name": "profile_id",
+        "value": "${vars.profileId}"
+      },
+      {
+        "name": "unsigned_field_names",
+        "value": ""
+      },
+      {
+        "name": "signed_field_names",
+        "value": "access_key,profile_id,transaction_uuid,signed_field_names,unsigned_field_names,signed_date_time,locale,transaction_type,reference_number,amount,currency,bill_to_forename,bill_to_surname,bill_to_email,bill_to_address_line1,bill_to_address_city,bill_to_address_state,bill_to_address_country,bill_to_address_postal_code,recurringSubscriptionInfo_frequency,override_custom_receipt_page"
+      },
+      {
+        "name": "signed_date_time",
+        "value": "${auth.hmac.hmacFields.date}"
+      },
+      {
+        "name": "locale",
+        "value": "${input.languageCode}"
+      }
+    ]
+  },
+  "verify": {
+    "localVerifyMapping": {
+      "mappings": [
+        {
+          "from": "decision",
+          "to": "result",
+          "map": {
+            "ACCEPT": "AUTHORIZED",
+            "REJECT": "UNAUTHORIZED",
+            "CANCEL": "CANCELLED",
+            "ERROR": "UNAUTHORIZED"
+          },
+          "fixed": false,
+          "isCustom": false,
+          "persistCustomField": false
+        }
+      ]
+    },
+    "localVerifyAuthenticationId": 233
+  }
+}

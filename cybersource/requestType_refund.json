@@ -1,0 +1,129 @@
+{
+  "requestType": "REFUND",
+  "outboundMapping": {
+    "url": "https://apitest.cybersource.com/pts/v2/payments/${input.settlementPspReference}/refunds",
+    "authenticationIds": [
+      220
+    ],
+    "method": "POST",
+    "requestContentType": "application/json",
+    "requestExample": "{\r\n\t\"clientReferenceInformation\": {\r\n\t\t\"code\": \"TC50171_3\"\r\n\t},\r\n\t\"orderInformation\": {\r\n\t\t\"amountDetails\": {\r\n\t\t\t\"totalAmount\": \"102.21\",\r\n\t\t\t\"currency\": \"USD\"\r\n\t\t}\r\n\t}\r\n}",
+    "responseExample": "{\r\n    \"submitTimeUtc\": \"2020-08-21T06:20:00Z\",\r\n    \"status\": \"404\",\r\n    \"errorInformation\": {\r\n        \"reason\": \"NOT_FOUND\",\r\n        \"message\": \"The requested resource does not exist.\"\r\n    },\r\n\t\"_links\": {\r\n\t\t\"void\": {\r\n\t\t\t\"method\": \"POST\",\r\n\t\t\t\"href\": \"/pts/v2/captures/5971133836036973604002/voids\"\r\n\t\t},\r\n\t\t\"self\": {\r\n\t\t\t\"method\": \"GET\",\r\n\t\t\t\"href\": \"/pts/v2/captures/5971133836036973604002\"\r\n\t\t}\r\n\t},\r\n\t\"clientReferenceInformation\": {\r\n\t\t\"code\": \"1234567890_1596683916008\"\r\n\t},\r\n\t\"id\": \"5971133836036973604002\",\r\n\t\"orderInformation\": {\r\n\t\t\"amountDetails\": {\r\n\t\t\t\"totalAmount\": \"169.57\",\r\n\t\t\t\"currency\": \"USD\"\r\n\t\t}\r\n\t},\r\n\t\"reconciliationId\": \"78871890JDBUTCJG\"\r\n}",
+    "requestMappingFields": {
+      "mappings": [
+        {
+          "from": "$.clientReferenceInformation.code",
+          "to": "${input.referenceId}",
+          "fixed": false
+        },
+        {
+          "from": "$.orderInformation.amountDetails.totalAmount",
+          "to": "${input.amount}",
+          "fixed": false
+        },
+        {
+          "from": "$.orderInformation.amountDetails.currency",
+          "to": "${input.currency}",
+          "fixed": false
+        }
+      ]
+    },
+    "responseMappingFields": {
+      "mappings": [
+        {
+          "from": "submitTimeUtc",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "clientReferenceInformation.code",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "_links.void.method",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "_links.void.href",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "_links.self.method",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "_links.self.href",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "errorInformation.reason",
+          "to": "errorCode",
+          "fixed": false,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "errorInformation.message",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "orderInformation.amountDetails.totalAmount",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "orderInformation.amountDetails.currency",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "reconciliationId",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "id",
+          "to": "pspReference",
+          "fixed": false,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "status",
+          "to": "transactionStatus",
+          "map": {
+            "PENDING": "ACCEPTED",
+            "default": "HARD_REJECTED"
+          },
+          "fixed": false,
+          "isCustom": false,
+          "persistCustomField": false
+        }
+      ]
+    },
+    "responseContentType": "application/json",
+    "headers": {
+      "v-c-merchant-id": "${vars.merchantId}",
+      "Date": "${auth.hmac.hmacFields.date}",
+      "Host": "apitest.cybersource.com",
+      "Digest": "SHA-256=${auth.hmac.digest}",
+      "Signature": "keyid=\"${vars.apiKeyId}\",algorithm=\"HmacSHA256\",headers=\"host date (request-target) digest v-c-merchant-id\",signature=\"${auth.hmac.signature}\""
+    }
+  }
+}

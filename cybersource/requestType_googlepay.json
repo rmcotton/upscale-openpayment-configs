@@ -1,0 +1,309 @@
+{
+  "requestType": "GOOGLE_PAY",
+  "outboundMapping": {
+    "url": "https://apitest.cybersource.com/pts/v2/payments",
+    "authenticationIds": [
+      114
+    ],
+    "method": "POST",
+    "requestContentType": "application/json",
+    "requestExample": "{\r\n  \"clientReferenceInformation\": {\r\n    \"code\": \"TC_1231223\"\r\n  },\r\n  \"processingInformation\": {\r\n    \"actionList\": \"TOKEN_CREATE\",\r\n    \"actionTokenTypes\": \"customer\",\r\n    \"paymentSolution\": \"012\"\r\n  },\r\n  \"paymentInformation\": {\r\n    \"fluidData\": {\r\n      \"value\": \"extreact.....\"\r\n    }\r\n  },\r\n  \"orderInformation\": {\r\n    \"amountDetails\": {\r\n      \"totalAmount\": \"10\",\r\n      \"currency\": \"USD\"\r\n    },\r\n    \"billTo\": {\r\n      \"firstName\": \"John\",\r\n      \"lastName\": \"Deo\",\r\n      \"address1\": \"901 Metro Center Blvd\",\r\n      \"locality\": \"Foster City\",\r\n      \"administrativeArea\": \"CA\",\r\n      \"postalCode\": \"94404\",\r\n      \"country\": \"US\",\r\n      \"email\": \"test@cybs.com\"\r\n    }\r\n  }\r\n}",
+    "responseExample": "{\r\n\t\"_links\": {\r\n\t\t\"authReversal\": {\r\n\t\t\t\"method\": \"POST\",\r\n\t\t\t\"href\": \"/pts/v2/payments/5985200273086561703001/reversals\"\r\n\t\t},\r\n\t\t\"self\": {\r\n\t\t\t\"method\": \"GET\",\r\n\t\t\t\"href\": \"/pts/v2/payments/5985200273086561703001\"\r\n\t\t},\r\n\t\t\"capture\": {\r\n\t\t\t\"method\": \"POST\",\r\n\t\t\t\"href\": \"/pts/v2/payments/5985200273086561703001/captures\"\r\n\t\t}\r\n\t},\r\n\t\"clientReferenceInformation\": {\r\n\t\t\"code\": \"TC_1231223\"\r\n\t},\r\n\t\"id\": \"5985200273086561703001\",\r\n\t\"orderInformation\": {\r\n\t\t\"amountDetails\": {\r\n\t\t\t\"authorizedAmount\": \"10.00\",\r\n\t\t\t\"currency\": \"USD\"\r\n\t\t}\r\n\t},\r\n\t\"paymentAccountInformation\": {\r\n\t\t\"card\": {\r\n\t\t\t\"type\": \"001\"\r\n\t\t}\r\n\t},\r\n\t\"paymentInformation\": {\r\n\t\t\"tokenizedCard\": {\r\n\t\t\t\"expirationYear\": \"2023\",\r\n\t\t\t\"prefix\": \"481852\",\r\n\t\t\t\"expirationMonth\": \"12\",\r\n\t\t\t\"suffix\": \"1531\",\r\n\t\t\t\"type\": \"001\"\r\n\t\t}\r\n\t},\r\n\t\"pointOfSaleInformation\": {\r\n\t\t\"terminalId\": \"111111\"\r\n\t},\r\n\t\"processorInformation\": {\r\n\t\t\"approvalCode\": \"888888\",\r\n\t\t\"networkTransactionId\": \"123456789619999\",\r\n\t\t\"transactionId\": \"123456789619999\",\r\n\t\t\"responseCode\": \"100\",\r\n\t\t\"avs\": {\r\n\t\t\t\"code\": \"X\",\r\n\t\t\t\"codeRaw\": \"I1\"\r\n\t\t}\r\n\t},\r\n\t\"reconciliationId\": \"61012851KE4GC43S\",\r\n\t\"status\": \"AUTHORIZED\",\r\n\t\"submitTimeUtc\": \"2020-08-27T09:20:27Z\",\r\n\t\"tokenInformation\": {\r\n\t\t\"customer\": {\r\n\t\t\t\"id\": \"9502000000300412\"\r\n\t\t}\r\n\t},\r\n\t\"reason\": \"INVALID_DATA\",\r\n\t\"message\": \"Declined - One or more fields in the request contains invalid data\"\r\n}",
+    "requestMappingFields": {
+      "mappings": [
+        {
+          "from": "$.clientReferenceInformation.code",
+          "to": "${input.referenceId}",
+          "fixed": false
+        },
+        {
+          "from": "$.processingInformation.paymentSolution",
+          "to": "012",
+          "fixed": true
+        },
+        {
+          "from": "$.processingInformation.actionList",
+          "to": "TOKEN_CREATE",
+          "fixed": true
+        },
+        {
+          "from": "$.processingInformation.actionTokenTypes",
+          "to": "customer",
+          "fixed": true
+        },
+        {
+          "from": "$.orderInformation.billTo.firstName",
+          "to": "${input.billingAddress.firstName}",
+          "fixed": false
+        },
+        {
+          "from": "$.orderInformation.billTo.lastName",
+          "to": "${input.billingAddress.lastName}",
+          "fixed": false
+        },
+        {
+          "from": "$.orderInformation.billTo.country",
+          "to": "${input.billingAddress.country}",
+          "fixed": false
+        },
+        {
+          "from": "$.orderInformation.billTo.address1",
+          "to": "${input.billingAddress.addressLine1}",
+          "fixed": false
+        },
+        {
+          "from": "$.orderInformation.billTo.postalCode",
+          "to": "${input.billingAddress.postalCode}",
+          "fixed": false
+        },
+        {
+          "from": "$.orderInformation.billTo.locality",
+          "to": "${input.billingAddress.city}",
+          "fixed": false
+        },
+        {
+          "from": "$.orderInformation.billTo.administrativeArea",
+          "to": "${input.billingAddress.state}",
+          "fixed": false
+        },
+        {
+          "from": "$.orderInformation.billTo.email",
+          "to": "${input.emailAddress}",
+          "fixed": false
+        },
+        {
+          "from": "$.orderInformation.amountDetails.totalAmount",
+          "to": "${input.amount}",
+          "fixed": false
+        },
+        {
+          "from": "$.orderInformation.amountDetails.currency",
+          "to": "${input.currency}",
+          "fixed": false
+        },
+        {
+          "from": "$.paymentInformation.fluidData.value",
+          "to": "${input.encryptedToken}",
+          "fixed": false
+        }
+      ]
+    },
+    "responseMappingFields": {
+      "mappings": [
+        {
+          "from": "_links.capture.href",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "submitTimeUtc",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "clientReferenceInformation.code",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "processorInformation.approvalCode",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "processorInformation.networkTransactionId",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "processorInformation.transactionId",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "processorInformation.responseCode",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "processorInformation.avs.code",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "processorInformation.avs.codeRaw",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "_links.authReversal.method",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "_links.authReversal.href",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "_links.self.method",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "_links.self.href",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "_links.capture.method",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "tokenInformation.customer.id",
+          "to": "token",
+          "fixed": false,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "paymentAccountInformation.card.type",
+          "to": "cardType",
+          "map": {
+            "001": "VISA",
+            "002": "MASTERCARD",
+            "003": "AMEX",
+            "004": "DISCOVER"
+          },
+          "fixed": false,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "pointOfSaleInformation.terminalId",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "orderInformation.amountDetails.authorizedAmount",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "orderInformation.amountDetails.currency",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "reconciliationId",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "id",
+          "to": "pspReference",
+          "fixed": false,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "paymentInformation.tokenizedCard.expirationYear",
+          "to": "cardExpYear",
+          "fixed": false,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "paymentInformation.tokenizedCard.prefix",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "paymentInformation.tokenizedCard.expirationMonth",
+          "to": "cardExpMonth",
+          "fixed": false,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "paymentInformation.tokenizedCard.suffix",
+          "to": "cardLast4",
+          "fixed": false,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "paymentInformation.tokenizedCard.type",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "status",
+          "to": "transactionStatus",
+          "map": {
+            "AUTHORIZED": "ACCEPTED",
+            "PARTIAL_AUTHORIZED": "ACCEPTED",
+            "AUTHORIZED_PENDING_REVIEW": "REQUESTED",
+            "AUTHORIZED_RISK_DECLINED": "REJECTED",
+            "PENDING_AUTHENTICATION": "REQUESTED",
+            "PENDING_REVIEW": "REQUESTED",
+            "DECLINED": "REJECTED",
+            "INVALID_REQUEST": "REJECTED"
+          },
+          "fixed": false,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "status",
+          "to": "reasonCode",
+          "fixed": false,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "reason",
+          "to": "errorCode",
+          "fixed": false,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "message",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        }
+      ]
+    },
+    "responseContentType": "application/json",
+    "headers": {
+      "v-c-merchant-id": "${vars.merchantId}",
+      "Date": "${auth.hmac.hmacFields.date}",
+      "Host": "apitest.cybersource.com",
+      "Digest": "SHA-256=${auth.hmac.digest}",
+      "Signature": "keyid=\"${vars.apiKeyId}\",algorithm=\"HmacSHA256\",headers=\"host date (request-target) digest v-c-merchant-id\",signature=\"${auth.hmac.signature}\""
+    }
+  }
+}

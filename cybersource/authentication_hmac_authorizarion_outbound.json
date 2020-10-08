@@ -1,0 +1,12 @@
+{
+  "name": "Cyber Redirect Form HMAC Signature",
+  "algorithm": "HmacSHA256",
+  "baseEncoding": "BASE64",
+  "secretBaseEncoding": "NONE",
+  "charset": "UTF-8",
+  "source": "access_key=${vars.accessKey},profile_id=${vars.profileId},transaction_uuid=${input.referenceId},signed_field_names=access_key,profile_id,transaction_uuid,signed_field_names,unsigned_field_names,signed_date_time,locale,transaction_type,reference_number,amount,currency,bill_to_forename,bill_to_surname,bill_to_email,bill_to_address_line1,bill_to_address_city,bill_to_address_state,bill_to_address_country,bill_to_address_postal_code,recurringSubscriptionInfo_frequency,override_custom_receipt_page,unsigned_field_names=,signed_date_time=${auth.hmac.hmacFields.date},locale=${input.languageCode},transaction_type=authorization,create_payment_token,reference_number=${input.referenceId},amount=${input.amount},currency=${input.currency},bill_to_forename=${input.billingAddress.firstName},bill_to_surname=${input.billingAddress.lastName},bill_to_email=${input.emailAddress},bill_to_address_line1=${input.billingAddress.addressLine1},bill_to_address_city=${input.billingAddress.city},bill_to_address_state=${input.billingAddress.state},bill_to_address_country=${input.billingAddress.country},bill_to_address_postal_code=${input.billingAddress.postalCode},recurringSubscriptionInfo_frequency=on-demand,override_custom_receipt_page=${input.resultURL}",
+  "hmacFields": {
+    "date": "<#assign date = .now?iso('UTC')>${date}"
+  },
+  "method": "HMAC_OUTBOUND_SIGNATURE_CALCULATION"
+}
