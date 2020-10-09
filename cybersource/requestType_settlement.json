@@ -4,7 +4,7 @@
   "outboundMapping": {
     "url": "https://apitest.cybersource.com/pts/v2/payments/${input.pspReference}/captures",
     "authenticationIds": [
-      116
+      237
     ],
     "method": "POST",
     "requestContentType": "application/json",
