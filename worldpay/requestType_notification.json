@@ -1,0 +1,449 @@
+{
+  "requestType": "NOTIFICATION",
+  "inboundMapping": {
+    "authenticationIds": [241],
+    "contentType": "application/xml",
+    "requestMapping": {
+      "authorization": {
+        "requestExample": "<?xml version=\"1.0\" encoding=\"UTF-8\"?><!DOCTYPE paymentService PUBLIC \"-//Worldpay//DTD Worldpay PaymentService v1//EN\" \"http://dtd.worldpay.com/paymentService_v1.dtd\"><paymentService version=\"1.4\" merchantCode=\"SAPUPSECOMTEST\"><notify><orderStatusEvent orderCode=\"1111111110\"><payment><paymentMethod>VISA_CREDIT-SSL</paymentMethod><paymentMethodDetail><card number=\"4444********1111\" type=\"creditcard\"/></paymentMethodDetail><amount value=\"5000\" currencyCode=\"GBP\" exponent=\"2\" debitCreditIndicator=\"credit\"/><lastEvent>AUTHORISED</lastEvent><CVCResultCode description=\"C\"/><AVSResultCode description=\"E\"/><AAVAddressResultCode description=\"B\"/><AAVPostcodeResultCode description=\"B\"/><AAVCardholderNameResultCode description=\"B\"/><AAVTelephoneResultCode description=\"B\"/><AAVEmailResultCode description=\"B\"/><cardHolderName><![CDATA[Lealhom]]></cardHolderName><issuerCountryCode>N/A</issuerCountryCode><balance accountType=\"IN_PROCESS_AUTHORISED\"><amount value=\"5000\" currencyCode=\"GBP\" exponent=\"2\" debitCreditIndicator=\"credit\"/></balance><riskScore value=\"1\"/></payment><token><authenticatedShopperID>UniqueshopperID</authenticatedShopperID><tokenEventReference>TOK7854321</tokenEventReference><tokenReason>ClothesDepartment</tokenReason><tokenDetails tokenEvent=\"NEW\"><paymentTokenID>9969179949454258406</paymentTokenID><paymentTokenExpiry><date dayOfMonth=\"14\" month=\"07\" year=\"2020\" hour=\"06\" minute=\"20\" second=\"11\"/></paymentTokenExpiry><tokenEventReference>TOK7854321</tokenEventReference><tokenReason>ClothesDepartment</tokenReason></tokenDetails><paymentInstrument><cardDetails><expiryDate><date month=\"12\" year=\"2020\"/></expiryDate><cardHolderName><![CDATA[Lealhom]]></cardHolderName><cardAddress><address><address1>47A</address1><address2>Queensbridge Road</address2><address3>Suburbia</address3><postalCode>CB94BQ</postalCode><city>Cambridge</city><state>Cambridgeshire</state><countryCode>GB</countryCode></address></cardAddress><derived><cardBrand>VISA</cardBrand><cardSubBrand>VISA_CREDIT</cardSubBrand><issuerCountryCode>N/A</issuerCountryCode><obfuscatedPAN>4444********1111</obfuscatedPAN><bin>444433</bin></derived></cardDetails></paymentInstrument></token><journal journalType=\"AUTHORISED\"><bookingDate><date dayOfMonth=\"07\" month=\"07\" year=\"2020\"/></bookingDate><accountTx accountType=\"IN_PROCESS_AUTHORISED\" batchId=\"17\"><amount value=\"5000\" currencyCode=\"GBP\" exponent=\"2\" debitCreditIndicator=\"credit\"/></accountTx></journal></orderStatusEvent></notify></paymentService>",
+        "requestMappingFields": {
+          "mappings": [
+            {
+              "from": "paymentService.notify.orderStatusEvent.payment.paymentMethod.#text",
+              "to": "paymentMethod",
+              "map": {
+                "VISA_CREDIT-SSL": "CREDIT_CARD",
+                "default": "CREDIT_CARD"
+              },
+              "fixed": false,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "paymentService.notify.orderStatusEvent.payment.paymentMethod.#text",
+              "to": "cardType",
+              "map": {
+                "VISA-SSL": "VISA",
+                "VISA_CREDIT-SSL": "VISA",
+                "VISA_DEBIT-SSL": "VISA",
+                "VISA_COMMERCIAL_DEBIT-SSL": "VISA",
+                "VISA_COMMERCIAL_CREDIT-SSL": "VISA",
+                "VISA_ELECTRON-SSL": "VISA",
+                "ECMC_CREDIT-SSL": "MASTERCARD",
+                "ECMC_DEBIT-SSL": "MASTERCARD",
+                "ECMC_COMMERCIAL_CREDIT-SSL": "MASTERCARD",
+                "ECMC_COMMERCIAL_DEBIT-SSL": "MASTERCARD",
+                "DISCOVER-SSL": "DISCOVER",
+                "AMEX-SSL": "AMEX",
+                "defalult": "NONE"
+              },
+              "fixed": false,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "paymentService.notify.orderStatusEvent.journal.journalType",
+              "to": "transactionStatus",
+              "map": {
+                "CAPTURED": "ACCEPTED",
+                "CAPTURE_FAILED": "HARD_REJECTED",
+                "AUTHORISED": "ACCEPTED",
+                "REFUSED": "REJECTED",
+                "ERROR": "REJECTED",
+                "CANCELLED": "REJECTED"
+              },
+              "fixed": false,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "paymentService.notify.orderStatusEvent.token.tokenEventReference.#text",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "paymentService.notify.orderStatusEvent.payment.lastEvent.#text",
+              "to": "requestType",
+              "map": {
+                "AUTHORISED": "AUTHORIZATION",
+                "CAPTURED": "SETTLEMENT"
+              },
+              "fixed": false,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "paymentService.notify.orderStatusEvent.orderCode",
+              "to": "referenceId",
+              "fixed": false,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "paymentService.notify.orderStatusEvent.payment.paymentMethodDetail.card.number",
+              "to": "cardLast4",
+              "fixed": false,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "paymentService.notify.orderStatusEvent.token.paymentInstrument.cardDetails.expiryDate.date.month",
+              "to": "cardExpMonth",
+              "fixed": false,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "paymentService.notify.orderStatusEvent.token.paymentInstrument.cardDetails.expiryDate.date.year",
+              "to": "cardExpYear",
+              "fixed": false,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "paymentService.merchantCode",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "paymentService.version",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "paymentService.notify.orderStatusEvent.journal.accountTx.amount.debitCreditIndicator",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "paymentService.notify.orderStatusEvent.journal.accountTx.amount.value",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "paymentService.notify.orderStatusEvent.journal.accountTx.amount.currencyCode",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "paymentService.notify.orderStatusEvent.journal.accountTx.amount.exponent",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "paymentService.notify.orderStatusEvent.journal.accountTx.accountType",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "paymentService.notify.orderStatusEvent.journal.accountTx.batchId",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "paymentService.notify.orderStatusEvent.journal.bookingDate.date.month",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "paymentService.notify.orderStatusEvent.journal.bookingDate.date.dayOfMonth",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "paymentService.notify.orderStatusEvent.journal.bookingDate.date.year",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "paymentService.notify.orderStatusEvent.payment.AAVEmailResultCode.description",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "paymentService.notify.orderStatusEvent.payment.amount.debitCreditIndicator",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "paymentService.notify.orderStatusEvent.payment.amount.value",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "paymentService.notify.orderStatusEvent.payment.amount.currencyCode",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "paymentService.notify.orderStatusEvent.payment.amount.exponent",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "paymentService.notify.orderStatusEvent.payment.AVSResultCode.description",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "paymentService.notify.orderStatusEvent.payment.cardHolderName.#text",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "paymentService.notify.orderStatusEvent.payment.issuerCountryCode.#text",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "paymentService.notify.orderStatusEvent.payment.paymentMethodDetail.card.type",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "paymentService.notify.orderStatusEvent.payment.AAVAddressResultCode.description",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "paymentService.notify.orderStatusEvent.payment.AAVPostcodeResultCode.description",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "paymentService.notify.orderStatusEvent.payment.balance.amount.debitCreditIndicator",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "paymentService.notify.orderStatusEvent.payment.balance.amount.value",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "paymentService.notify.orderStatusEvent.payment.balance.amount.currencyCode",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "paymentService.notify.orderStatusEvent.payment.balance.amount.exponent",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "paymentService.notify.orderStatusEvent.payment.balance.accountType",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "paymentService.notify.orderStatusEvent.payment.AAVCardholderNameResultCode.description",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "paymentService.notify.orderStatusEvent.payment.AAVTelephoneResultCode.description",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "paymentService.notify.orderStatusEvent.payment.riskScore.value",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "paymentService.notify.orderStatusEvent.payment.CVCResultCode.description",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "paymentService.notify.orderStatusEvent.token.tokenDetails.paymentTokenID.#text",
+              "to": "token",
+              "fixed": false,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "paymentService.notify.orderStatusEvent.token.tokenDetails.tokenEvent",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "paymentService.notify.orderStatusEvent.token.tokenDetails.paymentTokenExpiry.date.month",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "paymentService.notify.orderStatusEvent.token.tokenDetails.paymentTokenExpiry.date.hour",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "paymentService.notify.orderStatusEvent.token.tokenDetails.paymentTokenExpiry.date.dayOfMonth",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "paymentService.notify.orderStatusEvent.token.tokenDetails.paymentTokenExpiry.date.year",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "paymentService.notify.orderStatusEvent.token.tokenDetails.paymentTokenExpiry.date.minute",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "paymentService.notify.orderStatusEvent.token.tokenDetails.paymentTokenExpiry.date.second",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "paymentService.notify.orderStatusEvent.token.tokenDetails.tokenEventReference.#text",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "paymentService.notify.orderStatusEvent.token.tokenDetails.tokenReason.#text",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "paymentService.notify.orderStatusEvent.token.paymentInstrument.cardDetails.cardAddress.address.address3.#text",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "paymentService.notify.orderStatusEvent.token.paymentInstrument.cardDetails.cardAddress.address.address2.#text",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "paymentService.notify.orderStatusEvent.token.paymentInstrument.cardDetails.cardAddress.address.city.#text",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "paymentService.notify.orderStatusEvent.token.paymentInstrument.cardDetails.cardAddress.address.address1.#text",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "paymentService.notify.orderStatusEvent.token.paymentInstrument.cardDetails.cardAddress.address.countryCode.#text",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "paymentService.notify.orderStatusEvent.token.paymentInstrument.cardDetails.cardAddress.address.postalCode.#text",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "paymentService.notify.orderStatusEvent.token.paymentInstrument.cardDetails.cardAddress.address.state.#text",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "paymentService.notify.orderStatusEvent.token.paymentInstrument.cardDetails.cardHolderName.#text",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "paymentService.notify.orderStatusEvent.token.paymentInstrument.cardDetails.derived.cardSubBrand.#text",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "paymentService.notify.orderStatusEvent.token.paymentInstrument.cardDetails.derived.obfuscatedPAN.#text",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "paymentService.notify.orderStatusEvent.token.paymentInstrument.cardDetails.derived.bin.#text",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "paymentService.notify.orderStatusEvent.token.paymentInstrument.cardDetails.derived.issuerCountryCode.#text",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "paymentService.notify.orderStatusEvent.token.paymentInstrument.cardDetails.derived.cardBrand.#text",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "paymentService.notify.orderStatusEvent.token.authenticatedShopperID.#text",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "paymentService.notify.orderStatusEvent.token.tokenReason.#text",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            }
+          ]
+        }
+      }
+    },
+    "responseMapping": {
+      "content": "[OK]"
+    }
+  }
+}

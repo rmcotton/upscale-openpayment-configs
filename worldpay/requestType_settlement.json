@@ -1,0 +1,115 @@
+{
+  "requestType": "SETTLEMENT",
+  "outboundMapping": {
+    "url": "https://secure-test.worldpay.com/jsp/merchant/xml/paymentService.jsp",
+    "authenticationIds": [
+      240
+    ],
+    "method": "POST",
+    "requestContentType": "application/xml",
+    "requestExample": "<?xml version=\"1.0\" encoding=\"UTF-8\"?><!DOCTYPE paymentService PUBLIC \"-//WorldPay//DTD WorldPay PaymentService v1//EN\" \"http://dtd.worldpay.com/paymentService_v1.dtd\"><paymentService version=\"1.4\" merchantCode=\"SAPUPSECOMTEST\"><modify><orderModification orderCode=\"555\"><capture reference=\"123456\"><amount value=\"50\" currencyCode=\"EUR\" exponent=\"2\" /></capture></orderModification></modify></paymentService>",
+    "responseExample": "<?xml version=\"1.0\" encoding=\"UTF-8\"?><!DOCTYPE paymentService PUBLIC \"-//WorldPay//DTD WorldPay PaymentService v1//EN\" \"http://dtd.worldpay.com/paymentService_v1.dtd\"><paymentService version=\"1.4\" merchantCode=\"SAPUPSECOMTEST\"><reply><ok><captureReceived orderCode=\"555\"><amount value=\"50\" currencyCode=\"EUR\" exponent=\"2\"/></captureReceived></ok><error code=\"2\"><![CDATA[xxxxxxxx]]></error></reply></paymentService>",
+    "requestMappingFields": {
+      "mappings": [
+        {
+          "from": "/paymentService/@version",
+          "to": "1.4",
+          "fixed": true
+        },
+        {
+          "from": "/paymentService/@merchantCode",
+          "to": "${vars.merchantCode}",
+          "fixed": false
+        },
+        {
+          "from": "/paymentService/modify/orderModification/@orderCode",
+          "to": "${input.referenceId}",
+          "fixed": false
+        },
+        {
+          "from": "/paymentService/modify/orderModification/capture/@reference",
+          "to": "${input.id}",
+          "fixed": false
+        },
+        {
+          "from": "/paymentService/modify/orderModification/capture/amount",
+          "fixed": true
+        },
+        {
+          "from": "/paymentService/modify/orderModification/capture/amount/@value",
+          "to": "${input.amountInExponent}",
+          "fixed": false
+        },
+        {
+          "from": "/paymentService/modify/orderModification/capture/amount/@currencyCode",
+          "to": "${input.currency}",
+          "fixed": false
+        },
+        {
+          "from": "/paymentService/modify/orderModification/capture/amount/@exponent",
+          "to": "${input.currencyExponent}",
+          "fixed": false
+        },
+        {
+          "from": "/paymentService/modify/orderModification/capture/amount/@debitCreditIndicator",
+          "to": "credit",
+          "fixed": true
+        }
+      ]
+    },
+    "responseMappingFields": {
+      "mappings": [
+        {
+          "from": "paymentService.merchantCode",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "paymentService.reply.ok.captureReceived.amount.value",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "paymentService.reply.ok.captureReceived.amount.currencyCode",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "paymentService.reply.ok.captureReceived.amount.exponent",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "paymentService.reply.ok.captureReceived.orderCode",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "paymentService.reply.error.code",
+          "to": "errorCode",
+          "fixed": false,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "paymentService.reply.error.#text",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "paymentService.version",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        }
+      ]
+    },
+    "responseContentType": "application/xml"
+  }
+}

@@ -1,0 +1,267 @@
+{
+  "id": 8,
+  "pattern": "IFRAME",
+  "requestType": "AUTHORIZATION",
+  "destination": {
+    "url": "https://worldpay-mock-caas2-sap-test.cfapps.us10.hana.ondemand.com/authorization?iframeTargetURL=${functions.encodeURL(input.redirectUrl)}&resultURL=${functions.encodeURL(input.resultURL)}&cancelURL=${functions.encodeURL(input.cancelURL)}&languageCode=${functions.encodeURL(input.languageCode)}&countryCode=${functions.encodeURL(input.countryCode)}",
+    "method": "GET",
+    "contentType": "application/xml",
+    "authenticationIds": [],
+    "form": []
+  },
+  "dynamicScript": {
+    "cssUrl": "https://payments.worldpay.com/resources/hpp/integrations/embedded/css/hpp-embedded-integration-library.css",
+    "jsUrl": "https://payments.worldpay.com/resources/hpp/integrations/embedded/js/hpp-embedded-integration-library.js",
+    "html": "<div id='custom-html'></div><script type=\"text/javascript\">var customOptions = {iframeHelperURL: '${input.resultURL}/assets/html/helper.html',url: '${input.redirectUrl}',type: 'iframe',inject: 'immediate',target: 'custom-html',accessibility: true,debug: true,language: 'en',country: 'gb',preferredPaymentMethod: 'VISA-SSL',successURL: '${input.resultURL}',cancelURL: '${input.resultURL}',failureURL: '${input.resultURL}',pendingURL: '${input.resultURL}',errorURL: '${input.resultURL}'};var libraryObject = new WPCL.Library();libraryObject.setup(customOptions);</script>"
+  },
+  "remoteApiOutboundMapping": {
+    "url": "https://secure-test.worldpay.com/jsp/merchant/xml/paymentService.jsp",
+    "authenticationIds": [
+      240
+    ],
+    "method": "POST",
+    "requestContentType": "application/xml",
+    "requestExample": "<?xml version=\"1.0\" encoding=\"UTF-8\"?><!DOCTYPE paymentService PUBLIC \"-//Worldpay//DTD Worldpay PaymentService v1//EN\" \"http://dtd.worldpay.com/paymentService_v1.dtd\"><paymentService version=\"1.4\" merchantCode=\"SAPUPSECOMTEST\"><submit><order orderCode=\"12345679963258\" installationId=\"1402695\"><description>Test</description><amount currencyCode=\"USD\" exponent=\"2\" value=\"5000\" /><orderContent><![CDATA[AMOREDETAILEDDESCRIPTIONOFYOURORDERCONTENTCANGOHERE]]></orderContent><paymentMethodMask><include code=\"ALL\" /></paymentMethodMask><shopper><shopperEmailAddress>allen.wu02@sap.com</shopperEmailAddress><authenticatedShopperID>123456789</authenticatedShopperID></shopper><shippingAddress><address><address1>47A</address1><address2>Queensbridge Road</address2><address3>Suburbia</address3><postalCode>CB94BQ</postalCode><city>Cambridge</city><state>Cambridgeshire</state><countryCode>US</countryCode></address></shippingAddress><billingAddress><address><address1>47A</address1><address2>Queensbridge Road</address2><address3>Suburbia</address3><postalCode>CB94BQ</postalCode><city>Cambridge</city><state>Cambridgeshire</state><countryCode>US</countryCode></address></billingAddress><createToken tokenScope=\"shopper\"><tokenEventReference>524789654</tokenEventReference></createToken></order></submit></paymentService>",
+    "responseExample": "<?xml version=\"1.0\" encoding=\"UTF-8\"?><!DOCTYPE paymentService PUBLIC \"-//WorldPay//DTD WorldPay PaymentService v1//EN\" \"http://dtd.worldpay.com/paymentService_v1.dtd\"><paymentService version=\"1.4\" merchantCode=\"SAPUPSECOMTEST\"><reply><orderStatus orderCode=\"11116\"><reference id=\"3193675645\"> https://hpp-sandbox.worldpay.com/app/hpp/integration/wpg/corporate?OrderKey=SAPUPSECOMTEST%5E11116&amp;Ticket=00159451806471402w3PbwHUkVvr-vnxFgCcWzQ</reference></orderStatus><error code=\"5\"><![CDATA[Order has already been paid]]></error></reply></paymentService>",
+    "requestMappingFields": {
+      "mappings": [
+        {
+          "from": "/paymentService/submit/order/billingAddress/address/address2",
+          "to": "${input.billingAddress.addressLine2}",
+          "fixed": false
+        },
+        {
+          "from": "/paymentService/submit/order/billingAddress/address/address3",
+          "to": "${input.billingAddress.addressLine3}",
+          "fixed": false
+        },
+        {
+          "from": "/paymentService/submit/order/billingAddress/address/postalCode",
+          "to": "${input.billingAddress.postalCode}",
+          "fixed": false
+        },
+        {
+          "from": "/paymentService/submit/order/billingAddress/address/city",
+          "to": "${input.billingAddress.city}",
+          "fixed": false
+        },
+        {
+          "from": "/paymentService/submit/order/billingAddress/address/state",
+          "to": "${input.billingAddress.state}",
+          "fixed": false
+        },
+        {
+          "from": "/paymentService/submit/order/billingAddress/address/countryCode",
+          "to": "${input.billingAddress.country}",
+          "fixed": false
+        },
+        {
+          "from": "/paymentService/submit/order/createToken/@tokenScope",
+          "to": "shopper",
+          "fixed": true
+        },
+        {
+          "from": "/paymentService/submit/order/amount/@value",
+          "to": "${input.amountInExponent}",
+          "fixed": false
+        },
+        {
+          "from": "/paymentService/submit/order/orderContent",
+          "to": "AMOREDETAILEDDESCRIPTIONOFYOURORDERCONTENTCANGOHERE",
+          "fixed": true
+        },
+        {
+          "from": "/paymentService/submit/order/paymentMethodMask/include",
+          "fixed": true
+        },
+        {
+          "from": "/paymentService/submit/order/paymentMethodMask/include/@code",
+          "to": "ALL",
+          "fixed": true
+        },
+        {
+          "from": "/paymentService/submit/order/shopper/shopperEmailAddress",
+          "to": "${input.emailAddress}",
+          "fixed": false
+        },
+        {
+          "from": "/paymentService/submit/order/shopper/authenticatedShopperID",
+          "to": "${input.orderId}",
+          "fixed": false
+        },
+        {
+          "from": "/paymentService/submit/order/shippingAddress/address/address1",
+          "to": "${input.shippingAddress.addressLine1}",
+          "fixed": false
+        },
+        {
+          "from": "/paymentService/submit/order/shippingAddress/address/address2",
+          "to": "${input.shippingAddress.addressLine2}",
+          "fixed": false
+        },
+        {
+          "from": "/paymentService/submit/order/shippingAddress/address/address3",
+          "to": "${input.shippingAddress.addressLine3}",
+          "fixed": false
+        },
+        {
+          "from": "/paymentService/submit/order/shippingAddress/address/postalCode",
+          "to": "${input.shippingAddress.postalCode}",
+          "fixed": false
+        },
+        {
+          "from": "/paymentService/submit/order/createToken/tokenEventReference",
+          "to": "${input.referenceId}",
+          "fixed": false
+        },
+        {
+          "from": "/paymentService/@merchantCode",
+          "to": "${vars.merchantCode}",
+          "fixed": false
+        },
+        {
+          "from": "/paymentService/submit/order/@orderCode",
+          "to": "${input.referenceId}",
+          "fixed": false
+        },
+        {
+          "from": "/paymentService/submit/order/@installationId",
+          "to": "${vars.installationId}",
+          "fixed": false
+        },
+        {
+          "from": "/paymentService/submit/order/description",
+          "to": "Test",
+          "fixed": true
+        },
+        {
+          "from": "/paymentService/submit/order/amount",
+          "fixed": true
+        },
+        {
+          "from": "/paymentService/submit/order/amount/@currencyCode",
+          "to": "${input.currency}",
+          "fixed": false
+        },
+        {
+          "from": "/paymentService/submit/order/amount/@exponent",
+          "to": "${input.currencyExponent}",
+          "fixed": false
+        },
+        {
+          "from": "/paymentService/submit/order/amount/@debitCreditIndicator",
+          "to": "credit",
+          "fixed": true
+        },
+        {
+          "from": "/paymentService/submit/order/shippingAddress/address/city",
+          "to": "${input.shippingAddress.city}",
+          "fixed": false
+        },
+        {
+          "from": "/paymentService/submit/order/shippingAddress/address/state",
+          "to": "${input.shippingAddress.state}",
+          "fixed": false
+        },
+        {
+          "from": "/paymentService/submit/order/shippingAddress/address/countryCode",
+          "to": "${input.shippingAddress.country}",
+          "fixed": false
+        },
+        {
+          "from": "/paymentService/submit/order/billingAddress/address/address1",
+          "to": "${input.billingAddress.addressLine1}",
+          "fixed": false
+        },
+        {
+          "from": "/paymentService/@version",
+          "to": "1.4",
+          "fixed": true
+        }
+      ]
+    },
+    "responseMappingFields": {
+      "mappings": [
+        {
+          "from": "paymentService.merchantCode",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "paymentService.reply.orderStatus.reference.#text",
+          "to": "redirectUrl",
+          "fixed": false,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "paymentService.reply.orderStatus.reference.id",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "paymentService.reply.orderStatus.orderCode",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "paymentService.reply.error.code",
+          "to": "errorCode",
+          "fixed": false,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "paymentService.version",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "paymentService.reply.error.#text",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        }
+      ]
+    },
+    "responseContentType": "application/xml"
+  },
+  "verify": {
+    "localVerifyMapping": {
+      "mappings": [
+        {
+          "from": "['gateway.paymentStatus']",
+          "to": "result",
+          "map": {
+            "CANCELLED": "CANCELLED",
+            "AUTHORISED": "AUTHORIZED",
+            "UNAUTHORISED": "UNAUTHORIZED",
+            "AUTHORIZED": "AUTHORIZED",
+            "UNAUTHORIZED": "UNAUTHORIZED"
+          },
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "paymentStatus",
+          "to": "result",
+          "map": {
+            "CANCELLED": "CANCELLED",
+            "AUTHORISED": "AUTHORIZED",
+            "UNAUTHORISED": "UNAUTHORIZED",
+            "AUTHORIZED": "AUTHORIZED",
+            "UNAUTHORIZED": "UNAUTHORIZED"
+          },
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        }
+      ]
+    }
+  }
+}

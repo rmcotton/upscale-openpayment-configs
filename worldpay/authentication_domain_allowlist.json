@@ -1,0 +1,6 @@
+{
+  "id" : 241
+  "name": "world_pay_domain_whitelist",
+  "domainAllowlist": "*.worldpay.com",
+  "method": "DOMAIN_ALLOWLIST"
+}
