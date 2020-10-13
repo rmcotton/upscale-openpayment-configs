@@ -1,5 +1,5 @@
 {
-  "pattern": "IFRAME",
+  "pattern": "FULL_PAGE",
   "requestType": "AUTHORIZATION",
   "destination": {
     "url": "https://test.authorize.net/payment/payment",
@@ -9,25 +9,107 @@
     "form": [
       {
         "name": "token",
-        "value": "${input.redirectUrl}"
+        "value": "${input.customFields.token}"
       }
     ]
-  },
-  "dynamicScript": {
-    "html": "<div id=\"iframe_holder\" class=\"center-block\" style=\"width:90%;max-width: 1000px\">\n\t<iframe id=\"add_payment\" class=\"embed-responsive-item panel\" name=\"add_payment\" width=\"100%\"    frameborder=\"0\" scrolling=\"no\" hidden=\"true\">\n\t</iframe>\n</div>\n\n<form id=\"send_token\" action=\"\" method=\"post\" target=\"add_payment\">\n\t<input type=\"hidden\" name=\"token\" value=\"${input.redirectUrl}\" />\n</form>\n\n<script type=\"text/javascript\">\n\n\t$(function () {\n\n\t\t$( document ).ready(function () {\n\t\t\t$(\"#add_payment\").show();\n\t\t\t$(\"#send_token\").attr({ \"action\": \"https://test.authorize.net/payment/payment\", \"target\": \"add_payment\" }).submit();\n\t\t\t$(window).scrollTop($('#add_payment').offset().top - 50);\n\t\t});\n\n\t});\n\n\t\t(function () {\n\t\t\tif (!window.AuthorizeNetIFrame) window.AuthorizeNetIFrame = {};\n\t\t\t\tAuthorizeNetIFrame.onReceiveCommunication = function (querystr) {\n\t\t\t\t\tvar params = parseQueryString(querystr);\n\t\t\t\t\t\tswitch (params[\"action\"]) {\n\t\t\t\t\t\t\tcase \"successfulSave\":\n\t\t\t\t\t\t\t\tbreak;\n\t\t\t\t\t\t\tcase \"cancel\":\n\t\t\t\t\t\t\t\tbreak;\n\t\t\t\t\t\t\tcase \"resizeWindow\":\n\t\t\t\t\t\t\t\tvar w = parseInt(params[\"width\"]);\n\t\t\t\t\t\t\t\tvar h = parseInt(params[\"height\"]);\n\t\t\t\t\t\t\t\tvar ifrm = document.getElementById(\"add_payment\");\n\t\t\t\t\t\t\t\tifrm.style.width = w.toString() + \"px\";\n\t\t\t\t\t\t\t\tifrm.style.height = h.toString() + \"px\";\n\t\t\t\t\t\t\t\tbreak;\n\t\t\t\t\t\t\tcase \"transactResponse\":\n\t\t\t\t\t\t\t\tvar ifrm = document.getElementById(\"add_payment\");\n\t\t\t\t\t\t\t\tifrm.style.display = 'none';\n\t\t\t\t\t\t\t}\n\t\t\t\t\t};\n\n\t\t\t\tfunction parseQueryString(str) {\n\t\t\t\t\tvar vars = [];\n\t\t\t\t\tvar arr = str.split('&');\n\t\t\t\t\tvar pair;\n\t\t\t\t\tfor (var i = 0; i < arr.length; i++) {\n\t\t\t\t\t\tpair = arr[i].split('=');\n\t\t\t\t\t\tvars.push(pair[0]);\n\t\t\t\t\t\tvars[pair[0]] = unescape(pair[1]);\n\t\t\t\t\t\t}\n\t\t\t\t\treturn vars;\n\t\t\t\t\t}\n\t\t}());\n\t</script>"
   },
   "remoteApiOutboundMapping": {
     "url": "https://apitest.authorize.net/xml/v1/request.api",
     "authenticationIds": [],
     "method": "POST",
     "requestContentType": "application/xml",
-    "requestExample": "<getHostedPaymentPageRequest xmlns=\"AnetApi/xml/v1/schema/AnetApiSchema.xsd\">\r\n  <merchantAuthentication>\r\n    <name>blah</name>\r\n    <transactionKey>blah</transactionKey>\r\n  </merchantAuthentication>\r\n  <transactionRequest>\r\n    <transactionType>authOnlyTransaction</transactionType>\r\n    <amount>20.00</amount>\r\n    <customer>\r\n      <email>ellen@mail.com</email>\r\n    </customer>\r\n  </transactionRequest>\r\n  <hostedPaymentSettings>\r\n    <setting>\r\n      <settingName>hostedPaymentReturnOptions</settingName>\r\n      <settingValue>{\"showReceipt\": true, \"url\": \"https://mysite.com/receipt\", \"urlText\": \"Continue\", \"cancelUrl\": \"https://mysite.com/cancel\", \"cancelUrlText\": \"Cancel\"}</settingValue>\r\n    </setting>\r\n    <setting>\r\n      <settingName>hostedPaymentButtonOptions</settingName>\r\n      <settingValue>{\"text\": \"Pay\"}</settingValue>\r\n    </setting>\r\n    <setting>\r\n      <settingName>hostedPaymentStyleOptions</settingName>\r\n      <settingValue>{\"bgColor\": \"blue\"}</settingValue>\r\n    </setting>\r\n    <setting>\r\n      <settingName>hostedPaymentPaymentOptions</settingName>\r\n      <settingValue>{\"cardCodeRequired\": false, \"showCreditCard\": true, \"showBankAccount\": true}</settingValue>\r\n    </setting>\r\n    <setting>\r\n      <settingName>hostedPaymentSecurityOptions</settingName>\r\n      <settingValue>{\"captcha\": false}</settingValue>\r\n    </setting>\r\n    <setting>\r\n      <settingName>hostedPaymentShippingAddressOptions</settingName>\r\n      <settingValue>{\"show\": false, \"required\": false}</settingValue>\r\n    </setting>\r\n    <setting>\r\n      <settingName>hostedPaymentBillingAddressOptions</settingName>\r\n      <settingValue>{\"show\": true, \"required\":false}</settingValue>\r\n    </setting>\r\n    <setting>\r\n      <settingName>hostedPaymentCustomerOptions</settingName>\r\n      <settingValue>{\"showEmail\": false, \"requiredEmail\": false, \"addPaymentProfile\": true}</settingValue>\r\n    </setting>\r\n    <setting>\r\n      <settingName>hostedPaymentOrderOptions</settingName>\r\n      <settingValue>{\"show\": true, \"merchantName\": \"G and S Questions Inc.\"}</settingValue>\r\n    </setting>\r\n    <setting>\r\n      <settingName>hostedPaymentIFrameCommunicatorUrl</settingName>\r\n      <settingValue>{\"url\": \"https://mysite.com/special\"}</settingValue>\r\n    </setting>\r\n  </hostedPaymentSettings>\r\n</getHostedPaymentPageRequest>",
-    "responseExample": "<getHostedPaymentPageResponse xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns=\"AnetApi/xml/v1/schema/AnetApiSchema.xsd\">\r\n\t<messages>\r\n\t\t<resultCode>Ok</resultCode>\r\n\t\t<message>\r\n\t\t\t<code>I00001</code>\r\n\t\t\t<text>Successful.</text>\r\n\t\t</message>\r\n\t</messages>\r\n\t<token>fpXAkWfQzJUD6zzuU+yz9olx2YkoHd2bPzjm6u/teYYsKi3KmR9xmszKsEvw8bafqxwpshKqAUuXUp0uPMvWjelVNZDv+TYDcsq2+X+B7kuoQpnQeBnhMZg</token>\r\n</getHostedPaymentPageResponse>",
+    "requestExample": "<getHostedPaymentPageRequest xmlns=\"AnetApi/xml/v1/schema/AnetApiSchema.xsd\">\n  <merchantAuthentication>\n    <name>blah</name>\n    <transactionKey>blah</transactionKey>\n  </merchantAuthentication>\n  <refId>1234567-93839030</refId>\n  <transactionRequest>\n    <transactionType>authOnlyTransaction</transactionType>\n    <amount>20.00</amount>\n    <customer>\n      <email>ellen@mail.com</email>\n    </customer>\n  </transactionRequest>\n  <hostedPaymentSettings>\n    <setting>\n      <settingName>hostedPaymentReturnOptions</settingName>\n      <settingValue>{\"showReceipt\": true, \"url\": \"https://mysite.com/receipt\", \"urlText\": \"Continue\", \"cancelUrl\": \"https://mysite.com/cancel\", \"cancelUrlText\": \"Cancel\"}</settingValue>\n    </setting>\n    <setting>\n      <settingName>hostedPaymentButtonOptions</settingName>\n      <settingValue>{\"text\": \"Pay\"}</settingValue>\n    </setting>\n    <setting>\n      <settingName>hostedPaymentStyleOptions</settingName>\n      <settingValue>{\"bgColor\": \"blue\"}</settingValue>\n    </setting>\n    <setting>\n      <settingName>hostedPaymentPaymentOptions</settingName>\n      <settingValue>{\"cardCodeRequired\": false, \"showCreditCard\": true, \"showBankAccount\": true}</settingValue>\n    </setting>\n    <setting>\n      <settingName>hostedPaymentSecurityOptions</settingName>\n      <settingValue>{\"captcha\": false}</settingValue>\n    </setting>\n    <setting>\n      <settingName>hostedPaymentShippingAddressOptions</settingName>\n      <settingValue>{\"show\": false, \"required\": false}</settingValue>\n    </setting>\n    <setting>\n      <settingName>hostedPaymentBillingAddressOptions</settingName>\n      <settingValue>{\"show\": true, \"required\":false}</settingValue>\n    </setting>\n    <setting>\n      <settingName>hostedPaymentCustomerOptions</settingName>\n      <settingValue>{\"showEmail\": false, \"requiredEmail\": false, \"addPaymentProfile\": true}</settingValue>\n    </setting>\n    <setting>\n      <settingName>hostedPaymentOrderOptions</settingName>\n      <settingValue>{\"show\": true, \"merchantName\": \"G and S Questions Inc.\"}</settingValue>\n    </setting>\n    <setting>\n      <settingName>hostedPaymentIFrameCommunicatorUrl</settingName>\n      <settingValue>{\"url\": \"https://mysite.com/special\"}</settingValue>\n    </setting>\n  </hostedPaymentSettings>\n</getHostedPaymentPageRequest>",
+    "responseExample": "<getHostedPaymentPageResponse xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns=\"AnetApi/xml/v1/schema/AnetApiSchema.xsd\">\n\t<messages>\n\t\t<resultCode>Ok</resultCode>\n\t\t<message>\n\t\t\t<code>I00001</code>\n\t\t\t<text>Successful.</text>\n\t\t</message>\n\t</messages>\n\t<token>fpXAkWfQzJUD6zzuU+yz9olx2YkoHd2bPzjm6u/teYYsKi3KmR9xmszKsEvw8bafqxwpshKqAUuXUp0uPMvWjelVNZDv+TYDcsq2+X+B7kuoQpnQeBnhMZg</token>\n</getHostedPaymentPageResponse>",
     "requestMappingFields": {
       "mappings": [
         {
+          "from": "/getHostedPaymentPageRequest/merchantAuthentication/name",
+          "to": "${vars.apiUser}",
+          "fixed": false
+        },
+        {
+          "from": "/getHostedPaymentPageRequest/merchantAuthentication/transactionKey",
+          "to": "${vars.transactionKey}",
+          "fixed": false
+        },
+        {
+          "from": "/getHostedPaymentPageRequest/refId",
+          "to": "${input.orderId}",
+          "fixed": false
+        },
+        {
           "from": "/getHostedPaymentPageRequest/transactionRequest/transactionType",
           "to": "authOnlyTransaction",
+          "fixed": true
+        },
+        {
+          "from": "/getHostedPaymentPageRequest/transactionRequest/amount",
+          "to": "${input.amount}",
+          "fixed": false
+        },
+        {
+          "from": "/getHostedPaymentPageRequest/transactionRequest/customer/email",
+          "to": "${input.emailAddress}",
+          "fixed": false
+        },
+        {
+          "from": "/getHostedPaymentPageRequest/hostedPaymentSettings/setting[1]/settingName",
+          "to": "hostedPaymentReturnOptions",
+          "fixed": true
+        },
+        {
+          "from": "/getHostedPaymentPageRequest/hostedPaymentSettings/setting[1]/settingValue",
+          "to": "{\"showReceipt\": true, \"url\": \"${input.resultURL}?status=COMPLETED\", \"urlText\": \"Continue\", \"cancelUrl\": \"${input.cancelURL}%26status=CANCELLED\", \"cancelUrlText\": \"Cancel\"}",
+          "fixed": true
+        },
+        {
+          "from": "/getHostedPaymentPageRequest/hostedPaymentSettings/setting[2]/settingName",
+          "to": "hostedPaymentButtonOptions",
+          "fixed": true
+        },
+        {
+          "from": "/getHostedPaymentPageRequest/hostedPaymentSettings/setting[2]/settingValue",
+          "to": "{\"text\": \"Pay\"}",
+          "fixed": true
+        },
+        {
+          "from": "/getHostedPaymentPageRequest/hostedPaymentSettings/setting[3]/settingName",
+          "to": "hostedPaymentStyleOptions",
+          "fixed": true
+        },
+        {
+          "from": "/getHostedPaymentPageRequest/hostedPaymentSettings/setting[3]/settingValue",
+          "to": "{\"bgColor\": \"blue\"}",
+          "fixed": true
+        },
+        {
+          "from": "/getHostedPaymentPageRequest/hostedPaymentSettings/setting[4]/settingName",
+          "to": "hostedPaymentPaymentOptions",
+          "fixed": true
+        },
+        {
+          "from": "/getHostedPaymentPageRequest/hostedPaymentSettings/setting[4]/settingValue",
+          "to": "{\"cardCodeRequired\": false, \"showCreditCard\": true, \"showBankAccount\": true}",
+          "fixed": true
+        },
+        {
+          "from": "/getHostedPaymentPageRequest/hostedPaymentSettings/setting[5]/settingName",
+          "to": "hostedPaymentSecurityOptions",
+          "fixed": true
+        },
+        {
+          "from": "/getHostedPaymentPageRequest/hostedPaymentSettings/setting[5]/settingValue",
+          "to": "{\"captcha\": false}",
+          "fixed": true
+        },
+        {
+          "from": "/getHostedPaymentPageRequest/hostedPaymentSettings/setting[6]/settingName",
+          "to": "hostedPaymentShippingAddressOptions",
+          "fixed": true
+        },
+        {
+          "from": "/getHostedPaymentPageRequest/hostedPaymentSettings/setting[6]/settingValue",
+          "to": "{\"show\": false, \"required\": false}",
           "fixed": true
         },
         {
@@ -61,88 +143,8 @@
           "fixed": true
         },
         {
-          "from": "/getHostedPaymentPageRequest/merchantAuthentication/name",
-          "to": "${vars.apiUser}",
-          "fixed": false
-        },
-        {
-          "from": "/getHostedPaymentPageRequest/merchantAuthentication/transactionKey",
-          "to": "${vars.transactionKey}",
-          "fixed": false
-        },
-        {
-          "from": "/getHostedPaymentPageRequest/hostedPaymentSettings/setting[5]/settingName",
-          "to": "hostedPaymentSecurityOptions",
-          "fixed": true
-        },
-        {
-          "from": "/getHostedPaymentPageRequest/hostedPaymentSettings/setting[5]/settingValue",
-          "to": "{\"captcha\": false}",
-          "fixed": true
-        },
-        {
           "from": "/getHostedPaymentPageRequest/hostedPaymentSettings/setting[10]/settingName",
           "to": "hostedPaymentIFrameCommunicatorUrl",
-          "fixed": true
-        },
-        {
-          "from": "/getHostedPaymentPageRequest/transactionRequest/amount",
-          "to": "${input.amount}",
-          "fixed": false
-        },
-        {
-          "from": "/getHostedPaymentPageRequest/transactionRequest/customer/email",
-          "to": "${input.emailAddress}",
-          "fixed": false
-        },
-        {
-          "from": "/getHostedPaymentPageRequest/hostedPaymentSettings/setting[1]/settingName",
-          "to": "hostedPaymentReturnOptions",
-          "fixed": true
-        },
-        {
-          "from": "/getHostedPaymentPageRequest/hostedPaymentSettings/setting[1]/settingValue",
-          "to": "{\"showReceipt\": true, \"url\": \"${input.resultURL}\", \"urlText\": \"Continue\", \"cancelUrl\": \"${input.cancelURL}\", \"cancelUrlText\": \"Cancel\"}",
-          "fixed": false
-        },
-        {
-          "from": "/getHostedPaymentPageRequest/hostedPaymentSettings/setting[2]/settingName",
-          "to": "hostedPaymentButtonOptions",
-          "fixed": true
-        },
-        {
-          "from": "/getHostedPaymentPageRequest/hostedPaymentSettings/setting[2]/settingValue",
-          "to": "{\"text\": \"Pay\"}",
-          "fixed": true
-        },
-        {
-          "from": "/getHostedPaymentPageRequest/hostedPaymentSettings/setting[3]/settingName",
-          "to": "hostedPaymentStyleOptions",
-          "fixed": true
-        },
-        {
-          "from": "/getHostedPaymentPageRequest/hostedPaymentSettings/setting[3]/settingValue",
-          "to": "{\"bgColor\": \"blue\"}",
-          "fixed": true
-        },
-        {
-          "from": "/getHostedPaymentPageRequest/hostedPaymentSettings/setting[4]/settingName",
-          "to": "hostedPaymentPaymentOptions",
-          "fixed": true
-        },
-        {
-          "from": "/getHostedPaymentPageRequest/hostedPaymentSettings/setting[4]/settingValue",
-          "to": "{\"cardCodeRequired\": false, \"showCreditCard\": true, \"showBankAccount\": true}",
-          "fixed": true
-        },
-        {
-          "from": "/getHostedPaymentPageRequest/hostedPaymentSettings/setting[6]/settingName",
-          "to": "hostedPaymentShippingAddressOptions",
-          "fixed": true
-        },
-        {
-          "from": "/getHostedPaymentPageRequest/hostedPaymentSettings/setting[6]/settingValue",
-          "to": "{\"show\": false, \"required\": false}",
           "fixed": true
         },
         {
@@ -155,42 +157,69 @@
     "responseMappingFields": {
       "mappings": [
         {
-          "from": "getHostedPaymentPageResponse.token.#text",
+          "from": "",
+          "to": "errorCode",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "",
+          "to": "errorMessage",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "",
           "to": "redirectUrl",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "getHostedPaymentPageResponse.token.#text",
+          "to": "token",
           "fixed": false,
-          "isCustom": false
+          "isCustom": true,
+          "persistCustomField": false
         },
         {
           "from": "getHostedPaymentPageResponse.messages.resultCode.#text",
           "fixed": true,
-          "isCustom": false
+          "isCustom": false,
+          "persistCustomField": false
         },
         {
           "from": "getHostedPaymentPageResponse.messages.message.code.#text",
           "fixed": true,
-          "isCustom": false
+          "isCustom": false,
+          "persistCustomField": false
         },
         {
           "from": "getHostedPaymentPageResponse.messages.message.text.#text",
           "fixed": true,
-          "isCustom": false
+          "isCustom": false,
+          "persistCustomField": false
         }
       ]
     },
-    "responseContentType": "application/xml"
+    "responseContentType": "application/xml",
+    "headers": {}
   },
   "verify": {
     "localVerifyMapping": {
       "mappings": [
         {
-          "from": "authResult",
+          "from": "status",
           "to": "result",
           "map": {
-            "AUTHORIZED": "AUTHORIZED",
+            "COMPLETED": "AUTHORIZED",
             "CANCELLED": "CANCELLED"
           },
-          "fixed": false,
-          "isCustom": false
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
         }
       ]
     }
