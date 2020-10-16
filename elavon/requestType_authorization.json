@@ -1,42 +1,31 @@
 {
-  "pattern": "IFRAME",
+  "id": 359,
+  "pattern": "FULL_PAGE",
   "requestType": "AUTHORIZATION",
-  "dynamicScript": {
-    "jsUrl": "https://demo.convergepay.com/hosted-payments/PayWithConverge.js",
-    "html": "<script>\n  \n    \tfunction openLightbox () {\n\t\t\tvar paymentFields = {\n\t\t\t\t\tssl_txn_auth_token: \"${input.responseBody}\"\n\t\t\t};\n\t\t\tvar callback = {\n\t\t\t\tonError: function (error) {\n                  alert(\"onerror\" + error);\n\t\t\t\t},\n\t\t\t\tonCancelled: function () {\n\t\t\t\t},\n\t\t\t\tonDeclined: function (response) {\n                   alert(\"ondeclined\" +  response);\n\t\t\t\t   Upscale.payments.verify(response);\n\n\t\t\t\t},\n\t\t\t\tonApproval: function (response) {\n                    alert(response);\n\t\t\t\t\tUpscale.payments.verify(response);\n                }\n\t\t\t};\n\t\t\tPayWithConverge.open(paymentFields, callback);\n\t\t\treturn false;\n    \t}\n\n    </script>\n\n<button onclick=\"return openLightbox();\">Proceed to Payment</button>"
+  "destination": {
+    "url": "https://api.demo.convergepay.com/hosted-payments/",
+    "method": "POST",
+    "contentType": "application/x-www-form-urlencoded",
+    "authenticationIds": [],
+    "form": [
+      {
+        "name": "ssl_txn_auth_token",
+        "value": "${input.responseBody}"
+      }
+    ]
   },
   "remoteApiOutboundMapping": {
     "url": "https://api.demo.convergepay.com/hosted-payments/transaction_token",
     "authenticationIds": [],
     "method": "POST",
     "requestContentType": "application/x-www-form-urlencoded",
-    "requestExample": "ssl_pin=O74D6ICFJ4MSC8RPEAQQGVBBUCVWHNWBB52PLOFHXUV58NY5DKK3QHEIKZAN68RU&ssl_transaction_type=ccauthonly&ssl_amount=100&ssl_merchant_id=123&ssl_user_id=webpage&ssl_avs_address=address line 1&ssl_avs_zip=06901&ssl_add_token\n=Y&ssl_country=US&ssl_description\n=DESCRIPTION&ssl_txn_currency_code=USD&ssl_transaction_currency=USD",
+    "requestExample": "ssl_pin=O74D6ICFJ4MSC8RPEAQQGVBBUCVWHNWBB52PLOFHXUV58NY5DKK3QHEIKZAN68RU&ssl_transaction_type=ccauthonly&ssl_amount=100&ssl_merchant_id=123&ssl_user_id=webpage&ssl_receipt_apprvl_post_url=url",
     "responseExample": "token",
     "requestMappingFields": {
       "mappings": [
         {
           "from": "ssl_merchant_id",
           "to": "008548",
-          "fixed": true
-        },
-        {
-          "from": "ssl_add_token\n",
-          "to": "Y",
-          "fixed": true
-        },
-        {
-          "from": "ssl_transaction_currency",
-          "to": "${input.currency}",
-          "fixed": false
-        },
-        {
-          "from": "ssl_txn_currency_code",
-          "to": "${input.currency}",
-          "fixed": false
-        },
-        {
-          "from": "ssl_description\n",
-          "to": "Upscale",
           "fixed": true
         },
         {
@@ -50,16 +39,6 @@
           "fixed": false
         },
         {
-          "from": "ssl_avs_address",
-          "to": "${input.billingAddress.addressLine1}",
-          "fixed": false
-        },
-        {
-          "from": "ssl_country",
-          "to": "${input.billingAddress.country}",
-          "fixed": false
-        },
-        {
           "from": "ssl_amount",
           "to": "${input.amount}",
           "fixed": false
@@ -70,8 +49,8 @@
           "fixed": true
         },
         {
-          "from": "ssl_avs_zip",
-          "to": "${input.billingAddress.postalCode}",
+          "from": "ssl_receipt_apprvl_post_url",
+          "to": "${input.resultURL}",
           "fixed": false
         }
       ]
@@ -107,13 +86,12 @@
     "localVerifyMapping": {
       "mappings": [
         {
-          "from": "authResult",
+          "from": "ssl_result",
           "to": "result",
           "map": {
-            "AUTHORIZED": "AUTHORIZED",
-            "CANCELLED": "CANCELLED"
+            "0": "AUTHORIZED"
           },
-          "fixed": true,
+          "fixed": false,
           "isCustom": false,
           "persistCustomField": false
         }
