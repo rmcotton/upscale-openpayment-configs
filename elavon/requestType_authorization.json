@@ -14,11 +14,11 @@
     ]
   },
   "remoteApiOutboundMapping": {
-    "url": "https://api.demo.convergepay.com/hosted-payments/transaction_token",
+    "url": "https://6bcfdfc205f9e27ba20070259629d5b1.m.pipedream.net/api.demo.convergepay.com/hosted-payments/transaction_token",
     "authenticationIds": [],
     "method": "POST",
     "requestContentType": "application/x-www-form-urlencoded",
-    "requestExample": "ssl_pin=O74D6ICFJ4MSC8RPEAQQGVBBUCVWHNWBB52PLOFHXUV58NY5DKK3QHEIKZAN68RU&ssl_transaction_type=ccauthonly&ssl_amount=100&ssl_merchant_id=123&ssl_user_id=webpage&ssl_reference_number=12345&ssl_invoice_number=12345",
+    "requestExample": "ssl_pin=O74D6ICFJ4MSC8RPEAQQGVBBUCVWHNWBB52PLOFHXUV58NY5DKK3QHEIKZAN68RU&ssl_transaction_type=ccauthonly&ssl_amount=100&ssl_merchant_id=123&ssl_user_id=webpage&ssl_reference_number=12345&ssl_invoice_number=12345&ssl_txn_currency_code=USD&ssl_description\n=Upscale&ssl_add_token\n=Y&ssl_avs_address=53+State+Street+%E2%80%93+16th+Floor&ssl_country=US&ssl_avs_zip=02109",
     "responseExample": "token",
     "requestMappingFields": {
       "mappings": [
@@ -28,9 +28,19 @@
           "fixed": true
         },
         {
-          "from": "ssl_reference_number",
-          "to": "${input.referenceId}",
+          "from": "ssl_add_token\n",
+          "to": "Y",
+          "fixed": true
+        },
+        {
+          "from": "ssl_txn_currency_code",
+          "to": "${input.currency}",
           "fixed": false
+        },
+        {
+          "from": "ssl_description\n",
+          "to": "Upscale",
+          "fixed": true
         },
         {
           "from": "ssl_transaction_type",
@@ -43,13 +53,36 @@
           "fixed": false
         },
         {
-          "from": "ssl_invoice_number",
-          "to": "${input.referenceId}",
+          "from": "ssl_avs_address",
+          "to": "${input.billingAddress.addressLine1}",
           "fixed": false
         },
         {
           "from": "ssl_amount",
           "to": "${input.amount}",
+          "fixed": false
+        },
+        {
+          "from": "ssl_avs_zip",
+          "to": "${input.billingAddress.postalCode}",
+          "fixed": false
+        },
+        {
+          "from": "ssl_reference_number",
+          "to": "${input.referenceId}",
+          "fixed": false
+        },
+        {
+          "from": "ssl_country",
+          "to": "${input.billingAddress.country}",
+          "map": {
+            "US": "USA"
+          },
+          "fixed": false
+        },
+        {
+          "from": "ssl_invoice_number",
+          "to": "${input.referenceId}",
           "fixed": false
         },
         {
