@@ -18,7 +18,7 @@
     "authenticationIds": [],
     "method": "POST",
     "requestContentType": "application/x-www-form-urlencoded",
-    "requestExample": "ssl_pin=O74D6ICFJ4MSC8RPEAQQGVBBUCVWHNWBB52PLOFHXUV58NY5DKK3QHEIKZAN68RU&ssl_transaction_type=ccauthonly&ssl_amount=100&ssl_merchant_id=123&ssl_user_id=webpage&ssl_reference_number=12345&ssl_invoice_number=12345&ssl_country=USA&ssl_txn_currency_code=USD&ssl_avs_address=53+State+Street+%E2%80%93+16th+Floor&ssl_avs_zip=02109&ssl_email=a@b.com&ssl_first_name=alvin&ssl_last_name=Test",
+    "requestExample": "ssl_pin=O74D6ICFJ4MSC8RPEAQQGVBBUCVWHNWBB52PLOFHXUV58NY5DKK3QHEIKZAN68RU&ssl_transaction_type=ccauthonly&ssl_amount=100&ssl_merchant_id=123&ssl_user_id=webpage&ssl_reference_number=12345&ssl_invoice_number=12345&ssl_country=USA&ssl_txn_currency_code=USD&ssl_avs_address=53+State+Street+%E2%80%93+16th+Floor&ssl_avs_zip=02109&ssl_email=a@b.com&ssl_first_name=alvin&ssl_last_name=Test&ssl_city=town&ssl_address2=line 2",
     "responseExample": "token",
     "requestMappingFields": {
       "mappings": [
@@ -70,6 +70,16 @@
         {
           "from": "ssl_reference_number",
           "to": "${input.referenceId}",
+          "fixed": false
+        },
+        {
+          "from": "ssl_city",
+          "to": "${input.billingAddress.city}",
+          "fixed": false
+        },
+        {
+          "from": "ssl_address2",
+          "to": "${input.billingAddress.addressLine2}",
           "fixed": false
         },
         {
