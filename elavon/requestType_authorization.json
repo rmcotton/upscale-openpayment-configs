@@ -18,7 +18,7 @@
     "authenticationIds": [],
     "method": "POST",
     "requestContentType": "application/x-www-form-urlencoded",
-    "requestExample": "ssl_pin=O74D6ICFJ4MSC8RPEAQQGVBBUCVWHNWBB52PLOFHXUV58NY5DKK3QHEIKZAN68RU&ssl_transaction_type=ccauthonly&ssl_amount=100&ssl_merchant_id=123&ssl_user_id=webpage&ssl_reference_number=12345&ssl_invoice_number=12345&ssl_txn_currency_code=USD&ssl_description\n=Upscale&ssl_add_token\n=Y&ssl_avs_address=53+State+Street+%E2%80%93+16th+Floor&ssl_country=US&ssl_avs_zip=02109",
+    "requestExample": "ssl_pin=O74D6ICFJ4MSC8RPEAQQGVBBUCVWHNWBB52PLOFHXUV58NY5DKK3QHEIKZAN68RU&ssl_transaction_type=ccauthonly&ssl_amount=100&ssl_merchant_id=123&ssl_user_id=webpage&ssl_reference_number=12345&ssl_invoice_number=12345&ssl_country=USA&ssl_txn_currency_code=USD&ssl_avs_address=53+State+Street+%E2%80%93+16th+Floor&ssl_avs_zip=02109&ssl_email=a@b.com&ssl_first_name=alvin&ssl_last_name=Test",
     "responseExample": "token",
     "requestMappingFields": {
       "mappings": [
@@ -28,19 +28,14 @@
           "fixed": true
         },
         {
-          "from": "ssl_add_token\n",
-          "to": "Y",
-          "fixed": true
-        },
-        {
           "from": "ssl_txn_currency_code",
           "to": "${input.currency}",
           "fixed": false
         },
         {
-          "from": "ssl_description\n",
-          "to": "Upscale",
-          "fixed": true
+          "from": "ssl_last_name",
+          "to": "${input.billingAddress.lastName}",
+          "fixed": false
         },
         {
           "from": "ssl_transaction_type",
@@ -55,6 +50,11 @@
         {
           "from": "ssl_avs_address",
           "to": "${input.billingAddress.addressLine1}",
+          "fixed": false
+        },
+        {
+          "from": "ssl_email",
+          "to": "${input.emailAddress}",
           "fixed": false
         },
         {
@@ -73,12 +73,14 @@
           "fixed": false
         },
         {
-          "from": "ssl_country",
-          "to": "${input.billingAddress.country}",
-          "map": {
-            "US": "USA"
-          },
+          "from": "ssl_first_name",
+          "to": "${input.billingAddress.firstName}",
           "fixed": false
+        },
+        {
+          "from": "ssl_country",
+          "to": "USA",
+          "fixed": true
         },
         {
           "from": "ssl_invoice_number",
