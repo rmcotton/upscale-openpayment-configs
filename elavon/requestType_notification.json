@@ -1,5 +1,4 @@
 {
-  "id": 397,
   "requestType": "NOTIFICATION",
   "inboundMapping": {
     "authenticationIds": [
@@ -8,7 +7,7 @@
     "contentType": "application/x-www-form-urlencoded",
     "requestMapping": {
       "authorization": {
-        "requestExample": "ssl_merchant_initiated_unscheduled=N&~ssl_partner_app_id=01&~ssl_phone=05555555555&~ssl_card_number=41**********1111&~ssl_oar_data=010010434109221107560000047554200000000000368320026611104341&~ssl_result=0&~ssl_txn_id=220920ED3-697C96A9-E784-4E9A-AAC7-7061AB7174A3&~ssl_avs_response=N&~ssl_approval_code=368320&~ssl_email=a@b.com&~ssl_amount=1398.00&~ssl_avs_zip=06901&~ssl_txn_time=09/22/2020 07:07:56 AM&~ssl_exp_date=1020&~ssl_card_short_description=VISA&~ssl_get_token=N&~ssl_card_type=CREDITCARD&~ssl_merchant_id=008548&~ssl_transaction_type=AUTHONLY&~ssl_bin_no=411111&~ssl_avs_address=2211 North Street&~ssl_account_balance=0.00&~ssl_ps2000_data=A000000000000000 A&~ssl_ship_to_zip=06901&~ssl_city=San Jose&~ssl_result_message=APPROVAL&~ssl_ship_to_phone=05555555555&~ssl_ship_to_city=San Jose&~ssl_ship_to_address1=2211 North Street&~ssl_cvv2_response=P&~ssl_user_id=008548",
+        "requestExample": "ssl_merchant_initiated_unscheduled=N&~ssl_last_name=Cotton&~ssl_partner_app_id=01&~ssl_company=SAP&~ssl_phone=05555555555&~ssl_card_number=40**********0002&~ssl_oar_data=010013175910160702350000047554200000000000991270029007131759&~ssl_result=0&~ssl_txn_id=161020ED3-3A824826-22F1-402D-BE7F-232C0EA96C01&~ssl_avs_response=G&~ssl_approval_code=991270&~ssl_ship_to_last_name=Cotton&~ssl_email=r.cotton@sap.com&~ssl_amount=158.00&~ssl_avs_zip=02109&~ssl_txn_time=10/16/2020 03:02:35 AM&~ssl_exp_date=1022&~ssl_card_short_description=VISA&~ssl_country=USA&~ssl_card_type=CREDITCARD&~ssl_transaction_type=AUTHONLY&~ssl_avs_address=53 State Street ¿ 16th Floor&~ssl_ship_to_first_name=Richard&~ssl_ship_to_company=SAP&~ssl_ship_to_state=Massachusetts&~ssl_account_balance=0.00&~ssl_ps2000_data=A7502902535584023252VE&~ssl_state=Massachusetts&~ssl_partial_shipment_flag=N&~ssl_ship_to_country=USA&~ssl_ship_to_zip=02109&~ssl_card_present=N&~ssl_city=Boston&~ssl_result_message=APPROVAL&~ssl_first_name=Richard&~ssl_ship_to_phone=05555555555&~ssl_ship_to_city=Boston&~ssl_invoice_number=8615774615_1602831724751&~ssl_ship_to_address1=53 State Street ¿ 16th Floor&~ssl_cvv2_response=M&~ssl_user_id=webpage",
         "requestMappingFields": {
           "mappings": [
             {
@@ -67,14 +66,14 @@
               "persistCustomField": false
             },
             {
-              "from": "",
+              "from": "~ssl_txn_id",
               "to": "pspReference",
-              "fixed": true,
+              "fixed": false,
               "isCustom": false,
               "persistCustomField": false
             },
             {
-              "from": "",
+              "from": "~ssl_invoice_number",
               "to": "referenceId",
               "fixed": false,
               "isCustom": false,
@@ -105,17 +104,17 @@
               "persistCustomField": false
             },
             {
-              "from": "",
+              "from": "~ssl_txn_id",
               "to": "transactionId",
-              "fixed": true,
+              "fixed": false,
               "isCustom": false,
               "persistCustomField": false
             },
             {
-              "from": "~ssl_result_message",
+              "from": "~ssl_result",
               "to": "transactionStatus",
               "map": {
-                "APPROVAL": "ACCEPTED"
+                "0": "ACCEPTED"
               },
               "fixed": false,
               "isCustom": false,
@@ -129,6 +128,24 @@
             },
             {
               "from": "~ssl_oar_data",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "~ssl_ship_to_first_name",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "~ssl_ship_to_company",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "~ssl_country",
               "fixed": true,
               "isCustom": false,
               "persistCustomField": false
@@ -170,7 +187,19 @@
               "persistCustomField": false
             },
             {
-              "from": "~ssl_txn_id",
+              "from": "~ssl_card_present",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "~ssl_ship_to_country",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "~ssl_result_message",
               "fixed": true,
               "isCustom": false,
               "persistCustomField": false
@@ -194,6 +223,18 @@
               "persistCustomField": false
             },
             {
+              "from": "~ssl_ship_to_last_name",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "~ssl_ship_to_state",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
               "from": "~ssl_email",
               "fixed": true,
               "isCustom": false,
@@ -212,13 +253,13 @@
               "persistCustomField": false
             },
             {
-              "from": "~ssl_result",
+              "from": "~ssl_ps2000_data",
               "fixed": true,
               "isCustom": false,
               "persistCustomField": false
             },
             {
-              "from": "~ssl_ps2000_data",
+              "from": "~ssl_partial_shipment_flag",
               "fixed": true,
               "isCustom": false,
               "persistCustomField": false
@@ -230,7 +271,25 @@
               "persistCustomField": false
             },
             {
+              "from": "~ssl_last_name",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
               "from": "~ssl_approval_code",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "~ssl_state",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "~ssl_company",
               "fixed": true,
               "isCustom": false,
               "persistCustomField": false
@@ -242,7 +301,7 @@
               "persistCustomField": false
             },
             {
-              "from": "~ssl_bin_no",
+              "from": "~ssl_first_name",
               "fixed": true,
               "isCustom": false,
               "persistCustomField": false

@@ -1,5 +1,4 @@
 {
-  "id": 359,
   "pattern": "FULL_PAGE",
   "requestType": "AUTHORIZATION",
   "destination": {
@@ -19,7 +18,7 @@
     "authenticationIds": [],
     "method": "POST",
     "requestContentType": "application/x-www-form-urlencoded",
-    "requestExample": "ssl_pin=O74D6ICFJ4MSC8RPEAQQGVBBUCVWHNWBB52PLOFHXUV58NY5DKK3QHEIKZAN68RU&ssl_transaction_type=ccauthonly&ssl_amount=100&ssl_merchant_id=123&ssl_user_id=webpage&ssl_receipt_apprvl_post_url=url",
+    "requestExample": "ssl_pin=O74D6ICFJ4MSC8RPEAQQGVBBUCVWHNWBB52PLOFHXUV58NY5DKK3QHEIKZAN68RU&ssl_transaction_type=ccauthonly&ssl_amount=100&ssl_merchant_id=123&ssl_user_id=webpage&ssl_reference_number=12345&ssl_invoice_number=12345",
     "responseExample": "token",
     "requestMappingFields": {
       "mappings": [
@@ -27,6 +26,11 @@
           "from": "ssl_merchant_id",
           "to": "008548",
           "fixed": true
+        },
+        {
+          "from": "ssl_reference_number",
+          "to": "${input.referenceId}",
+          "fixed": false
         },
         {
           "from": "ssl_transaction_type",
@@ -39,6 +43,11 @@
           "fixed": false
         },
         {
+          "from": "ssl_invoice_number",
+          "to": "${input.referenceId}",
+          "fixed": false
+        },
+        {
           "from": "ssl_amount",
           "to": "${input.amount}",
           "fixed": false
@@ -47,11 +56,6 @@
           "from": "ssl_user_id",
           "to": "webpage",
           "fixed": true
-        },
-        {
-          "from": "ssl_receipt_apprvl_post_url",
-          "to": "${input.resultURL}",
-          "fixed": false
         }
       ]
     },
@@ -91,7 +95,7 @@
           "map": {
             "0": "AUTHORIZED"
           },
-          "fixed": false,
+          "fixed": true,
           "isCustom": false,
           "persistCustomField": false
         }
