@@ -14,7 +14,7 @@
     ]
   },
   "remoteApiOutboundMapping": {
-    "url": "https://6bcfdfc205f9e27ba20070259629d5b1.m.pipedream.net/api.demo.convergepay.com/hosted-payments/transaction_token",
+    "url": "https://api.demo.convergepay.com/hosted-payments/transaction_token",
     "authenticationIds": [],
     "method": "POST",
     "requestContentType": "application/x-www-form-urlencoded",
