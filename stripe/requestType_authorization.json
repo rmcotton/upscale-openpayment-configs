@@ -1,25 +1,19 @@
 {
-  "id": 419,
   "pattern": "FULL_PAGE",
   "requestType": "AUTHORIZATION",
   "dynamicScript": {
     "jsUrl": "https://js.stripe.com/v3/",
-    "html": "<button id=\"checkout-button\">Checkout</button>\n\n<script type=\"text/javascript\">\n    // Create an instance of the Stripe object with your publishable API key\n    var stripe = Stripe(\"${vars.publickey}\");\n    var checkoutButton = document.getElementById(\"checkout-button\");\n    checkoutButton.addEventListener(\"click\", function () {\n      stripe.redirectToCheckout( { sessionId: '${input.customFields.checkoutID}' } ).then(function(result) {\n        alert(result);\n    // If `redirectToCheckout` fails due to a browser or network\n    // error, display the localized error message to your customer\n    // using `result.error.message`.\n  });\n    });\n</script>"
+    "html": "<button id=\"checkout-button\">Checkout</button>\n\n<script type=\"text/javascript\">\n    var stripe = Stripe(\"${vars.publickey}\");\n    var checkoutButton = document.getElementById(\"checkout-button\");\n    checkoutButton.addEventListener(\"click\", function () {\n      stripe.redirectToCheckout( { sessionId: '${input.customFields.checkoutID}' } ).then(function(result) {\n        alert(result);\n  });\n    });\n</script>"
   },
   "remoteApiOutboundMapping": {
     "url": "https://api.stripe.com/v1/checkout/sessions",
     "authenticationIds": [],
     "method": "POST",
     "requestContentType": "application/x-www-form-urlencoded",
-    "requestExample": "success_url=https%3A%2F%2Fexample.com%2Fsuccess&cancel_url=https%3A%2F%2Fexample.com%2Fcancel&payment_method_types%5B0%5D=card&payment_method_types%5B1%5D=alipay&line_items%5B0%5D%5Bquantity%5D=1&mode=payment&line_items%5B0%5D%5Bcurrency%5D=USD&line_items%5B0%5D%5Bamount%5D=100&line_items%5B0%5D%5Bname%5D=Upscale%20Order&client_reference_id=12345&payment_intent_data[capture_method]=automatic&payment_intent_data[metadata][order_id]=1234&payment_intent_data[metadata][reference_id]=1234_1234&customer_email=a@b.com",
+    "requestExample": "success_url=https%3A%2F%2Fexample.com%2Fsuccess&cancel_url=https%3A%2F%2Fexample.com%2Fcancel&payment_method_types%5B0%5D=card&line_items%5B0%5D%5Bquantity%5D=1&mode=payment&line_items%5B0%5D%5Bcurrency%5D=USD&line_items%5B0%5D%5Bamount%5D=100&line_items%5B0%5D%5Bname%5D=Upscale%20Order&client_reference_id=12345&payment_intent_data[capture_method]=automatic&payment_intent_data[metadata][order_id]=1234&payment_intent_data[metadata][reference_id]=1234_1234&customer_email=a@b.com",
     "responseExample": "{\n    \"id\": \"cs_test_8zGQtgK6m1aoXb6QvT7E6LVK7CGHLY1pAAXlTsOCMoGYnn1f5kYe0fd7\",\n    \"object\": \"checkout.session\",\n    \"allow_promotion_codes\": null,\n    \"amount_subtotal\": 100,\n    \"amount_total\": 100,\n    \"billing_address_collection\": null,\n    \"cancel_url\": \"https://example.com/cancel\",\n    \"client_reference_id\": null,\n    \"currency\": \"usd\",\n    \"customer\": null,\n    \"customer_email\": null,\n    \"display_items\": [\n        {\n            \"amount\": 100,\n            \"currency\": \"usd\",\n            \"custom\": {\n                \"description\": null,\n                \"images\": null,\n                \"name\": \"Upscale Order\"\n            },\n            \"quantity\": 1,\n            \"type\": \"custom\"\n        }\n    ],\n    \"livemode\": false,\n    \"locale\": null,\n    \"metadata\": {},\n    \"mode\": \"payment\",\n    \"payment_intent\": \"pi_1HWg6nJKSpaWlCpLekL7xEeF\",\n    \"payment_method_types\": [\n        \"card\"\n    ],\n    \"payment_status\": \"unpaid\",\n    \"setup_intent\": null,\n    \"shipping\": null,\n    \"shipping_address_collection\": null,\n    \"submit_type\": null,\n    \"subscription\": null,\n    \"success_url\": \"https://example.com/success\",\n    \"total_details\": {\n        \"amount_discount\": 0,\n        \"amount_tax\": 0\n    }\n}",
     "requestMappingFields": {
       "mappings": [
-        {
-          "from": "mode",
-          "to": "payment",
-          "fixed": true
-        },
         {
           "from": "line_items[0][currency]",
           "to": "${input.currency}",
@@ -46,6 +40,11 @@
           "fixed": false
         },
         {
+          "from": "mode",
+          "to": "payment",
+          "fixed": true
+        },
+        {
           "from": "customer_email",
           "to": "${input.emailAddress}",
           "fixed": false
@@ -62,12 +61,7 @@
         },
         {
           "from": "payment_intent_data[capture_method]",
-          "to": "automatic",
-          "fixed": true
-        },
-        {
-          "from": "payment_method_types[1]",
-          "to": "alipay",
+          "to": "manual",
           "fixed": true
         },
         {
@@ -314,7 +308,7 @@
     "localVerifyMapping": {
       "mappings": [
         {
-          "from": "status",
+          "from": "",
           "to": "result",
           "map": {
             "SUCCESS": "AUTHORIZED",
