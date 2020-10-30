@@ -3,14 +3,14 @@
   "requestType": "AUTHORIZATION",
   "dynamicScript": {
     "jsUrl": "https://js.stripe.com/v3/",
-    "html": "<button id=\"checkout-button\">Checkout</button>\n\n<script type=\"text/javascript\">\n    var stripe = Stripe(\"${vars.publickey}\");\n    var checkoutButton = document.getElementById(\"checkout-button\");\n    checkoutButton.addEventListener(\"click\", function () {\n      stripe.redirectToCheckout( { sessionId: '${input.customFields.checkoutID}' } ).then(function(result) {\n        alert(result);\n  });\n    });\n</script>"
+    "html": "<div id=\"opf-payment-button\">\n    <style type=\"text/css\" scoped>\n        .pay_button {\n          \tcursor: pointer;\n    \t  \tuser-select: none;\n    \t  \tbackground-color: black;\n    \t\tborder: 0;\n    \t\tborder-radius: 4px;\n    \t\tcolor: white;\n    \t\tfont-size: 16px;\n            font-family: Roboto;\n            padding: 0;\n            width: 100%;\n            height: 50px;\n            display: flex;\n            align-items: center;\n            justify-content: center;\n            font-weight: 500;  \n            appearance: button;\n            -webkit-writing-mode: horizontal-tb !important;\n            text-rendering: auto;\n            letter-spacing: normal;\n            word-spacing: normal;\n            text-transform: none;\n            text-indent: 0px;\n            text-shadow: none;\n            text-align: center;\n            box-sizing: border-box;\n            margin: 0em;\n       }\n    </style>\n  \n    <button  id=\"checkout-button\" class=\"pay_button\" type=\"submit\" >Continue to Payment</button>\n</div>\n  \n<script type=\"text/javascript\">\n    // Create an instance of the Stripe object with your publishable API key\n    var stripe = Stripe(\"${vars.publickey}\");\n    var checkoutButton = document.getElementById(\"checkout-button\");\n    checkoutButton.addEventListener(\"click\", function () {\n      stripe.redirectToCheckout( { sessionId: '${input.customFields.checkoutID}' } ).then(function(result) {\n        alert(result);\n    // If `redirectToCheckout` fails due to a browser or network\n    // error, display the localized error message to your customer\n    // using `result.error.message`.\n  });\n    });\n</script>"
   },
   "remoteApiOutboundMapping": {
     "url": "https://api.stripe.com/v1/checkout/sessions",
     "authenticationIds": [],
     "method": "POST",
     "requestContentType": "application/x-www-form-urlencoded",
-    "requestExample": "success_url=https%3A%2F%2Fexample.com%2Fsuccess&cancel_url=https%3A%2F%2Fexample.com%2Fcancel&payment_method_types%5B0%5D=card&line_items%5B0%5D%5Bquantity%5D=1&mode=payment&line_items%5B0%5D%5Bcurrency%5D=USD&line_items%5B0%5D%5Bamount%5D=100&line_items%5B0%5D%5Bname%5D=Upscale%20Order&client_reference_id=12345&payment_intent_data[capture_method]=automatic&payment_intent_data[metadata][order_id]=1234&payment_intent_data[metadata][reference_id]=1234_1234&customer_email=a@b.com",
+    "requestExample": "success_url=https%3A%2F%2Fexample.com%2Fsuccess&cancel_url=https%3A%2F%2Fexample.com%2Fcancel&payment_method_types%5B0%5D=card&line_items%5B0%5D%5Bquantity%5D=1&mode=payment&line_items%5B0%5D%5Bcurrency%5D=USD&line_items%5B0%5D%5Bamount%5D=100&line_items%5B0%5D%5Bname%5D=Upscale%20Order&client_reference_id=12345&payment_intent_data[capture_method]=automatic&payment_intent_data[metadata][order_id]=1234&payment_intent_data[metadata][reference_id]=1234_1234&customer_email=a@b.com&payment_intent_data[description]=Upscale Order&payment_intent_data[statement_descriptor]=Upscale&payment_intent_data[receipt_email]=a@b.com&payment_intent_data[setup_future_usage]=off_session&submit_type=pay&locale=auto&payment_intent_data[shipping][address][line1]=line 1&payment_intent_data[shipping][name]=Aliven Test&payment_intent_data[shipping][address][country]=US&payment_intent_data[shipping][phone]=123455\n\n",
     "responseExample": "{\n    \"id\": \"cs_test_8zGQtgK6m1aoXb6QvT7E6LVK7CGHLY1pAAXlTsOCMoGYnn1f5kYe0fd7\",\n    \"object\": \"checkout.session\",\n    \"allow_promotion_codes\": null,\n    \"amount_subtotal\": 100,\n    \"amount_total\": 100,\n    \"billing_address_collection\": null,\n    \"cancel_url\": \"https://example.com/cancel\",\n    \"client_reference_id\": null,\n    \"currency\": \"usd\",\n    \"customer\": null,\n    \"customer_email\": null,\n    \"display_items\": [\n        {\n            \"amount\": 100,\n            \"currency\": \"usd\",\n            \"custom\": {\n                \"description\": null,\n                \"images\": null,\n                \"name\": \"Upscale Order\"\n            },\n            \"quantity\": 1,\n            \"type\": \"custom\"\n        }\n    ],\n    \"livemode\": false,\n    \"locale\": null,\n    \"metadata\": {},\n    \"mode\": \"payment\",\n    \"payment_intent\": \"pi_1HWg6nJKSpaWlCpLekL7xEeF\",\n    \"payment_method_types\": [\n        \"card\"\n    ],\n    \"payment_status\": \"unpaid\",\n    \"setup_intent\": null,\n    \"shipping\": null,\n    \"shipping_address_collection\": null,\n    \"submit_type\": null,\n    \"subscription\": null,\n    \"success_url\": \"https://example.com/success\",\n    \"total_details\": {\n        \"amount_discount\": 0,\n        \"amount_tax\": 0\n    }\n}",
     "requestMappingFields": {
       "mappings": [
@@ -30,8 +30,23 @@
           "fixed": false
         },
         {
+          "from": "payment_intent_data[description]",
+          "to": "${input.orderId}",
+          "fixed": false
+        },
+        {
           "from": "line_items[0][amount]",
           "to": "${input.amountInExponent}",
+          "fixed": false
+        },
+        {
+          "from": "payment_intent_data[shipping][phone]",
+          "to": "${input.billingAddress.phoneNumber}",
+          "fixed": false
+        },
+        {
+          "from": "payment_intent_data[shipping][address][country]",
+          "to": "${input.shippingAddress.country}",
           "fixed": false
         },
         {
@@ -40,8 +55,33 @@
           "fixed": false
         },
         {
+          "from": "locale",
+          "to": "auto",
+          "fixed": true
+        },
+        {
+          "from": "payment_intent_data[shipping][address][line1]",
+          "to": "${input.shippingAddress.addressLine1}",
+          "fixed": false
+        },
+        {
+          "from": "payment_intent_data[setup_future_usage]",
+          "to": "off_session",
+          "fixed": true
+        },
+        {
           "from": "mode",
           "to": "payment",
+          "fixed": true
+        },
+        {
+          "from": "submit_type",
+          "to": "pay",
+          "fixed": true
+        },
+        {
+          "from": "payment_intent_data[shipping][name]",
+          "to": "${input.billingAddress.firstName} ${input.billingAddress.lastName}",
           "fixed": true
         },
         {
@@ -60,8 +100,13 @@
           "fixed": false
         },
         {
+          "from": "payment_intent_data[statement_descriptor]",
+          "to": "Upscale Order",
+          "fixed": true
+        },
+        {
           "from": "payment_intent_data[capture_method]",
-          "to": "manual",
+          "to": "automatic",
           "fixed": true
         },
         {
@@ -75,6 +120,11 @@
           "fixed": true
         },
         {
+          "from": "payment_intent_data[receipt_email]",
+          "to": "${input.emailAddress}",
+          "fixed": false
+        },
+        {
           "from": "success_url",
           "to": "${input.resultURL}?status=SUCCESS",
           "fixed": true
@@ -83,27 +133,6 @@
     },
     "responseMappingFields": {
       "mappings": [
-        {
-          "from": "",
-          "to": "errorCode",
-          "fixed": true,
-          "isCustom": false,
-          "persistCustomField": false
-        },
-        {
-          "from": "",
-          "to": "errorMessage",
-          "fixed": true,
-          "isCustom": false,
-          "persistCustomField": false
-        },
-        {
-          "from": "",
-          "to": "redirectUrl",
-          "fixed": true,
-          "isCustom": false,
-          "persistCustomField": false
-        },
         {
           "from": "id",
           "to": "checkoutID",
@@ -308,13 +337,13 @@
     "localVerifyMapping": {
       "mappings": [
         {
-          "from": "",
+          "from": "status",
           "to": "result",
           "map": {
             "SUCCESS": "AUTHORIZED",
             "CANCELLED": "CANCELLED"
           },
-          "fixed": true,
+          "fixed": false,
           "isCustom": false,
           "persistCustomField": false
         }
