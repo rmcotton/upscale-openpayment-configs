@@ -11,11 +11,13 @@
   },
   "remoteApiOutboundMapping": {
     "url": "https://sandbox.juspay.in/orders",
-    "authenticationIds": [],
+    "authenticationIds": [
+      266
+    ],
     "method": "POST",
     "requestContentType": "application/x-www-form-urlencoded",
     "requestExample": "order_id=1418394476&amount=100.00&currency=INR&return_url=http://shop.merchant.com/payments/handleResponse",
-    "responseExample": "{\r\n    \"udf9\": \"\",\r\n    \"udf8\": \"\",\r\n    \"udf7\": \"\",\r\n    \"udf6\": \"\",\r\n    \"udf5\": \"\",\r\n    \"udf4\": \"\",\r\n    \"udf3\": \"\",\r\n    \"udf2\": \"\",\r\n    \"udf10\": \"\",\r\n    \"udf1\": \"\",\r\n    \"status_id\": 10,\r\n    \"status\": \"NEW\",\r\n    \"return_url\": \"http://shop.merchant.com/payments/handleResponse\",\r\n    \"refunded\": false,\r\n    \"product_id\": \"prod-141833\",\r\n    \"payment_links\": {\r\n        \"web\": \"https://sandbox.juspay.in/merchant/pay/ordeu_c1436e0d0d2348e69880dc2b7f5d9d89\",\r\n        \"mobile\": \"https://sandbox.juspay.in/merchant/pay/ordeu_c1436e0d0d2348e69880dc2b7f5d9d89?mobile=true\",\r\n        \"iframe\": \"https://sandbox.juspay.in/merchant/ipay/ordeu_c1436e0d0d2348e69880dc2b7f5d9d89\"\r\n    },\r\n    \"order_id\": \"1418394476\",\r\n    \"merchant_id\": \"SAPUpscale\",\r\n    \"id\": \"ordeu_c1436e0d0d2348e69880dc2b7f5d9d89\",\r\n    \"date_created\": \"2020-09-11T10:51:41Z\",\r\n    \"customer_phone\": \"9988665522\",\r\n    \"customer_id\": \"guest_user_101\",\r\n    \"customer_email\": \"customer@gmail.com\",\r\n    \"currency\": \"INR\",\r\n    \"amount_refunded\": 0,\r\n    \"amount\": 100\r\n}",
+    "responseExample": "{\n    \"udf9\": \"\",\n    \"udf8\": \"\",\n    \"udf7\": \"\",\n    \"udf6\": \"\",\n    \"udf5\": \"\",\n    \"udf4\": \"\",\n    \"udf3\": \"\",\n    \"udf2\": \"\",\n    \"udf10\": \"\",\n    \"udf1\": \"\",\n    \"status_id\": 10,\n    \"status\": \"NEW\",\n    \"return_url\": \"http://shop.merchant.com/payments/handleResponse\",\n    \"refunded\": false,\n    \"product_id\": \"prod-141833\",\n    \"payment_links\": {\n        \"web\": \"https://sandbox.juspay.in/merchant/pay/ordeu_c1436e0d0d2348e69880dc2b7f5d9d89\",\n        \"mobile\": \"https://sandbox.juspay.in/merchant/pay/ordeu_c1436e0d0d2348e69880dc2b7f5d9d89?mobile=true\",\n        \"iframe\": \"https://sandbox.juspay.in/merchant/ipay/ordeu_c1436e0d0d2348e69880dc2b7f5d9d89\"\n    },\n    \"order_id\": \"1418394476\",\n    \"merchant_id\": \"SAPUpscale\",\n    \"id\": \"ordeu_c1436e0d0d2348e69880dc2b7f5d9d89\",\n    \"date_created\": \"2020-09-11T10:51:41Z\",\n    \"customer_phone\": \"9988665522\",\n    \"customer_id\": \"guest_user_101\",\n    \"customer_email\": \"customer@gmail.com\",\n    \"currency\": \"INR\",\n    \"amount_refunded\": 0,\n    \"amount\": 100\n}",
     "requestMappingFields": {
       "mappings": [
         {
@@ -42,20 +44,6 @@
     },
     "responseMappingFields": {
       "mappings": [
-        {
-          "from": "",
-          "to": "errorCode",
-          "fixed": true,
-          "isCustom": false,
-          "persistCustomField": false
-        },
-        {
-          "from": "",
-          "to": "errorMessage",
-          "fixed": true,
-          "isCustom": false,
-          "persistCustomField": false
-        },
         {
           "from": "payment_links.web",
           "to": "redirectUrl",
@@ -228,9 +216,7 @@
       ]
     },
     "responseContentType": "application/json",
-    "headers": {
-      "Authorization": "Basic ${vars.authbase64}"
-    }
+    "headers": {}
   },
   "verify": {
     "localVerifyMapping": {
@@ -245,11 +231,10 @@
             "AUTHORIZING": "AUTHORIZED",
             "AUTHORIZATION_FAILED": "UNAUTHORIZED"
           },
-          "fixed": true,
+          "fixed": false,
           "isCustom": false,
           "persistCustomField": false
         }
       ]
     }
   }
-}
