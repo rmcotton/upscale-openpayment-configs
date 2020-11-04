@@ -135,12 +135,6 @@
     "responseMappingFields": {
       "mappings": [
         {
-          "from": "mode",
-          "fixed": true,
-          "isCustom": false,
-          "persistCustomField": false
-        },
-        {
           "from": "id",
           "to": "checkoutID",
           "fixed": false,
@@ -209,6 +203,12 @@
         },
         {
           "from": "locale",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "mode",
           "fixed": true,
           "isCustom": false,
           "persistCustomField": false
@@ -335,20 +335,172 @@
     }
   },
   "verify": {
-    "localVerifyMapping": {
-      "mappings": [
-        {
-          "from": "status",
-          "to": "result",
-          "map": {
-            "SUCCESS": "AUTHORIZED",
-            "CANCELLED": "CANCELLED"
+    "remoteVerifyMapping": {
+      "url": "https://api.stripe.com/v1/checkout/sessions/${input.customFields.checkoutID}",
+      "authenticationIds": [],
+      "method": "GET",
+      "requestContentType": "application/x-www-form-urlencoded",
+      "responseExample": "{\n  \"id\": \"cs_test_TgiHjSrUP7UJDI9cz5X7ncNGgXDu4HRWGHRI3kwdJEwSSSzrxrJA2KFK\",\n  \"object\": \"checkout.session\",\n  \"allow_promotion_codes\": null,\n  \"amount_subtotal\": null,\n  \"amount_total\": null,\n  \"billing_address_collection\": null,\n  \"cancel_url\": \"https://example.com/cancel\",\n  \"client_reference_id\": null,\n  \"currency\": null,\n  \"customer\": null,\n  \"customer_email\": null,\n  \"livemode\": false,\n  \"locale\": null,\n  \"metadata\": {},\n  \"mode\": \"payment\",\n  \"payment_intent\": \"pi_1HWf6LJKSpaWlCpLo3urk2YN\",\n  \"payment_method_types\": [\n    \"card\"\n  ],\n  \"payment_status\": \"unpaid\",\n  \"setup_intent\": null,\n  \"shipping\": null,\n  \"shipping_address_collection\": null,\n  \"submit_type\": null,\n  \"subscription\": null,\n  \"success_url\": \"https://example.com/success\",\n  \"total_details\": null\n}",
+      "requestMappingFields": {
+        "mappings": []
+      },
+      "responseMappingFields": {
+        "mappings": [
+          {
+            "from": "payment_status",
+            "to": "result",
+            "map": {
+              "paid": "AUTHORIZED",
+              "unpaid": "CANCELLED"
+            },
+            "fixed": false,
+            "isCustom": false,
+            "persistCustomField": false
           },
-          "fixed": false,
-          "isCustom": false,
-          "persistCustomField": false
-        }
-      ]
+          {
+            "from": "livemode",
+            "fixed": true,
+            "isCustom": false,
+            "persistCustomField": false
+          },
+          {
+            "from": "amount_total",
+            "fixed": true,
+            "isCustom": false,
+            "persistCustomField": false
+          },
+          {
+            "from": "subscription",
+            "fixed": true,
+            "isCustom": false,
+            "persistCustomField": false
+          },
+          {
+            "from": "locale",
+            "fixed": true,
+            "isCustom": false,
+            "persistCustomField": false
+          },
+          {
+            "from": "mode",
+            "fixed": true,
+            "isCustom": false,
+            "persistCustomField": false
+          },
+          {
+            "from": "allow_promotion_codes",
+            "fixed": true,
+            "isCustom": false,
+            "persistCustomField": false
+          },
+          {
+            "from": "shipping",
+            "fixed": true,
+            "isCustom": false,
+            "persistCustomField": false
+          },
+          {
+            "from": "client_reference_id",
+            "fixed": true,
+            "isCustom": false,
+            "persistCustomField": false
+          },
+          {
+            "from": "currency",
+            "fixed": true,
+            "isCustom": false,
+            "persistCustomField": false
+          },
+          {
+            "from": "id",
+            "fixed": true,
+            "isCustom": false,
+            "persistCustomField": false
+          },
+          {
+            "from": "billing_address_collection",
+            "fixed": true,
+            "isCustom": false,
+            "persistCustomField": false
+          },
+          {
+            "from": "success_url",
+            "fixed": true,
+            "isCustom": false,
+            "persistCustomField": false
+          },
+          {
+            "from": "setup_intent",
+            "fixed": true,
+            "isCustom": false,
+            "persistCustomField": false
+          },
+          {
+            "from": "shipping_address_collection",
+            "fixed": true,
+            "isCustom": false,
+            "persistCustomField": false
+          },
+          {
+            "from": "payment_method_types[*]",
+            "fixed": true,
+            "isCustom": false,
+            "persistCustomField": false
+          },
+          {
+            "from": "total_details",
+            "fixed": true,
+            "isCustom": false,
+            "persistCustomField": false
+          },
+          {
+            "from": "submit_type",
+            "fixed": true,
+            "isCustom": false,
+            "persistCustomField": false
+          },
+          {
+            "from": "customer_email",
+            "fixed": true,
+            "isCustom": false,
+            "persistCustomField": false
+          },
+          {
+            "from": "payment_intent",
+            "fixed": true,
+            "isCustom": false,
+            "persistCustomField": false
+          },
+          {
+            "from": "cancel_url",
+            "fixed": true,
+            "isCustom": false,
+            "persistCustomField": false
+          },
+          {
+            "from": "amount_subtotal",
+            "fixed": true,
+            "isCustom": false,
+            "persistCustomField": false
+          },
+          {
+            "from": "object",
+            "fixed": true,
+            "isCustom": false,
+            "persistCustomField": false
+          },
+          {
+            "from": "customer",
+            "fixed": true,
+            "isCustom": false,
+            "persistCustomField": false
+          }
+        ]
+      },
+      "responseContentType": "application/json",
+      "headers": {
+        "Authorization": "Basic ${vars.apikey}"
+      }
     }
   }
 }
