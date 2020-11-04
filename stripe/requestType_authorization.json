@@ -1,4 +1,5 @@
 {
+  "id": 419,
   "pattern": "FULL_PAGE",
   "requestType": "AUTHORIZATION",
   "dynamicScript": {
@@ -14,6 +15,11 @@
     "responseExample": "{\n    \"id\": \"cs_test_8zGQtgK6m1aoXb6QvT7E6LVK7CGHLY1pAAXlTsOCMoGYnn1f5kYe0fd7\",\n    \"object\": \"checkout.session\",\n    \"allow_promotion_codes\": null,\n    \"amount_subtotal\": 100,\n    \"amount_total\": 100,\n    \"billing_address_collection\": null,\n    \"cancel_url\": \"https://example.com/cancel\",\n    \"client_reference_id\": null,\n    \"currency\": \"usd\",\n    \"customer\": null,\n    \"customer_email\": null,\n    \"display_items\": [\n        {\n            \"amount\": 100,\n            \"currency\": \"usd\",\n            \"custom\": {\n                \"description\": null,\n                \"images\": null,\n                \"name\": \"Upscale Order\"\n            },\n            \"quantity\": 1,\n            \"type\": \"custom\"\n        }\n    ],\n    \"livemode\": false,\n    \"locale\": null,\n    \"metadata\": {},\n    \"mode\": \"payment\",\n    \"payment_intent\": \"pi_1HWg6nJKSpaWlCpLekL7xEeF\",\n    \"payment_method_types\": [\n        \"card\"\n    ],\n    \"payment_status\": \"unpaid\",\n    \"setup_intent\": null,\n    \"shipping\": null,\n    \"shipping_address_collection\": null,\n    \"submit_type\": null,\n    \"subscription\": null,\n    \"success_url\": \"https://example.com/success\",\n    \"total_details\": {\n        \"amount_discount\": 0,\n        \"amount_tax\": 0\n    }\n}",
     "requestMappingFields": {
       "mappings": [
+        {
+          "from": "mode",
+          "to": "payment",
+          "fixed": true
+        },
         {
           "from": "line_items[0][currency]",
           "to": "${input.currency}",
@@ -67,11 +73,6 @@
         {
           "from": "payment_intent_data[setup_future_usage]",
           "to": "off_session",
-          "fixed": true
-        },
-        {
-          "from": "mode",
-          "to": "payment",
           "fixed": true
         },
         {
@@ -133,6 +134,12 @@
     },
     "responseMappingFields": {
       "mappings": [
+        {
+          "from": "mode",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
         {
           "from": "id",
           "to": "checkoutID",
@@ -202,12 +209,6 @@
         },
         {
           "from": "locale",
-          "fixed": true,
-          "isCustom": false,
-          "persistCustomField": false
-        },
-        {
-          "from": "mode",
           "fixed": true,
           "isCustom": false,
           "persistCustomField": false
