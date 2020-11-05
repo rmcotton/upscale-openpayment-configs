@@ -1,0 +1,784 @@
+{
+  "id": 579,
+  "pattern": "IFRAME",
+  "requestType": "RECURRENT_AUTHORIZATION",
+  "outboundMapping": {
+    "url": "https://api.stripe.com/v1/payment_intents",
+    "authenticationIds": [
+      268
+    ],
+    "method": "POST",
+    "requestContentType": "application/x-www-form-urlencoded",
+    "requestExample": "amount=100&currency=USD&metadata[order_id]=2546778351&metadata[reference_id]=2546778351_1602576453986&confirm=true&payment_method=pm_1Hbib4JKSpaWlCpLQyuCB123&customer=cus_IC6oxoWvkItHMx&capture_method=manual",
+    "responseExample": "{\n  \"error\": {\"code\": \"parameter_invalid_integer\"},\n    \"id\": \"pi_1Hc4A9JKSpaWlCpL64irhz6P\",\n    \"object\": \"payment_intent\",\n    \"amount\": 1000,\n    \"amount_capturable\": 1000,\n    \"amount_received\": 0,\n    \"application\": null,\n    \"application_fee_amount\": null,\n    \"canceled_at\": null,\n    \"cancellation_reason\": null,\n    \"capture_method\": \"manual\",\n    \"charges\": {\n        \"object\": \"list\",\n        \"data\": [\n            {\n                \"id\": \"ch_1Hc4AAJKSpaWlCpLkIhiLScU\",\n                \"object\": \"charge\",\n                \"amount\": 1000,\n                \"amount_captured\": 0,\n                \"amount_refunded\": 0,\n                \"application\": null,\n                \"application_fee\": null,\n                \"application_fee_amount\": null,\n                \"balance_transaction\": null,\n                \"billing_details\": {\n                    \"address\": {\n                        \"city\": null,\n                        \"country\": \"SG\",\n                        \"line1\": null,\n                        \"line2\": null,\n                        \"postal_code\": null,\n                        \"state\": null\n                    },\n                    \"email\": \"lealhom.li@sap.com\",\n                    \"name\": \"Lealhom\",\n                    \"phone\": null\n                },\n                \"calculated_statement_descriptor\": \"Stripe\",\n                \"captured\": false,\n                \"created\": 1602659562,\n                \"currency\": \"usd\",\n                \"customer\": \"cus_IC6oxoWvkItHMy\",\n                \"description\": null,\n                \"destination\": null,\n                \"dispute\": null,\n                \"disputed\": false,\n                \"failure_code\": null,\n                \"failure_message\": null,\n                \"fraud_details\": {},\n                \"invoice\": null,\n                \"livemode\": false,\n                \"metadata\": {\n                    \"order_id\": \"2546778351\",\n                    \"reference_id\": \"2546778351_1602576453986\"\n                },\n                \"on_behalf_of\": null,\n                \"order\": null,\n                \"outcome\": {\n                    \"network_status\": \"approved_by_network\",\n                    \"reason\": null,\n                    \"risk_level\": \"normal\",\n                    \"risk_score\": 11,\n                    \"seller_message\": \"Payment complete.\",\n                    \"type\": \"authorized\"\n                },\n                \"paid\": true,\n                \"payment_intent\": \"pi_1Hc4A9JKSpaWlCpL64irhz6P\",\n                \"payment_method\": \"pm_1Hbib4JKSpaWlCpLQyuCB0N0\",\n                \"payment_method_details\": {\n                    \"card\": {\n                        \"brand\": \"visa\",\n                        \"checks\": {\n                            \"address_line1_check\": null,\n                            \"address_postal_code_check\": null,\n                            \"cvc_check\": null\n                        },\n                        \"country\": \"US\",\n                        \"exp_month\": 3,\n                        \"exp_year\": 2030,\n                        \"fingerprint\": \"2V2HM0Wz5dGpusSm\",\n                        \"funding\": \"credit\",\n                        \"installments\": null,\n                        \"last4\": \"1111\",\n                        \"network\": \"visa\",\n                        \"three_d_secure\": null,\n                        \"wallet\": null\n                    },\n                    \"type\": \"card\"\n                },\n                \"receipt_email\": null,\n                \"receipt_number\": null,\n                \"receipt_url\": \"https://pay.stripe.com/receipts/acct_1GnTFZJKSpaWlCpL/ch_1Hc4AAJKSpaWlCpLkIhiLScU/rcpt_ICT6phmbNU1Uh7QWdpunSmpCSQgV6hM\",\n                \"refunded\": false,\n                \"refunds\": {\n                    \"object\": \"list\",\n                    \"data\": [],\n                    \"has_more\": false,\n                    \"total_count\": 0,\n                    \"url\": \"/v1/charges/ch_1Hc4AAJKSpaWlCpLkIhiLScU/refunds\"\n                },\n                \"review\": null,\n                \"shipping\": null,\n                \"source\": null,\n                \"source_transfer\": null,\n                \"statement_descriptor\": null,\n                \"statement_descriptor_suffix\": null,\n                \"status\": \"succeeded\",\n                \"transfer_data\": null,\n                \"transfer_group\": null\n            }\n        ],\n        \"has_more\": false,\n        \"total_count\": 1,\n        \"url\": \"/v1/charges?payment_intent=pi_1Hc4A9JKSpaWlCpL64irhz6P\"\n    },\n    \"client_secret\": \"pi_1Hc4A9JKSpaWlCpL64irhz6P_secret_iwopPrLqvEPGzrcmTXrbrGgp1\",\n    \"confirmation_method\": \"automatic\",\n    \"created\": 1602659561,\n    \"currency\": \"usd\",\n    \"customer\": \"cus_IC6oxoWvkItHMy\",\n    \"description\": null,\n    \"invoice\": null,\n    \"last_payment_error\": {\n     \t\"code\":\"api_key_expired\" \n    },\n    \"livemode\": false,\n    \"metadata\": {\n        \"order_id\": \"2546778351\",\n        \"reference_id\": \"2546778351_1602576453986\"\n    },\n    \"next_action\": null,\n    \"on_behalf_of\": null,\n    \"payment_method\": \"pm_1Hbib4JKSpaWlCpLQyuCB0N0\",\n    \"payment_method_options\": {\n        \"card\": {\n            \"installments\": null,\n            \"network\": null,\n            \"request_three_d_secure\": \"automatic\"\n        }\n    },\n    \"payment_method_types\": [\n        \"card\"\n    ],\n    \"receipt_email\": null,\n    \"review\": null,\n    \"setup_future_usage\": null,\n    \"shipping\": null,\n    \"source\": null,\n    \"statement_descriptor\": null,\n    \"statement_descriptor_suffix\": null,\n    \"status\": \"requires_capture\",\n    \"transfer_data\": null,\n    \"transfer_group\": null\n}",
+    "requestMappingFields": {
+      "mappings": [
+        {
+          "from": "confirm",
+          "to": "true",
+          "fixed": true
+        },
+        {
+          "from": "metadata[order_id]",
+          "to": "${input.orderId}",
+          "fixed": false
+        },
+        {
+          "from": "capture_method",
+          "to": "manual",
+          "fixed": true
+        },
+        {
+          "from": "amount",
+          "to": "${input.amountInExponent}",
+          "fixed": false
+        },
+        {
+          "from": "metadata[reference_id]",
+          "to": "${input.referenceId}",
+          "fixed": false
+        },
+        {
+          "from": "currency",
+          "to": "${input.currency}",
+          "fixed": false
+        },
+        {
+          "from": "payment_method",
+          "to": "${input.token}",
+          "fixed": false
+        },
+        {
+          "from": "customer",
+          "to": "${input.customFields.customer}",
+          "fixed": false
+        }
+      ]
+    },
+    "responseMappingFields": {
+      "mappings": [
+        {
+          "from": "error.code",
+          "to": "errorCode",
+          "fixed": false,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "id",
+          "to": "pspReference",
+          "fixed": false,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "status",
+          "to": "transactionStatus",
+          "map": {
+            "requires_capture": "ACCEPTED"
+          },
+          "fixed": false,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "metadata.reference_id",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "metadata.order_id",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "livemode",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "canceled_at",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "amount_capturable",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "description",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "source",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "statement_descriptor",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "transfer_data",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "shipping",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "review",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "currency",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "client_secret",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "payment_method_options.card.installments",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "payment_method_options.card.request_three_d_secure",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "payment_method_options.card.network",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "payment_method",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "capture_method",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "amount",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "transfer_group",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "on_behalf_of",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "created",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "payment_method_types[*]",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "amount_received",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "setup_future_usage",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "confirmation_method",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "cancellation_reason",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "charges.data[*].balance_transaction",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "charges.data[*].billing_details.address.country",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "charges.data[*].billing_details.address.city",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "charges.data[*].billing_details.address.state",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "charges.data[*].billing_details.address.postal_code",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "charges.data[*].billing_details.address.line2",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "charges.data[*].billing_details.address.line1",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "charges.data[*].billing_details.phone",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "charges.data[*].billing_details.name",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "charges.data[*].billing_details.email",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "charges.data[*].metadata.reference_id",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "charges.data[*].metadata.order_id",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "charges.data[*].livemode",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "charges.data[*].destination",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "charges.data[*].description",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "charges.data[*].failure_message",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "charges.data[*].source",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "charges.data[*].amount_refunded",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "charges.data[*].refunds.total_count",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "charges.data[*].refunds.has_more",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "charges.data[*].refunds.url",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "charges.data[*].refunds.object",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "charges.data[*].statement_descriptor",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "charges.data[*].transfer_data",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "charges.data[*].receipt_url",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "charges.data[*].shipping",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "charges.data[*].review",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "charges.data[*].captured",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "charges.data[*].calculated_statement_descriptor",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "charges.data[*].currency",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "charges.data[*].refunded",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "charges.data[*].id",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "charges.data[*].outcome.reason",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "charges.data[*].outcome.risk_level",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "charges.data[*].outcome.risk_score",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "charges.data[*].outcome.seller_message",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "charges.data[*].outcome.network_status",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "charges.data[*].outcome.type",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "charges.data[*].payment_method",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "charges.data[*].order",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "charges.data[*].dispute",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "charges.data[*].amount",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "charges.data[*].disputed",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "charges.data[*].failure_code",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "charges.data[*].transfer_group",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "charges.data[*].on_behalf_of",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "charges.data[*].created",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "charges.data[*].payment_method_details.type",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "charges.data[*].payment_method_details.card.country",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "charges.data[*].payment_method_details.card.last4",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "charges.data[*].payment_method_details.card.funding",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "charges.data[*].payment_method_details.card.checks.cvc_check",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "charges.data[*].payment_method_details.card.checks.address_line1_check",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "charges.data[*].payment_method_details.card.checks.address_postal_code_check",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "charges.data[*].payment_method_details.card.wallet",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "charges.data[*].payment_method_details.card.installments",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "charges.data[*].payment_method_details.card.fingerprint",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "charges.data[*].payment_method_details.card.exp_month",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "charges.data[*].payment_method_details.card.exp_year",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "charges.data[*].payment_method_details.card.three_d_secure",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "charges.data[*].payment_method_details.card.brand",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "charges.data[*].payment_method_details.card.network",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "charges.data[*].amount_captured",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "charges.data[*].source_transfer",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "charges.data[*].receipt_number",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "charges.data[*].application",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "charges.data[*].receipt_email",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "charges.data[*].paid",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "charges.data[*].application_fee",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "charges.data[*].payment_intent",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "charges.data[*].invoice",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "charges.data[*].statement_descriptor_suffix",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "charges.data[*].application_fee_amount",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "charges.data[*].object",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "charges.data[*].customer",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "charges.data[*].status",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "charges.total_count",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "charges.has_more",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "charges.url",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "charges.object",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "application",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "receipt_email",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "last_payment_error.code",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "next_action",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "invoice",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "statement_descriptor_suffix",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "application_fee_amount",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "object",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "customer",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        }
+      ]
+    },
+    "responseContentType": "application/json"
+  }
+}

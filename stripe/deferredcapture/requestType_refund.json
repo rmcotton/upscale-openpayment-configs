@@ -1,0 +1,127 @@
+{
+  "id": 578,
+  "requestType": "REFUND",
+  "outboundMapping": {
+    "url": "https://api.stripe.com/v1/refunds",
+    "authenticationIds": [
+      268
+    ],
+    "method": "POST",
+    "requestContentType": "application/x-www-form-urlencoded",
+    "requestExample": "amount=1000&payment_intent=pi_1H1szbJKSpaWlCpLUfjDAiB4&metadata[referenceId]=123&metadata[transactionId]=123",
+    "responseExample": "{\n  \"id\": \"re_1HXhiGJKSpaWlCpLxIfFrwHF\",\n  \"object\": \"refund\",\n  \"amount\": 100,\n  \"balance_transaction\": null,\n  \"charge\": \"ch_1H1szcJKSpaWlCpLlNpdrbjy\",\n  \"created\": 1601619952,\n  \"currency\": \"usd\",\n  \"metadata\": {},\n  \"payment_intent\": \"pi_1H1szbJKSpaWlCpLUfjDAiB4\",\n  \"reason\": null,\n  \"receipt_number\": null,\n  \"source_transfer_reversal\": null,\n  \"status\": \"succeeded\",\n  \"transfer_reversal\": null\n}",
+    "requestMappingFields": {
+      "mappings": [
+        {
+          "from": "amount",
+          "to": "${input.amountInExponent}",
+          "fixed": false
+        },
+        {
+          "from": "payment_intent",
+          "to": "${input.authPspReference}",
+          "fixed": false
+        },
+        {
+          "from": "metadata[referenceId]",
+          "to": "${input.referenceId}",
+          "fixed": false
+        },
+        {
+          "from": "metadata[transactionId]",
+          "to": "${input.id}",
+          "fixed": false
+        }
+      ]
+    },
+    "responseMappingFields": {
+      "mappings": [
+        {
+          "from": "reason",
+          "to": "errorCode",
+          "fixed": false,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "id",
+          "to": "pspReference",
+          "fixed": false,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "status",
+          "to": "transactionStatus",
+          "map": {
+            "succeeded": "ACCEPTED"
+          },
+          "fixed": false,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "balance_transaction",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "amount",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "charge",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "created",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "source_transfer_reversal",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "receipt_number",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "transfer_reversal",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "currency",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "payment_intent",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "object",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        }
+      ]
+    },
+    "responseContentType": "application/json"
+  }
+}
