@@ -8,7 +8,9 @@
   },
   "remoteApiOutboundMapping": {
     "url": "https://api.stripe.com/v1/checkout/sessions",
-    "authenticationIds": [],
+    "authenticationIds": [
+      268
+    ],
     "method": "POST",
     "requestContentType": "application/x-www-form-urlencoded",
     "requestExample": "success_url=https%3A%2F%2Fexample.com%2Fsuccess&cancel_url=https%3A%2F%2Fexample.com%2Fcancel&payment_method_types%5B0%5D=card&line_items%5B0%5D%5Bquantity%5D=1&mode=payment&line_items%5B0%5D%5Bcurrency%5D=USD&line_items%5B0%5D%5Bamount%5D=100&line_items%5B0%5D%5Bname%5D=Upscale%20Order&client_reference_id=12345&payment_intent_data[capture_method]=automatic&payment_intent_data[metadata][order_id]=1234&payment_intent_data[metadata][reference_id]=1234_1234&customer_email=a@b.com&payment_intent_data[description]=Upscale Order&payment_intent_data[statement_descriptor]=Upscale&payment_intent_data[receipt_email]=a@b.com&payment_intent_data[setup_future_usage]=off_session&submit_type=pay&locale=auto&payment_intent_data[shipping][address][line1]=line 1&payment_intent_data[shipping][name]=Aliven Test&payment_intent_data[shipping][address][country]=US&payment_intent_data[shipping][phone]=123455\n\n",
@@ -135,6 +137,12 @@
     "responseMappingFields": {
       "mappings": [
         {
+          "from": "allow_promotion_codes",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
           "from": "id",
           "to": "checkoutID",
           "fixed": false,
@@ -209,12 +217,6 @@
         },
         {
           "from": "mode",
-          "fixed": true,
-          "isCustom": false,
-          "persistCustomField": false
-        },
-        {
-          "from": "allow_promotion_codes",
           "fixed": true,
           "isCustom": false,
           "persistCustomField": false
@@ -330,9 +332,7 @@
       ]
     },
     "responseContentType": "application/json",
-    "headers": {
-      "Authorization": "Basic ${vars.apikey}"
-    }
+    "headers": {}
   },
   "verify": {
     "remoteVerifyMapping": {

@@ -1,8 +1,11 @@
 {
+  "id": 422,
   "requestType": "REFUND",
   "outboundMapping": {
     "url": "https://api.stripe.com/v1/refunds",
-    "authenticationIds": [],
+    "authenticationIds": [
+      268
+    ],
     "method": "POST",
     "requestContentType": "application/x-www-form-urlencoded",
     "requestExample": "amount=1000&payment_intent=pi_1H1szbJKSpaWlCpLUfjDAiB4&metadata[referenceId]=123&metadata[transactionId]=123",
@@ -120,8 +123,6 @@
       ]
     },
     "responseContentType": "application/json",
-    "headers": {
-      "Authorization": "Basic ${vars.apikey}"
-    }
+    "headers": {}
   }
 }
