@@ -1,0 +1,85 @@
+{
+  "id": 597,
+  "requestType": "REFUND",
+  "outboundMapping": {
+    "url": "https://${vars.palApiEnv}.adyen.com/pal/servlet/Payment/${vars.apiVersion}/refund",
+    "authenticationIds": [
+      301
+    ],
+    "method": "POST",
+    "requestContentType": "application/json",
+    "requestExample": "{\n\t\"merchantAccount\": \"SAPCOM_TEST_GATEWAY\",\n\t\"modificationAmount\": {\n\t\t\"value\": 10,\n\t\t\"currency\": \"USD\"\n\t},\n\t\"originalReference\": \"852600154899611C\",\n\t\"reference\": \"7989192100_123456789\"\n}",
+    "responseExample": "{\n\t\"pspReference\": \"882600155708084H\",\n\t\"response\": \"[refund-received]\",\n\t\"status\": 422,\n\t\"errorCode\": \"167\",\n\t\"message\": \"Original pspReference required for this operation\",\n\t\"errorType\": \"validation\"\n}",
+    "requestMappingFields": {
+      "mappings": [
+        {
+          "from": "$.originalReference",
+          "to": "${input.authPspReference}",
+          "fixed": false
+        },
+        {
+          "from": "$.reference",
+          "to": "${input.id}",
+          "fixed": false
+        },
+        {
+          "from": "$.merchantAccount",
+          "to": "${input.merchantId}",
+          "fixed": true
+        },
+        {
+          "from": "$.modificationAmount.currency",
+          "to": "${input.currency}",
+          "fixed": false
+        },
+        {
+          "from": "$.modificationAmount.value",
+          "to": "${input.amountInExponent}",
+          "fixed": false
+        }
+      ]
+    },
+    "responseMappingFields": {
+      "mappings": [
+        {
+          "from": "errorCode",
+          "to": "errorCode",
+          "fixed": false,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "response",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "errorType",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "message",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "pspReference",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "status",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        }
+      ]
+    },
+    "responseContentType": "application/json"
+  }
+}

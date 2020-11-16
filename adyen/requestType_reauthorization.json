@@ -1,0 +1,149 @@
+{
+  "id": 598,
+  "pattern": "IFRAME",
+  "requestType": "RECURRENT_AUTHORIZATION",
+  "outboundMapping": {
+    "url": "https://${vars.checkoutApiEnv}.adyen.com/${vars.apiVersion}/payments",
+    "authenticationIds": [
+      301
+    ],
+    "method": "POST",
+    "requestContentType": "application/json",
+    "requestExample": "{\n  \"amount\": {\n    \"currency\": \"USD\",\n    \"value\": 1000\n  },\n  \"reference\": \"Your order number\",\n  \"paymentMethod\": {\n    \"recurringDetailReference\": \"8315791039321763\"\n  },\n  \"shopperReference\": \"YOUR_UNIQUE_SHOPPER_ID_IOfW3k9G2PvXFu2j\",\n  \"merchantAccount\": \"YOUR_MERCHANT_ACCOUNT\",\n  \"shopperInteraction\": \"ContAuth\",\n  \"recurringProcessingModel\": \"Subscription\"\n}",
+    "responseExample": "{\n\t\"additionalData\": {\n\t\t\"expiryDate\": \"12/2023\",\n\t\t\"recurringProcessingModel\": \"Subscription\",\n\t\t\"paymentMethod\": \"visa\",\n\t\t\"cardSummary\": \"0518\"\n\t},\n\t\"pspReference\": \"883597815882674F\",\n\t\"resultCode\": \"Authorised\",\n\t\"amount\": {\n\t\t\"currency\": \"USD\",\n\t\t\"value\": 16957\n\t},\n\t\"merchantReference\": \"ABC1234_1597815882285\",\n\t\"status\": 422,\n\t\"errorCode\": \"14_007\",\n\t\"message\": \"Invalid payment method data\",\n\t\"errorType\": \"validation\"\n}",
+    "requestMappingFields": {
+      "mappings": [
+        {
+          "from": "$.reference",
+          "to": "${input.referenceId}",
+          "fixed": false
+        },
+        {
+          "from": "$.amount.currency",
+          "to": "${input.currency}",
+          "fixed": false
+        },
+        {
+          "from": "$.amount.value",
+          "to": "${input.amountInExponent}",
+          "fixed": false
+        },
+        {
+          "from": "$.merchantAccount",
+          "to": "${input.merchantId}",
+          "fixed": false
+        },
+        {
+          "from": "$.recurringProcessingModel",
+          "to": "Subscription",
+          "fixed": true
+        },
+        {
+          "from": "$.paymentMethod.recurringDetailReference",
+          "to": "${input.token}",
+          "fixed": false
+        },
+        {
+          "from": "$.shopperInteraction",
+          "to": "ContAuth",
+          "fixed": true
+        },
+        {
+          "from": "$.shopperReference",
+          "to": "${input.firstOrderId}",
+          "fixed": false
+        }
+      ]
+    },
+    "responseMappingFields": {
+      "mappings": [
+        {
+          "from": "errorCode",
+          "to": "errorCode",
+          "fixed": false,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "pspReference",
+          "to": "pspReference",
+          "fixed": false,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "resultCode",
+          "to": "transactionStatus",
+          "map": {
+            "Refused": "REJECTED",
+            "Authorised": "ACCEPTED"
+          },
+          "fixed": false,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "amount.currency",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "amount.value",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "errorType",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "additionalData.expiryDate",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "additionalData.cardSummary",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "additionalData.recurringProcessingModel",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "additionalData.paymentMethod",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "message",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "merchantReference",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "status",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        }
+      ]
+    },
+    "responseContentType": "application/json"
+  }
+}

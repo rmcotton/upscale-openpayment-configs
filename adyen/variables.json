@@ -1,0 +1,45 @@
+{
+  "value": [
+    {
+      "id": 439,
+      "key": "iframeDomain",
+      "value": "test.adyen.com",
+      "sensitive": false
+    },
+    {
+      "id": 434,
+      "key": "apiVersion",
+      "value": "v65",
+      "sensitive": false
+    },
+    {
+      "id": 433,
+      "key": "hmacKey",
+      "sensitive": true
+    },
+    {
+      "id": 431,
+      "key": "skinCode",
+      "value": "0CKaQtGq",
+      "sensitive": false
+    },
+    {
+      "id": 436,
+      "key": "checkoutApiEnv",
+      "value": "checkout-test",
+      "sensitive": false
+    },
+    {
+      "id": 435,
+      "key": "palApiEnv",
+      "value": "pal-test",
+      "sensitive": false
+    }
+  ],
+  "page": {
+    "number": 1,
+    "size": 45,
+    "totalElements": 6,
+    "totalPages": 1
+  }
+}

@@ -1,0 +1,187 @@
+{
+  "id": 599,
+  "requestType": "NOTIFICATION",
+  "inboundMapping": {
+    "authenticationIds": [
+      303
+    ],
+    "contentType": "application/json",
+    "requestMapping": {
+      "authorization": {
+        "requestExample": "{\"live\":\"false\",\"notificationItems\":[{\"NotificationRequestItem\":{\"additionalData\":{\"expiryDate\":\"03\\/2030\",\"authCode\":\"069134\",\"cardSummary\":\"1111\",\"recurring.recurringDetailReference\":\"8316050114104571\",\"recurringProcessingModel\":\"CardOnFile\",\"paymentMethod\":\"visa\",\"recurring.shopperReference\":\"1920015119\"},\"amount\":{\"currency\":\"USD\",\"value\":15800},\"eventCode\":\"AUTHORISATION\",\"eventDate\":\"2020-11-10T13:30:10+01:00\",\"merchantAccountCode\":\"SAPCOM_TEST_GATEWAYTEST\",\"merchantReference\":\"1920015119_1605011379516\",\"operations\":[\"CANCEL\",\"CAPTURE\",\"REFUND\"],\"paymentMethod\":\"visa\",\"pspReference\":\"852605011410217F\",\"reason\":\"069134:1111:03\\/2030\",\"success\":\"true\"}}]}",
+        "requestMappingFields": {
+          "mappings": [
+            {
+              "from": "notificationItems[*].NotificationRequestItem.additionalData.expiryDate",
+              "to": "cardExpiryDate",
+              "fixed": false,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "notificationItems[*].NotificationRequestItem.additionalData.cardSummary",
+              "to": "cardLast4",
+              "fixed": false,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "notificationItems[*].NotificationRequestItem.paymentMethod",
+              "to": "cardType",
+              "map": {
+                "visa": "VISA",
+                "mc": "MASTERCARD",
+                "amex": "AMEX",
+                "discover": "DISCOVER"
+              },
+              "fixed": false,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "notificationItems[*].NotificationRequestItem.merchantAccountCode",
+              "to": "merchantId",
+              "fixed": false,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "notificationItems[*].NotificationRequestItem.paymentMethod",
+              "to": "paymentMethod",
+              "map": {
+                "visa": "CREDIT_CARD",
+                "mc": "CREDIT_CARD",
+                "amex": "CREDIT_CARD",
+                "discover": "CREDIT_CARD"
+              },
+              "fixed": false,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "notificationItems[*].NotificationRequestItem.pspReference",
+              "to": "pspReference",
+              "fixed": false,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "notificationItems[*].NotificationRequestItem.merchantReference",
+              "to": "referenceId",
+              "fixed": false,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "notificationItems[*].NotificationRequestItem.eventCode",
+              "to": "requestType",
+              "map": {
+                "AUTHORISATION": "AUTHORIZATION",
+                "CAPTURE": "SETTLEMENT",
+                "REFUND": "REFUND"
+              },
+              "fixed": false,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "notificationItems[*].NotificationRequestItem.additionalData.hmacSignature",
+              "to": "targetSignature",
+              "fixed": false,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "notificationItems[*].NotificationRequestItem.additionalData.['recurring.recurringDetailReference']",
+              "to": "token",
+              "fixed": false,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "notificationItems[*].NotificationRequestItem.merchantReference",
+              "to": "transactionId",
+              "fixed": false,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "notificationItems[*].NotificationRequestItem.success",
+              "to": "transactionStatus",
+              "map": {
+                "true": "ACCEPTED",
+                "false": "REJECTED"
+              },
+              "fixed": false,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "notificationItems[*].NotificationRequestItem.reason",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "notificationItems[*].NotificationRequestItem.amount.currency",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "notificationItems[*].NotificationRequestItem.amount.value",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "notificationItems[*].NotificationRequestItem.additionalData.authCode",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "notificationItems[*].NotificationRequestItem.additionalData.recurringProcessingModel",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "notificationItems[*].NotificationRequestItem.additionalData.paymentMethod",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "notificationItems[*].NotificationRequestItem.additionalData.['recurring.shopperReference']",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "notificationItems[*].NotificationRequestItem.eventDate",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "live",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            }
+          ]
+        }
+      },
+      "settlement": {
+        "requestExample": ""
+      },
+      "refund": {
+        "requestExample": ""
+      }
+    },
+    "responseMapping": {
+      "content": "[accepted]"
+    }
+  }
+}

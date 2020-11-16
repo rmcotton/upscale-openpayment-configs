@@ -1,0 +1,35 @@
+{
+  "id": 595,
+  "pattern": "IFRAME",
+  "requestType": "AUTHORIZATION",
+  "destination": {
+    "url": "https://${vars.iframeDomain}/hpp/pay.shtml?merchantSig=${functions.encodeURL(auth.hmac.signature)}&sessionValidity=${functions.encodeURL(auth.hmac.hmacFields.sessionValidity)}&merchantAccount=${functions.encodeURL(input.merchantId)}&paymentAmount=${functions.encodeURL(input.amountInExponent)}&currencyCode=${functions.encodeURL(input.currency)}&skinCode=${functions.encodeURL(vars.skinCode)}&merchantReference=${functions.encodeURL(input.referenceId)}&recurringContract=ONECLICK,RECURRING&shopperEmail=${functions.encodeURL(input.emailAddress)}&shopperReference=${functions.encodeURL(input.orderId)}&allowedMethods=card&resURL=${functions.encodeURL(input.resultURL)}",
+    "method": "GET",
+    "contentType": "application/x-www-form-urlencoded",
+    "authenticationIds": [
+      299
+    ],
+    "form": []
+  },
+  "verify": {
+    "localVerifyMapping": {
+      "mappings": [
+        {
+          "from": "authResult",
+          "to": "result",
+          "map": {
+            "AUTHORISED": "AUTHORIZED",
+            "UNAUTHORISED": "UNAUTHORIZED",
+            "CANCELLED": "CANCELLED",
+            "AUTHORIZED": "AUTHORIZED",
+            "UNAUTHORIZED": "UNAUTHORIZED"
+          },
+          "fixed": false,
+          "isCustom": false,
+          "persistCustomField": false
+        }
+      ]
+    },
+    "localVerifyAuthenticationId": 300
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "name": "Adyen Local Verify HMAC",
+  "algorithm": "HmacSHA256",
+  "baseEncoding": "BASE64",
+  "secretBaseEncoding": "BASE16",
+  "charset": "UTF-8",
+  "source": "authResult:merchantReference:paymentMethod:pspReference:shopperLocale:skinCode:${input.authResult}:${input.merchantReference}:${input.paymentMethod}:${input.pspReference}:${input.shopperLocale}:${input.skinCode}",
+  "target": "${input.merchantSig}",
+  "id": 300,
+  "method": "HMAC_SIGNATURE_CALCULATION",
+  "hmacSignatureFlag": true
+}

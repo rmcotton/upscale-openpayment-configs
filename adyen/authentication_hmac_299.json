@@ -1,0 +1,14 @@
+{
+  "name": "Adyen Hosted Page Signature",
+  "algorithm": "HmacSHA256",
+  "baseEncoding": "BASE64",
+  "secretBaseEncoding": "BASE16",
+  "charset": "UTF-8",
+  "source": "<#assign sessionValidityReplaced = auth.hmac.hmacFields.sessionValidity?replace(':', '\\\\:')>allowedMethods:currencyCode:merchantAccount:merchantReference:paymentAmount:recurringContract:resURL:sessionValidity:shopperEmail:shopperReference:skinCode:card:${input.currency}:${input.merchantId}:${input.referenceId}:${input.amountInExponent}:ONECLICK,RECURRING:${auth.hmac.hmacFields.resURLReplaced}:${sessionValidityReplaced}:${input.emailAddress}:${input.orderId}:${vars.skinCode}",
+  "hmacFields": {
+    "sessionValidity": "<#assign sessionValidity = (.now?long + 3600*1000)?number_to_datetime?iso('UTC') >${sessionValidity}",
+    "resURLReplaced": "<#assign resURLReplaced=input.resultURL?replace(':', '\\\\:')>${resURLReplaced}"
+  },
+  "id": 299,
+  "method": "HMAC_OUTBOUND_SIGNATURE_CALCULATION"
+}
