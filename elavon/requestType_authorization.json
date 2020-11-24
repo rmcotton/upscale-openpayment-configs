@@ -1,4 +1,5 @@
 {
+  "id": 359,
   "pattern": "FULL_PAGE",
   "requestType": "AUTHORIZATION",
   "destination": {
@@ -18,14 +19,42 @@
     "authenticationIds": [],
     "method": "POST",
     "requestContentType": "application/x-www-form-urlencoded",
-    "requestExample": "ssl_pin=O74D6ICFJ4MSC8RPEAQQGVBBUCVWHNWBB52PLOFHXUV58NY5DKK3QHEIKZAN68RU&ssl_transaction_type=ccauthonly&ssl_amount=100&ssl_merchant_id=123&ssl_user_id=webpage&ssl_reference_number=12345&ssl_invoice_number=12345&ssl_country=USA&ssl_txn_currency_code=USD&ssl_avs_address=53+State+Street+%E2%80%93+16th+Floor&ssl_avs_zip=02109&ssl_email=a@b.com&ssl_first_name=alvin&ssl_last_name=Test&ssl_city=town&ssl_address2=line 2",
+    "requestExample": "ssl_pin=O74D6ICFJ4MSC8RPEAQQGVBBUCVWHNWBB52PLOFHXUV58NY5DKK3QHEIKZAN68RU&ssl_transaction_type=ccauthonly&ssl_amount=100&ssl_merchant_id=123&ssl_user_id=webpage&ssl_reference_number=12345&ssl_invoice_number=12345&ssl_country=USA&ssl_txn_currency_code=USD&ssl_avs_address=53+State+Street+%E2%80%93+16th+Floor&ssl_avs_zip=02109&ssl_email=a@b.com&ssl_first_name=alvin&ssl_last_name=Test&ssl_city=town&ssl_address2=line 2&ssl_phone=12345&ssl_ship_to_country=USA",
     "responseExample": "token",
     "requestMappingFields": {
       "mappings": [
         {
-          "from": "ssl_merchant_id",
-          "to": "008548",
+          "from": "ssl_country",
+          "to": "${input.billingAddress.country}",
+          "map": {
+            "US": "USA"
+          },
+          "fixed": false
+        },
+        {
+          "from": "ssl_invoice_number",
+          "to": "${input.referenceId}",
+          "fixed": false
+        },
+        {
+          "from": "ssl_user_id",
+          "to": "webpage",
           "fixed": true
+        },
+        {
+          "from": "ssl_amount",
+          "to": "${input.amountInExponent}",
+          "fixed": false
+        },
+        {
+          "from": "ssl_avs_zip",
+          "to": "${input.billingAddress.postalCode}",
+          "fixed": false
+        },
+        {
+          "from": "ssl_merchant_id",
+          "to": "${input.merchantId}",
+          "fixed": false
         },
         {
           "from": "ssl_txn_currency_code",
@@ -35,6 +64,11 @@
         {
           "from": "ssl_last_name",
           "to": "${input.billingAddress.lastName}",
+          "fixed": false
+        },
+        {
+          "from": "ssl_phone",
+          "to": "${input.billingAddress.phoneNumber}",
           "fixed": false
         },
         {
@@ -58,18 +92,16 @@
           "fixed": false
         },
         {
-          "from": "ssl_amount",
-          "to": "${input.amount}",
-          "fixed": false
-        },
-        {
-          "from": "ssl_avs_zip",
-          "to": "${input.billingAddress.postalCode}",
-          "fixed": false
-        },
-        {
           "from": "ssl_reference_number",
           "to": "${input.referenceId}",
+          "fixed": false
+        },
+        {
+          "from": "ssl_ship_to_country",
+          "to": "${input.shippingAddress.country}",
+          "map": {
+            "US": "USA"
+          },
           "fixed": false
         },
         {
@@ -86,48 +118,11 @@
           "from": "ssl_first_name",
           "to": "${input.billingAddress.firstName}",
           "fixed": false
-        },
-        {
-          "from": "ssl_country",
-          "to": "USA",
-          "fixed": true
-        },
-        {
-          "from": "ssl_invoice_number",
-          "to": "${input.referenceId}",
-          "fixed": false
-        },
-        {
-          "from": "ssl_user_id",
-          "to": "webpage",
-          "fixed": true
         }
       ]
     },
     "responseMappingFields": {
-      "mappings": [
-        {
-          "from": "",
-          "to": "errorCode",
-          "fixed": true,
-          "isCustom": false,
-          "persistCustomField": false
-        },
-        {
-          "from": "",
-          "to": "errorMessage",
-          "fixed": true,
-          "isCustom": false,
-          "persistCustomField": false
-        },
-        {
-          "from": "",
-          "to": "redirectUrl",
-          "fixed": true,
-          "isCustom": false,
-          "persistCustomField": false
-        }
-      ]
+      "mappings": []
     },
     "responseContentType": "text/plain"
   },
@@ -140,7 +135,7 @@
           "map": {
             "0": "AUTHORIZED"
           },
-          "fixed": true,
+          "fixed": false,
           "isCustom": false,
           "persistCustomField": false
         }
