@@ -43,7 +43,7 @@
         },
         {
           "from": "ssl_amount",
-          "to": "${input.amountInExponent}",
+          "to": "${input.amount}",
           "fixed": false
         },
         {

@@ -1,0 +1,182 @@
+{
+  "id": 628,
+  "pattern": "IFRAME",
+  "requestType": "SETTLEMENT",
+  "outboundMapping": {
+    "url": "https://api.demo.convergepay.com/VirtualMerchantDemo/processxml.do",
+    "authenticationIds": [],
+    "method": "POST",
+    "requestContentType": "application/xml",
+    "requestExample": "<txn><ssl_merchant_id>011362</ssl_merchant_id><ssl_user_id>webpage</ssl_user_id><ssl_pin>1OX0X669UPX1SZ8TZ23JDIZSH4B7LRCW52GED4RLMUQBXXP6NMQEFDQIT97IYJ50</ssl_pin><ssl_description>Keyed Sale API</ssl_description><ssl_transaction_type>cccomplete</ssl_transaction_type><ssl_txn_id>241120AD3-58DFC132-5C7E-450B-BA13-41F4BE84BC94</ssl_txn_id>\n  <ssl_amount>10.99</ssl_amount> <ssl_partial_shipment_flag>Y</ssl_partial_shipment_flag>\n</txn>",
+    "responseExample": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<txn>\n <errorCode>6042</errorCode>\n    <errorName>Invalid Request Format</errorName>\n    <errorMessage>XML request is not well-formed or request is incomplete.</errorMessage> <ssl_transaction_type>COMPLETE</ssl_transaction_type><ssl_card_number>40**********0002</ssl_card_number><ssl_oar_data>010010030411241431570000047554200000000000451964032914100304</ssl_oar_data><ssl_result>0</ssl_result><ssl_txn_id>241120AD3-58DFC132-5C7E-450B-BA13-41F4BE84BC94</ssl_txn_id><ssl_avs_response></ssl_avs_response><ssl_approval_code>451964</ssl_approval_code><ssl_salestax></ssl_salestax><ssl_amount>158.00</ssl_amount><ssl_txn_time>11/24/2020 10:10:17 AM</ssl_txn_time><ssl_account_balance>0.00</ssl_account_balance><ssl_ps2000_data>A7503295231739405124VE</ssl_ps2000_data><ssl_exp_date>1022</ssl_exp_date><ssl_result_message>APPROVAL</ssl_result_message><ssl_card_short_description>VISA</ssl_card_short_description><ssl_customer_code></ssl_customer_code><ssl_card_type>CREDITCARD</ssl_card_type><ssl_invoice_number>2733919162_1606228297301</ssl_invoice_number><ssl_cvv2_response></ssl_cvv2_response><ssl_partner_app_id>01</ssl_partner_app_id></txn>",
+    "requestMappingFields": {
+      "mappings": [
+        {
+          "from": "/txn/ssl_merchant_id",
+          "to": "${vars.ssl_merchant_id}",
+          "fixed": false
+        },
+        {
+          "from": "/txn/ssl_user_id",
+          "to": "${vars.ssl_user_id}",
+          "fixed": false
+        },
+        {
+          "from": "/txn/ssl_pin",
+          "to": "${vars.ssl_pin}",
+          "fixed": false
+        },
+        {
+          "from": "/txn/ssl_description",
+          "to": "${input.orderId}",
+          "fixed": false
+        },
+        {
+          "from": "/txn/ssl_transaction_type",
+          "to": "cccomplete",
+          "fixed": true
+        },
+        {
+          "from": "/txn/ssl_txn_id",
+          "to": "${input.pspReference}",
+          "fixed": false
+        },
+        {
+          "from": "/txn/ssl_amount",
+          "to": "${input.amount}",
+          "fixed": false
+        },
+        {
+          "from": "/txn/ssl_partial_shipment_flag",
+          "to": "Y",
+          "fixed": true
+        }
+      ]
+    },
+    "responseMappingFields": {
+      "mappings": [
+        {
+          "from": "txn.errorCode.#text",
+          "to": "errorCode",
+          "fixed": false,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "txn.ssl_txn_id.#text",
+          "to": "pspReference",
+          "fixed": false,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "txn.ssl_result_message.#text",
+          "to": "transactionStatus",
+          "map": {
+            "APPROVAL": "ACCEPTED"
+          },
+          "fixed": false,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "txn.ssl_partner_app_id.#text",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "txn.ssl_transaction_type.#text",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "txn.ssl_card_number.#text",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "txn.ssl_oar_data.#text",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "txn.errorMessage.#text",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "txn.ssl_result.#text",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "txn.ssl_approval_code.#text",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "txn.ssl_amount.#text",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "txn.ssl_txn_time.#text",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "txn.ssl_account_balance.#text",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "txn.ssl_ps2000_data.#text",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "txn.errorName.#text",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "txn.ssl_exp_date.#text",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "txn.ssl_card_short_description.#text",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "txn.ssl_card_type.#text",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        },
+        {
+          "from": "txn.ssl_invoice_number.#text",
+          "fixed": true,
+          "isCustom": false,
+          "persistCustomField": false
+        }
+      ]
+    },
+    "responseContentType": "application/xml"
+  }
+}
