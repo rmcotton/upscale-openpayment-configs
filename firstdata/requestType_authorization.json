@@ -92,7 +92,7 @@
       },
       {
         "name": "x_fp_hash",
-        "value": "${auth.hmac.signature?lower_case}"
+        "value": "${auth.hmac.signature}"
       }
     ]
   },
@@ -106,7 +106,7 @@
             "1": "AUTHORIZED",
             "2": "UNAUTHORIZED"
           },
-          "fixed": true,
+          "fixed": false,
           "isCustom": false,
           "persistCustomField": false
         },
@@ -114,7 +114,7 @@
           "from": "x_SHA1_Hash",
           "to": "x_SHA1_Hash",
           "map": {},
-          "fixed": true,
+          "fixed": false,
           "isCustom": true,
           "persistCustomField": false
         },
@@ -122,7 +122,7 @@
           "from": "x_trans_id",
           "to": "x_trans_id",
           "map": {},
-          "fixed": true,
+          "fixed": false,
           "isCustom": true,
           "persistCustomField": false
         },
@@ -130,7 +130,7 @@
           "from": "x_amount",
           "to": "x_amount",
           "map": {},
-          "fixed": true,
+          "fixed": false,
           "isCustom": true,
           "persistCustomField": false
         },
@@ -138,7 +138,7 @@
           "from": "x_trans_id",
           "to": "transaction_tag",
           "map": {},
-          "fixed": true,
+          "fixed": false,
           "isCustom": true,
           "persistCustomField": false
         }
