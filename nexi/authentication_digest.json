@@ -5,7 +5,7 @@
   "charset": "UTF-8",
   "source": "codTrans=${auth.hmac.hmacFields.codTrans}divisa=${input.currency}importo=${input.amountInExponent}${vars.secret}",
   "hmacFields": {
-    "codTrans": "TESTPS_${.now?string[\"yyyyMMddHHmmss\"]}"
+    "codTrans": "${input.referenceId}"
   },
   "hmacSignatureFlag" : false,
   "id": 321

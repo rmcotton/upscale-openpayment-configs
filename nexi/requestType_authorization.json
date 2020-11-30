@@ -37,12 +37,38 @@
       {
         "name": "divisa",
         "value": "${input.currency}"
+      },
+      {
+        "name": "urlpost",
+        "value": "${vars.urlpost}"
+      },
+      {
+        "name": "TCONTAB",
+        "value": "${vars.TCONTAB}"
+      },
+      {
+        "name": "mail",
+        "value": "${input.emailAddress}"
       }
     ]
   },
   "verify": {
     "localVerifyMapping": {
-      "mappings": []
+      "mappings": [
+        {
+          "from": "esito",
+          "to": "result",
+          "map": {
+            "OK": "AUTHORIZED",
+            "KO": "UNAUTHORIZED",
+            "ANNULLO": "CANCELLED",
+            "ERRORE": "UNAUTHORIZED"
+          },
+          "fixed": false,
+          "isCustom": false,
+          "persistCustomField": false
+        }
+      ]
     }
   }
 }

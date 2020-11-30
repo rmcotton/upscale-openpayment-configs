@@ -1,0 +1,261 @@
+{
+  "id": 661,
+  "requestType": "NOTIFICATION",
+  "inboundMapping": {
+    "authenticationIds": [],
+    "contentType": "application/x-www-form-urlencoded",
+    "requestMapping": {
+      "authorization": {
+        "requestExample": "xpay__lb__token=&mail=r.cotton%40sap.com&data=20201130&messaggio=Message+OK&cognome=cotton&nazionalita=ITA&terminalId=00028426&regione=&mac=ed3e613416887a5ae63ff5746090bdb1f02ebd2c&codAut=B127H9&tipoProdotto=VISA+CLASSIC+-+CREDIT+-+N&selectedcard=&alias=ALIAS_WEB_00028426&pan=453997XXXXXX0006&brand=VISA&orario=124606&divisa=EUR&scadenza_pan=203002&importo=32000&codiceEsito=0&languageId=ENG&nome=richard+&check=&tipoTransazione=VBV_FULL&codiceConvenzione=00028426104&codTrans=0678282455_1606736722402&tipo_richiesta=PA&esito=OK&aliasEffettivo=&TCONTAB=C&OPTION_CF=&num_contratto=",
+        "requestMappingFields": {
+          "mappings": [
+            {
+              "from": "scadenza_pan",
+              "to": "cardExpiryDate",
+              "fixed": false,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "pan",
+              "to": "cardLast4",
+              "fixed": false,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "brand",
+              "to": "cardType",
+              "map": {
+                "VISA": "VISA",
+                "MasterCard": "MASTERCARD",
+                "Amex": "AMEX",
+                "Master": "MASTERCARD"
+              },
+              "fixed": false,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "terminalId",
+              "to": "merchantId",
+              "fixed": false,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "brand",
+              "to": "paymentMethod",
+              "map": {
+                "VISA": "CREDIT_CARD",
+                "default": "CREDIT_CARD"
+              },
+              "fixed": false,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "codTrans",
+              "to": "pspReference",
+              "fixed": false,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "codTrans",
+              "to": "referenceId",
+              "fixed": false,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "TCONTAB",
+              "to": "requestType",
+              "map": {
+                "C": "AUTHORIZATION"
+              },
+              "fixed": false,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "mac",
+              "to": "targetSignature",
+              "fixed": false,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "codTrans",
+              "to": "transactionId",
+              "fixed": false,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "esito",
+              "to": "transactionStatus",
+              "map": {
+                "OK": "ACCEPTED",
+                "KO": "REJECTED"
+              },
+              "fixed": false,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "xpay__lb__token",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "mail",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "data",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "messaggio",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "cognome",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "nazionalita",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "regione",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "codAut",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "tipoProdotto",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "selectedcard",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "alias",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "orario",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "divisa",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "importo",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "codiceEsito",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "languageId",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "nome",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "check",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "tipoTransazione",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "codiceConvenzione",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "tipo_richiesta",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "aliasEffettivo",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "OPTION_CF",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            },
+            {
+              "from": "num_contratto",
+              "fixed": true,
+              "isCustom": false,
+              "persistCustomField": false
+            }
+          ]
+        }
+      },
+      "settlement": {
+        "requestExample": ""
+      },
+      "refund": {
+        "requestExample": ""
+      }
+    }
+  }
+}
