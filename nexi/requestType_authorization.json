@@ -1,0 +1,48 @@
+{
+  "id": 497,
+  "pattern": "FULL_PAGE",
+  "requestType": "AUTHORIZATION",
+  "destination": {
+    "url": "https://int-ecommerce.nexi.it/ecomm/ecomm/DispatcherServlet",
+    "method": "POST",
+    "contentType": "application/x-www-form-urlencoded",
+    "authenticationIds": [
+      321
+    ],
+    "form": [
+      {
+        "name": "url",
+        "value": "${input.resultURL}"
+      },
+      {
+        "name": "codTrans",
+        "value": "${auth.hmac.hmacFields.codTrans}"
+      },
+      {
+        "name": "url_back",
+        "value": "${input.cancelURL}"
+      },
+      {
+        "name": "mac",
+        "value": "${auth.hmac.digest}"
+      },
+      {
+        "name": "alias",
+        "value": "${vars.alias}"
+      },
+      {
+        "name": "importo",
+        "value": "${input.amountInExponent}"
+      },
+      {
+        "name": "divisa",
+        "value": "${input.currency}"
+      }
+    ]
+  },
+  "verify": {
+    "localVerifyMapping": {
+      "mappings": []
+    }
+  }
+}
