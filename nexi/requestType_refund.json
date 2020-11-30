@@ -1,0 +1,64 @@
+{
+  "id": 662,
+  "requestType": "REFUND",
+  "outboundMapping": {
+    "url": "https://${vars.apiEnv}/ecomm/api/bo/storna",
+    "authenticationIds": [
+      370
+    ],
+    "method": "POST",
+    "requestContentType": "application/json",
+    "requestExample": "{\n    \"apiKey\" : \"APIKEY\",\n    \"codiceTransazione\" : \"tx_code\",\n    \"importo\" : \"23000\",\n    \"divisa\" : \"EUR\",\n    \"timeStamp\" : \"1606740903518\",\n    \"mac\" : \"sig1234\"\n}",
+    "responseExample": "{\n  \"esito\" : \"OK\"\n}",
+    "requestMappingFields": {
+      "mappings": [
+        {
+          "from": "$.timeStamp",
+          "to": "${auth.hmac.hmacFields.timeStamp}",
+          "fixed": true
+        },
+        {
+          "from": "$.codiceTransazione",
+          "to": "${input.referenceId}",
+          "fixed": false
+        },
+        {
+          "from": "$.apiKey",
+          "to": "${vars.alias}",
+          "fixed": false
+        },
+        {
+          "from": "$.divisa",
+          "to": "${input.currency}",
+          "fixed": false
+        },
+        {
+          "from": "$.importo",
+          "to": "${input.amountInExponent}",
+          "fixed": false
+        },
+        {
+          "from": "$.mac",
+          "to": "${auth.hmac.digest}",
+          "fixed": true
+        }
+      ]
+    },
+    "responseMappingFields": {
+      "mappings": [
+        {
+          "from": "esito",
+          "to": "transactionStatus",
+          "map": {
+            "KO": "REJECTED",
+            "OK": "ACCEPTED"
+          },
+          "fixed": false,
+          "isCustom": false,
+          "persistCustomField": false
+        }
+      ]
+    },
+    "responseContentType": "application/json"
+  }
+}

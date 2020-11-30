@@ -1,0 +1,14 @@
+{
+  "name": "Nexi API MAC",
+  "algorithm": "SHA1",
+  "baseEncoding": "BASE16_LOWERCASE",
+  "charset": "UTF-8",
+  "secretType": "TEXT",
+  "source": "apiKey=${vars.alias}codiceTransazione=${input.referenceId}divisa=${input.currency}importo=${input.amountInExponent}timestamp=${auth.hmac.hmacFields.timeStamp}${vars.secret}",
+  "hmacFields": {
+    "timeStamp": "${.now?long?c}"
+  },
+  "id": 370,
+  "method": "HMAC_OUTBOUND_SIGNATURE_CALCULATION",
+  "hmacSignatureFlag": false
+}
