@@ -1,11 +1,11 @@
 {
   "name": "Nexi iFrame MAC",
   "algorithm": "SHA1",
-  "baseEncoding": "NONE",
+  "baseEncoding": "BASE16_LOWERCASE",
   "charset": "UTF-8",
-  "source": "codTrans=TESTPS_${auth.hmac.hmacFields.codTrans}divisa=${input.currency}importo=${input.amount}${vars.secret}",
+  "source": "codTrans=${auth.hmac.hmacFields.codTrans}divisa=${input.currency}importo=${input.amountInExponent}${vars.secret}",
   "hmacFields": {
-    "codTrans": "${.now?string[\"yyyyMMddHHmmss\"]}"
+    "codTrans": "TESTPS_${.now?string[\"yyyyMMddHHmmss\"]}"
   },
   "hmacSignatureFlag" : false,
   "id": 321
